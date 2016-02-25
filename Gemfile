@@ -35,6 +35,18 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'sqlite3'
+  gem 'jasmine-rails'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'simplecov', :require => false
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
+  gem 'autotest-rails'
+  gem 'factory_girl_rails'
+  gem 'metric_fu'
 end
 
 group :development do
