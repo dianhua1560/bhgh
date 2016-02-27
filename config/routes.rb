@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+   get '/' => 'test#index'
+   
+   # authentication 
+  get "/auth/google_oauth2/callback", to: "auth#google_callback"
+  get "/auth/logout", to: "auth#logout"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
