@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Events
   get '/events' => 'events#index'
   get '/events/new' => 'events#new', as: 'new_event'
+  get '/events/pull' => 'events#pull_events'
   
   # Posts
   get '/posts' => 'posts#index'
