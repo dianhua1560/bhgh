@@ -5,7 +5,8 @@ ruby '2.2.2'
 gem 'rails', '4.2.5.1'
 
 gem "omniauth-google-oauth2"
-
+gem "twitter-bootstrap-rails"
+gem "therubyracer"
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

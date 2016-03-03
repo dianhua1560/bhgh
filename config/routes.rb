@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   get "/auth/google_oauth2/callback", to: "auth#google_callback"
   get "/auth/logout", to: "auth#logout"
   
+  # Events
+  get '/events' => 'events#index'
+  get '/events/new' => 'events#new', as: 'new_event'
+  
+  # Posts
+  get '/posts' => 'posts#index'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

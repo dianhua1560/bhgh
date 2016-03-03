@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def signed_in
-     if not myEmail
-       session[:auth_redirect] = request.path
+    if not myEmail
+      session[:auth_redirect] = request.path
       redirect_to '/auth/google_oauth2'
     end
   end
