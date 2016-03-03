@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
-   get '/' => 'test#index'
+   get '/' => 'events#index'
    
    # authentication 
   get "/auth/google_oauth2/callback", to: "auth#google_callback"
