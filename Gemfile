@@ -5,6 +5,7 @@ ruby '2.2.2'
 gem 'rails', '4.2.5.1'
 
 gem 'google_drive'
+gem 'show_me_the_cookies'
 
 gem "omniauth-google-oauth2"
 gem "twitter-bootstrap-rails"
