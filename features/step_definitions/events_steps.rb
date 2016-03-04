@@ -12,11 +12,6 @@ Given /the following events exist/ do |events_table|
   end
 end
 
-Given(/^that I am logged in as "(.*)"$/) do |myEmail|
-	puts 'the email was '+myEmail
-	create_cookie('email', myEmail)
-end
-
 Then(/^I should see all the events$/) do
   Event.all.each do |event|
   	step "I should see \"#{event.title}\""
