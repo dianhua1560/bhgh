@@ -8,4 +8,4 @@ https://www.pivotaltracker.com/n/projects/1543373
 We'd like to make a volunteer app for Hope Academy where we can list opportunities, community service projects, put a brag board of kid's accomplishments, and let kids collaborate by listing homework questions or comments.
 
 # Heroku
-https://dry-scrubland-36728.herokuapp.com/
+https://bhgh.herokuapp.com
