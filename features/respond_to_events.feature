@@ -17,4 +17,6 @@ Scenario: respond going to an event
 	Given that I am logged in as "asdf@gmail.com"
 	And I am on the events page
 	And I click "Going" on "title1"
+	And I refresh the page
+	Then I should see "Going" on event: "title1"
 

@@ -15,6 +15,18 @@ Background: events have been added to the database
 	| title5 | description5 | 5-May-2015 |
 
 Scenario: delete an event
+	Given I am on the events page
+	When I delete "title1"
+	Then I should not see "title1"
 
 Scenario: update an event
+	Given I am on the events page
+	When I click "Update title1"
+	Then I should be on the update events page
+	And I should see "Update title1"
+	When I fill in description with "new description" 
+	And I click "Update"
+	Then I should be on the events page
+	And I should see "new description"
+
 
