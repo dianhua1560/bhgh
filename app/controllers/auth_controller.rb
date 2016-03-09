@@ -3,8 +3,6 @@ class AuthController < ApplicationController
         authentication_info = request.env["omniauth.auth"]
         # save email in cookie
         cookies[:email] = authentication_info['info']['email']
-        puts 'this is the email'
-        puts authentication_info['info']['email']
         # redirect to original route
         if session[:auth_redirect] != nil
           redirect_to session[:auth_redirect]

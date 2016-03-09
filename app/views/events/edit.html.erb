@@ -1,0 +1,17 @@
+
+<div class = 'col-md-3'></div>
+<div class = 'col-md-6'>
+<h1>New Event</h1>
+<%= link_to 'Back to Events', events_path %>
+<%= form_tag 'update' %>
+
+<%= text_field_tag 'title', @event.title, class: 'form-control', placeholder: 'Title (ex: Tutoring Event)' %>
+
+<%= text_area_tag 'description', @event.description, class: 'form-control', placeholder: 'Description' %>
+
+<%= text_field_tag 'time', @event.time, class: 'form-control', placeholder: 'Time (ex: May 5 2016)' %>
+
+<%= hidden_field_tag 'id', @event.id %>
+<%= submit_tag 'Save Event', class: 'btn btn-default' %>
+</div>
+<div class = 'col-md-3'></div>

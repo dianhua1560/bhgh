@@ -27,11 +27,11 @@ Member.create(
 	position: 'scholar')
 
 # create dummy events
-Event.create(title: 'USF Visit', 
+e1 = Event.create(title: 'USF Visit', 
 	description: 'Visiting USF Campus',
 	time: 1.day.from_now,
 	organizer: 'davidbliu@gmail.com')
-v = Event.create(title: 'Volunteer @ Glide', 
+e2 = Event.create(title: 'Volunteer @ Glide', 
 	description: 'Come volunteer at glide and teach kids math',
 	time: 2.days.from_now,
 	organizer: 'chenallen2012@gmail.com')
@@ -64,7 +64,8 @@ Brag.create(
 	)
 
 # photo
+photos = []
 Photo.create(
 	object_type:'event',
-	object_id: v.id,
+	object_id: e1.id,
 	url: 'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpt1/t31.0-0/p640x640/12829159_974829552570131_3139526372410727349_o.jpg')
