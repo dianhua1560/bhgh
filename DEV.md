@@ -19,6 +19,12 @@ to do this on heroku run `sh heroku_deploy.sh`
   * a google callback in `auth_controller` saves the users email in a cookie
 * `myEmail` in `auth_helper` gets the users email
 
+__relevant files__
+* `controllers/application_controller`
+* `controllers/auth_controller`
+* `helpers/auth_helper`
+* and the google omniauth setup `config/initializers/omniauth.rb`
+
 # Models
 check out `/db/schema.rb`
 
