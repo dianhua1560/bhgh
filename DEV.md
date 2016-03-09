@@ -28,3 +28,22 @@ __relevant files__
 # Models
 check out `/db/schema.rb`
 
+__Proposed Models__
+```
+Members
+  basic information: email, name, phone, position (admin/scholar/tutor)
+  profile: TODO
+Event
+  title, time, description, organizer
+  photos can be added via Photo model
+EventResponse
+  email, event_id, response (Going, Not Going, Interested)
+Photo
+  object_id, object_type, photo_url
+Brag
+  author, title, body, subject
+  photos added thru Photo
+BragLike
+  email, brag_id
+```
+TODO: post, comments, page view tracking
