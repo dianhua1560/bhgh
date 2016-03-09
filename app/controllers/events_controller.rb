@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
     def index
         @events = Event.all
-        @is_admin = Member.admin_emails.include?(myEmail)
     end
     
     def new

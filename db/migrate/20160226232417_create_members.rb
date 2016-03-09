@@ -4,6 +4,7 @@ class CreateMembers < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :position
+      t.string :phone
       t.timestamps null: false
     end
   end

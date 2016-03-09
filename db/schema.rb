@@ -11,12 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227020153) do
+ActiveRecord::Schema.define(version: 20160309053110) do
+
+  create_table "brag_likes", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "brag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "brags", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.text     "body"
+    t.string   "subject"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_responses", force: :cascade do |t|
+    t.string   "email"
+    t.string   "event_id"
+    t.string   "response"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
     t.datetime "time"
+    t.string   "organizer"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -25,16 +50,17 @@ ActiveRecord::Schema.define(version: 20160227020153) do
     t.string   "name"
     t.string   "email"
     t.string   "position"
+    t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.string   "content"
-    t.string   "author"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "photos", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "object_id"
+    t.string   "object_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
