@@ -46,4 +46,6 @@ Brag
 BragLike
   email, brag_id
 ```
+We will use emails to join models (ie event organizer --> member, brag author --> member)
+
 TODO: post, comments, page view tracking
