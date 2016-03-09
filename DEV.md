@@ -49,3 +49,10 @@ BragLike
 We will use emails to join models (ie event organizer --> member, brag author --> member)
 
 TODO: post, comments, page view tracking
+
+# Iteration 1-2 (Deadline 3/11)
+Complete the four events features
+
+mostly done here: <a href = 'http://pbl.link/169-site'>pbl.link/169-site</a>
+
+TODO: finish tests, finish implementing event responses, improve UI
