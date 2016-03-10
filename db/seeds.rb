@@ -15,7 +15,7 @@ Member.create(
 Member.create(
 	email:'chenallen2012@gmail.com',
 	name: 'Allen Chen',
-	position: 'tutor', 
+	position: 'admin', 
 	phone: '(123) 456-7890')
 Member.create(
 	email:'edward@gmail.com',
@@ -25,6 +25,10 @@ Member.create(
 	email:'julian@gmail.com',
 	name:'Julian Doe',
 	position: 'scholar')
+Member.create(
+	email: 'suzezhang1113@berkeley.edu',
+	name: 'Jack Zhang',
+	position: 'admin')
 
 # create dummy events
 e1 = Event.create(title: 'USF Visit', 
