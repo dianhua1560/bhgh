@@ -1,6 +1,12 @@
-require "google/api_client"
-require "google_drive"
-
 class Event < ActiveRecord::Base
-
+	def self.photo_hash
+		h = {}
+		Photo.where(object_type:'event').all.each do |photo|
+			if not h.keys.include?(photo.object_id)
+				h[photo.object_id] = []
+			end
+			h[photo.object_id] << photo
+		end
+		return h
+	end
 end

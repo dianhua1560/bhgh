@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
       redirect_to '/auth/google_oauth2'
     end
   end
+
+  def home
+    render 'layouts/home'
+  end
 end

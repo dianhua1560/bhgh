@@ -4,6 +4,7 @@ class EventsController < ApplicationController
         @responses = EventResponse.where(email: myEmail).index_by(&:event_id)
         @responded_ids = @responses.keys.map{|x| x}
         @is_admin = current_member ? current_member.admin? : false
+        @photos = Event.photo_hash
     end
 
     def show
