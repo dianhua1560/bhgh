@@ -1,9 +1,7 @@
 class AuthController < ApplicationController
     def google_callback
         authentication_info = request.env["omniauth.auth"]
-        # save email in cookie
         cookies[:email] = authentication_info['info']['email']
-        # redirect to original route
         if session[:auth_redirect] != nil
           redirect_to session[:auth_redirect]
         else

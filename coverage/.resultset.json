@@ -12,7 +12,7 @@
       "/Users/Allen/Desktop/bhgh/app/models/member.rb": [
         1,
         1,
-        4,
+        3,
         null,
         null
       ],
@@ -100,24 +100,15 @@
       "/Users/Allen/Desktop/bhgh/app/helpers/auth_helper.rb": [
         1,
         1,
-        53,
-        0,
+        52,
         null,
         null,
         1,
-        15,
+        14,
         null,
         null
       ],
       "/Users/Allen/Desktop/bhgh/app/helpers/events_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/Allen/Desktop/bhgh/app/helpers/posts_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/Allen/Desktop/bhgh/app/helpers/test_helper.rb": [
         1,
         null
       ],
@@ -144,19 +135,6 @@
         0,
         0,
         0,
-        0,
-        0,
-        0
-      ],
-      "/Users/Allen/Desktop/bhgh/app/controllers/posts_controller.rb": [
-        0,
-        0
-      ],
-      "/Users/Allen/Desktop/bhgh/app/controllers/test_controller.rb": [
-        0,
-        0,
-        0,
-        0,
         0
       ],
       "/Users/Allen/Desktop/bhgh/app/models/brag.rb": [
@@ -166,13 +144,9 @@
       "/Users/Allen/Desktop/bhgh/app/models/brag_like.rb": [
         0,
         0
-      ],
-      "/Users/Allen/Desktop/bhgh/app/models/post.rb": [
-        0,
-        0
       ]
     },
-    "timestamp": 1457581781
+    "timestamp": 1457584406
   },
   "RSpec": {
     "coverage": {
@@ -495,7 +469,6 @@
         1,
         1,
         1,
-        0,
         null,
         null,
         1,
@@ -504,14 +477,6 @@
         null
       ],
       "/Users/Allen/Desktop/bhgh/app/helpers/events_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/Allen/Desktop/bhgh/app/helpers/posts_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/Allen/Desktop/bhgh/app/helpers/test_helper.rb": [
         1,
         null
       ],
@@ -525,8 +490,8 @@
         null,
         1,
         1,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null
@@ -544,12 +509,19 @@
         null,
         1,
         1,
-        1,
-        1,
-        1,
-        0,
+        2,
+        2,
+        2,
+        2,
+        2,
         null,
+        1,
+        1,
+        1,
+        1,
         null,
+        1,
+        1,
         1,
         null,
         null,
@@ -558,31 +530,18 @@
       "/Users/Allen/Desktop/bhgh/app/controllers/auth_controller.rb": [
         1,
         1,
+        2,
+        2,
+        2,
         1,
         null,
         1,
         null,
+        null,
+        1,
         0,
         0,
         null,
-        0,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/Allen/Desktop/bhgh/spec/controllers/posts_controller_spec.rb": [
-        1,
-        1,
-        null,
-        1,
-        null
-      ],
-      "/Users/Allen/Desktop/bhgh/app/controllers/posts_controller.rb": [
-        1,
         null
       ],
       "/Users/Allen/Desktop/bhgh/spec/models/brag_like_spec.rb": [
@@ -590,6 +549,11 @@
         1,
         null,
         1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/Allen/Desktop/bhgh/app/models/brag_like.rb": [
@@ -601,6 +565,11 @@
         1,
         null,
         1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/Allen/Desktop/bhgh/app/models/brag.rb": [
@@ -612,6 +581,11 @@
         1,
         null,
         1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/Allen/Desktop/bhgh/app/models/event_response.rb": [
@@ -622,7 +596,13 @@
         1,
         1,
         null,
+        null,
         1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/Allen/Desktop/bhgh/app/models/event.rb": [
@@ -637,7 +617,13 @@
         1,
         1,
         null,
+        null,
         1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/Allen/Desktop/bhgh/app/models/member.rb": [
@@ -651,25 +637,20 @@
         1,
         1,
         null,
+        null,
         1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/Allen/Desktop/bhgh/app/models/photo.rb": [
         1,
         null
-      ],
-      "/Users/Allen/Desktop/bhgh/spec/models/post_spec.rb": [
-        1,
-        1,
-        null,
-        1,
-        null
-      ],
-      "/Users/Allen/Desktop/bhgh/app/models/post.rb": [
-        1,
-        null
       ]
     },
-    "timestamp": 1457582497
+    "timestamp": 1457584438
   }
 }
