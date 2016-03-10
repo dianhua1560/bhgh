@@ -6,17 +6,19 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!-- Optional theme https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css-->
-  <link rel="stylesheet" href="/bootstrap.min.css">
+  
 
   <!-- Latest compiled and minified JavaScript https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js-->
-  <script src="/bootstrap.min.js"></script>
-  <script src = "/jquery.min.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  
+  <link rel = 'stylesheet' href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+  <script src = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
 
-	<nav style = 'border-radius:0px; margin-bottom:15px; padding:10px; ' class="navbar navbar-default navbar-inverse">
+	<nav style = 'border-radius:0px; margin-bottom:15px; padding:10px; ' class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -31,7 +33,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-      	<li><%= link_to 'Boys Hope Girls Hope', '#' %></li>
+      	<li><%= link_to 'Boys Hope Girls Hope', '/', class: 'pull-right' %></li>
         <li><%= link_to 'Events', events_path %></li>
         <li><%= link_to 'Bragboard', '#' %></li>
         <li><%= link_to 'Forum', '#' %></li>

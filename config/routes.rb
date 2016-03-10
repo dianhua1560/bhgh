@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
-   get '/' => 'events#index'
+   get '/' => 'application#home'
    
    # authentication 
   get "/auth/google_oauth2/callback", to: "auth#google_callback"
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/events/delete' => 'events#delete', as: 'delete_event'
   get 'events/respond' => 'events#respond', as: 'respond_to_event'
   get 'events/delete_response' => 'events#delete_response', as: 'delete_event_response'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

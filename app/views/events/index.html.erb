@@ -1,19 +1,27 @@
 <style type = 'text/css'>
 .event-card{
     padding:15px;
-    border: 1px solid rgba(0,0,0,0.1);
-    margin-top: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-top: 30px;
+    /*border-radius:5px;*/
 }
 .respond-div{
-    padding:5px;
-    border-left: 1px solid rgba(0,0,0,0.1);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    /*padding:5px;*/
+    /*border: 1px solid rgba(0,0,0,0.1);*/
+    /*background-color:rgba(0,0,0,0.1);*/
+    /*border-bottom: 1px solid rgba(0,0,0,0.1);*/
+        padding: 10px;
+    border: 1px solid rgb(204, 234, 202);
+    background-color: rgb(230, 251, 231);
 }
 .event-photo{
     height:150px;
 }
 .response-link{
     margin:2px;
+}
+.photos-div{
+    margin-top:10px;
 }
 </style>
 <div class = 'col-md-3'>
@@ -56,7 +64,7 @@
         <div>
             Location: <%= event.location %>
         </div>
-        <div>
+        <div class = 'photos-div'>
             <% if @photos[event.id] %>
             <% @photos[event.id].each do |photo| %>
             <img src = '<%= photo.url %>' class = 'event-photo'>
