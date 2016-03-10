@@ -43,10 +43,10 @@ group :development, :test do
   gem 'byebug'
   gem 'sqlite3'
   gem 'jasmine-rails'
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'rspec-rails'
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
