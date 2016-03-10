@@ -7,30 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # create members
-<<<<<<< HEAD
-Member.create(
-	email:'davidbliu@gmail.com',
-	name: 'David Liu',
-	position: 'admin', 
-	phone: '(714) 299-1786')
-Member.create(
-	email:'chenallen2012@gmail.com',
-	name: 'Allen Chen',
-	position: 'admin', 
-	phone: '(123) 456-7890')
-Member.create(
-	email:'edward@gmail.com',
-	name:'Edward Smith',
-	position: 'scholar')
-Member.create(
-	email:'julian@gmail.com',
-	name:'Julian Doe',
-	position: 'scholar')
-Member.create(
-	email: 'suzezhang1113@berkeley.edu',
-	name: 'Jack Zhang',
-	position: 'admin')
-=======
 admins = {
 	'davidbliu@gmail.com' => 'David Liu',
 	'chenallen2012@gmail.com' => 'Allen Chen'
@@ -55,7 +31,6 @@ scholars.keys.each do |email|
 		name: scholars[email],
 		position: 'scholar')
 end
->>>>>>> 83d752718b2d7940629b6d3e3471fbc071c9c226
 
 # create dummy events
 Event.create(title: 'USF Visit', 
