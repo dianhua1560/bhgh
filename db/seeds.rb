@@ -9,7 +9,8 @@
 # create members
 admins = {
 	'davidbliu@gmail.com' => 'David Liu',
-	'chenallen2012@gmail.com' => 'Allen Chen'
+	'chenallen2012@gmail.com' => 'Allen Chen',
+	'suzezhang1113@berkeley.edu' => 'Jack Zhang'
 }
 scholars = {
 	'edward@gmail.com'=> 'Edward Smith',
