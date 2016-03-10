@@ -1,4 +1,21 @@
-
+<style type = 'text/css'>
+.event-card{
+    padding:15px;
+    border: 1px solid rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+.respond-div{
+    padding:5px;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.event-photo{
+    height:150px;
+}
+.response-link{
+    margin:2px;
+}
+</style>
 <div class = 'col-md-3'>
 </div>
 <div class = 'col-md-6'>
@@ -7,11 +24,11 @@
     <%= link_to "Add Event", new_event_path %>
     <%= link_to "Admin Panel", events_admin_path %>
 <% end %>
-<ul class = 'list-group'>
+
     <% @events.each do |event| %>
-    <li class = 'list-group-item'>
+    <div class = 'event-card'>
         <% if @responded_ids.include?(event.id.to_s) %>
-            <div class = 'pull-right'>
+            <div class = 'respond-div pull-right'>
                 You responded: <%= @responses[event.id.to_s].response %>
                 <div>
                     <%= link_to "Undo", delete_event_response_path(:id => @responses[event.id.to_s].id), id: "undo-#{@responses[event.id.to_s].id}" %>
@@ -19,30 +36,36 @@
             </div>
         <% else %>
             <div class = 'respond-div pull-right' data-id = '<%= event.id %>'>
-                <%= link_to 'Going', respond_to_event_path(:id => event.id, :response => 'Going'), id: "going-#{event.id}" %>
-                 <%= link_to 'Interested', respond_to_event_path(:id => event.id, :response => 'Interested'), id: "interested-#{event.id}" %>
-                  <%= link_to 'Not Going', respond_to_event_path(:id => event.id, :response => 'Not Going'), id: "not-going-#{event.id}" %>
+                <%= link_to 'Going', respond_to_event_path(:id => event.id, :response => 'Going'), id: "going-#{event.id}", class: 'response-link' %>
+                 <%= link_to 'Interested', respond_to_event_path(:id => event.id, :response => 'Interested'), id: "interested-#{event.id}", class: 'response-link' %>
+                  <%= link_to 'Not Going', respond_to_event_path(:id => event.id, :response => 'Not Going'), id: "not-going-#{event.id}", class: 'response-link' %>
             </div>
         <% end %>
         <div>
-            <%= link_to event.title, event_path(:id => event.id) %>
+            <h3><%= link_to event.title, event_path(:id => event.id) %></h3>
         </div>
         <div>
-            <%= event.description %>
+            Description: <%= event.description %>
         </div>
         <div>
-            <%= event.time %>
+            Time: <%= event.time %>
         </div>
         <div>
-            <%= event.organizer %>
+            Organizer: <%= event.organizer %>
         </div>
         <div>
-            <%= event.location %>
+            Location: <%= event.location %>
+        </div>
+        <div>
+            <% if @photos[event.id] %>
+            <% @photos[event.id].each do |photo| %>
+            <img src = '<%= photo.url %>' class = 'event-photo'>
+            <% end %>
+            <% end %>
         </div>
         
-    </li>
+    </div>
     <% end %>
-</ul>
 </div>
 <div class = 'col-md-3'></div>
 
