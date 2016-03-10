@@ -9,15 +9,21 @@ describe AuthController do
 		end
 	end
 	describe 'google callback' do
-		it 'sets email cookie' do
-			request.env = {
-				'omniauth.auth':{
-					'info':{
-						'email': 'asfd'
-					}
-				}
-			}
+		before(:each) do
+			h = Hash.new
+			h['email'] = 'davidbliu@gmail.com'
+			h2 = Hash.new
+			h2['info']=h
+			request.env["omniauth.auth"] = h2
+		end
+		it 'redirects' do
+			session[:auth_redirect] = '/asdf'
 			get :google_callback
+			expect(response).to redirect_to '/asdf'
+		end
+		it 'redirects without session' do
+			get :google_callback
+			expect(response).to redirect_to '/'
 		end
 	end
 end
