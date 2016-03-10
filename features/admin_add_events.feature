@@ -23,10 +23,12 @@ Scenario: add an event
 	Given that I am logged in as "davidbliu@gmail.com"
 	And I am on the events page
 	Then I should see "Add Event"
-	When I click on "Add Event"
-	Then I should see "Add a new Event"
-	When I fill out the event form with title: "newtitle" and description: "newdescription"
-	And I press "Submit"
+	When I follow "Add Event"
+	Then I should see "New Event"
+	When I fill in "title" with "newtitle"
+	And I fill in "description" with "newdescription"
+	And I fill in "time" with "5/13/2016"
+	And I press "Save Event"
 	Then I should see "newtitle"
 
 Scenario: normal user cannot add events

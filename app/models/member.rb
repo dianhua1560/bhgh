@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-	def self.admin_emails
-		['davidbliu@gmail.com']
+	def admin?
+		position == 'admin'
 	end
 end

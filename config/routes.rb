@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   post '/events/update' => 'events#update', as: 'update_event'
   get '/events/admin' => 'events#admin', as: 'events_admin'
   get '/events/delete' => 'events#delete', as: 'delete_event'
-  post 'events/respond' => 'events#respond', as: 'respond_to_event'
+  get 'events/respond' => 'events#respond', as: 'respond_to_event'
+  get 'events/delete_response' => 'events#delete_response', as: 'delete_event_response'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

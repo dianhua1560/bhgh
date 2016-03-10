@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
     def index
         @events = Event.all
+        @responses = EventResponse.where(email: myEmail).index_by(&:event_id)
+        @responded_ids = @responses.keys.map{|x| x}
+        @is_admin = current_member ? current_member.admin? : false
     end
 
     def show
@@ -42,5 +45,15 @@ class EventsController < ApplicationController
     end
 
     def respond
+        response = EventResponse.where(event_id: params[:id],
+            email: myEmail).first_or_create!
+        response.response = params[:response]
+        response.save
+        redirect_to events_path
+    end
+
+    def delete_response
+        response = EventResponse.find(params[:id]).destroy
+        redirect_to events_path
     end
 end

@@ -13,10 +13,16 @@ Background: events have been added to the database
 	| title4 | description4 | 4-May-2015 |
 	| title5 | description5 | 5-May-2015 |
 
+
 Scenario: respond going to an event
 	Given that I am logged in as "asdf@gmail.com"
 	And I am on the events page
-	And I click "Going" on "title1"
-	And I refresh the page
-	Then I should see "Going" on event: "title1"
+	And I respond "Going" on "title1"
+	Then I should see "You responded: Going"
 
+Scenario: delete response to event
+	Given that I am logged in as "asdf@gmail.com"
+	And I am on the events page
+	And I respond "Going" on "title1"
+	And I delete my response on "title1"
+	Then I should not see "You responded: Going"

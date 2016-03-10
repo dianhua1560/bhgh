@@ -10,8 +10,8 @@
         <div>
             <%= event.title %>
         </div>
-        <%= link_to 'Delete', delete_event_path(:id => event.id) %>
-        <%= link_to 'Edit', edit_event_path(:id => event.id) %>
+        <%= link_to 'Delete', delete_event_path(:id => event.id), id: "delete-#{event.id}" %>
+        <%= link_to 'Edit', edit_event_path(:id => event.id), id: "edit-#{event.id}" %>
     </li>
     <% end %>
 </ul>

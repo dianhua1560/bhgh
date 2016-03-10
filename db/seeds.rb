@@ -30,7 +30,8 @@ Member.create(
 e1 = Event.create(title: 'USF Visit', 
 	description: 'Visiting USF Campus',
 	time: 1.day.from_now,
-	organizer: 'davidbliu@gmail.com')
+	organizer: 'davidbliu@gmail.com',
+	location: '123 Main Street, San Francisco, CA')
 e2 = Event.create(title: 'Volunteer @ Glide', 
 	description: 'Come volunteer at glide and teach kids math',
 	time: 2.days.from_now,

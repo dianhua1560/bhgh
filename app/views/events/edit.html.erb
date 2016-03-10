@@ -3,7 +3,7 @@
 <div class = 'col-md-6'>
 <h1>New Event</h1>
 <%= link_to 'Back to Events', events_path %>
-<%= form_tag 'update' %>
+<%= form_tag '/events/update' %>
 
 <%= text_field_tag 'title', @event.title, class: 'form-control', placeholder: 'Title (ex: Tutoring Event)' %>
 
