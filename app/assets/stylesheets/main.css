@@ -9,4 +9,8 @@ p, div {
 a{
 	color: #0077CC;
 }
-body { padding-top: 70px; }
+body { padding-top: 100px; }
+
+img:hover{
+	cursor:pointer;
+}

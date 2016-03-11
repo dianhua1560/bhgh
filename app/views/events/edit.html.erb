@@ -2,19 +2,44 @@
 .form-control{
 	margin: 10px;
 }
+.photo{
+	height:100px;
+}
 </style>
-<div class = 'col-md-3'></div>
+<div class = 'col-md-3'>
+	<% if @photo_urls and @photo_urls.length > 0 %>
+		<h3>Photos</h3>
+		<% @photo_urls.each do |url| %>
+			<img src = '<%= url %>' class = 'photo'>
+		<% end %>
+	<% end %>
+</div>
 <div class = 'col-md-6'>
-<h1>New Event</h1>
+<% if @editing %>
+	<h1>Edit Event</h1>
+<% else %>
+	<h1>New Event</h1>
+<% end %>
 <%= link_to 'Back to Events', events_path %>
 <%= form_tag '/events/update' %>
 
+Title
 <%= text_field_tag 'title', @event.title, class: 'form-control', placeholder: 'Title (ex: Tutoring Event)' %>
 
+Description
 <%= text_area_tag 'description', @event.description, class: 'form-control', placeholder: 'Description' %>
 
+Time
 <%= text_field_tag 'time', @event.time, class: 'form-control', placeholder: 'Time (ex: May 5 2016)' %>
 
+Location
+<%= text_field_tag 'location', @event.location, class: 'form-control', placeholder: 'Location (ex: 123 Main Street, San Francisco)' %>
+
+Organizer
+<%= text_field_tag 'organizer', @event.organizer, class: 'form-control', placeholder: 'Email of organizer (blank for me)' %>
+
+Photos
+<%= text_area_tag 'photos', @photo_urls ? @photo_urls.join(',') : '' , class: 'form-control', placeholder: 'Optional: Comma-separated list of photo urls' %>
 <%= hidden_field_tag 'id', @event.id %>
 <%= submit_tag 'Save Event', class: 'btn btn-default' %>
 </div>

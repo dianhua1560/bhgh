@@ -9,7 +9,18 @@ class ApplicationController < ActionController::Base
     if not myEmail
       session[:auth_redirect] = request.path
       redirect_to '/auth/google_oauth2'
+    else
+      log_click
     end
+  end
+
+  def log_click
+    puts "path was #{request.path}"
+    puts "params were#{request.params}"
+    Click.create(
+      email: myEmail,
+      path: request.path,
+      params: request.params)
   end
 
   def home

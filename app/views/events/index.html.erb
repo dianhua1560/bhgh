@@ -1,16 +1,20 @@
 <style type = 'text/css'>
+
 .event-card{
     padding:15px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     margin-top: 30px;
     /*border-radius:5px;*/
 }
+.admin-card{
+    padding: 10px;
+    border: 1px solid rgb(204, 234, 202);
+    background-color: rgb(230, 251, 231);
+    clear:both;
+    margin:5px;
+}
 .respond-div{
-    /*padding:5px;*/
-    /*border: 1px solid rgba(0,0,0,0.1);*/
-    /*background-color:rgba(0,0,0,0.1);*/
-    /*border-bottom: 1px solid rgba(0,0,0,0.1);*/
-        padding: 10px;
+    padding: 10px;
     border: 1px solid rgb(204, 234, 202);
     background-color: rgb(230, 251, 231);
 }
@@ -23,15 +27,22 @@
 .photos-div{
     margin-top:10px;
 }
+.admin-btn{
+    padding:10px;
+}
 </style>
 <div class = 'col-md-3'>
 </div>
 <div class = 'col-md-6'>
-<h1>Events</h1>
 <% if @is_admin %>
-    <%= link_to "Add Event", new_event_path %>
-    <%= link_to "Admin Panel", events_admin_path %>
+<div id = 'admin-btns' class = 'pull-right'>
+    <%= link_to "Add Event", new_event_path, class: 'btn btn-default admin-btn' %>
+    <%= link_to "Admin Panel", events_admin_path, class: 'btn btn-default admin-btn' %>
+</div>
 <% end %>
+
+<h1>Events</h1>
+
 
     <% @events.each do |event| %>
     <div class = 'event-card'>
@@ -49,11 +60,18 @@
                   <%= link_to 'Not Going', respond_to_event_path(:id => event.id, :response => 'Not Going'), id: "not-going-#{event.id}", class: 'response-link' %>
             </div>
         <% end %>
+
+        <% if @is_admin %>
+            <div class = 'admin-card pull-right'>
+                <%= link_to 'Edit', edit_event_path(:id => event.id) %>
+                 <%= link_to 'Delete', delete_event_path(:id => event.id) %>
+            </div>
+        <% end %>
         <div>
-            <h3><%= link_to event.title, event_path(:id => event.id) %></h3>
+            <h3 id = 'h3-<%= event.id %>'><%= link_to event.title, event_path(:id => event.id) %></h3>
         </div>
         <div>
-            Description: <%= event.description %>
+            <%= event.description %>
         </div>
         <div>
             Time: <%= event.time %>
@@ -61,9 +79,11 @@
         <div>
             Organizer: <%= event.organizer %>
         </div>
-        <div>
-            Location: <%= event.location %>
-        </div>
+        <% if event.location %>
+            <div>
+                Location: <%= event.location %>
+            </div>
+        <% end %>
         <div class = 'photos-div'>
             <% if @photos[event.id] %>
             <% @photos[event.id].each do |photo| %>
@@ -71,6 +91,8 @@
             <% end %>
             <% end %>
         </div>
+
+        
         
     </div>
     <% end %>
