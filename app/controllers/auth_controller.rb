@@ -1,3 +1,6 @@
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 class AuthController < ApplicationController
     def google_callback
         authentication_info = request.env["omniauth.auth"]

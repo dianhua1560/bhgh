@@ -30,7 +30,7 @@ Description
 <%= text_area_tag 'description', @event.description, class: 'form-control', placeholder: 'Description' %>
 
 Time
-<%= text_field_tag 'time', @event.time, class: 'form-control', placeholder: 'Time (ex: May 5 2016)' %>
+<%= text_field_tag 'time', @event.time_string, class: 'form-control', placeholder: 'Time (ex: May 5 2016)' %>
 
 Location
 <%= text_field_tag 'location', @event.location, class: 'form-control', placeholder: 'Location (ex: 123 Main Street, San Francisco)' %>
