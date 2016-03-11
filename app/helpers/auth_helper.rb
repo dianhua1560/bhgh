@@ -1,5 +1,6 @@
 module AuthHelper
     def myEmail
+    	return 'chenallen2012@gmail.com'
         cookies[:email] ? cookies[:email] : nil
     end
 

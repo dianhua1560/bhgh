@@ -1,0 +1,43 @@
+<style type = 'text/css'>
+#main-row{
+}
+#main-row:after {
+	height:1000px;
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("/home_img.jpg");
+    width: 100%;
+    height: 100%;
+    opacity : 0.3;
+    z-index: -1;
+}
+.photo{
+	height:150px;
+	margin:20px;
+}
+#action-buttons{
+	margin-top:20px;
+}
+.action-btn{
+	padding:15px;
+	background-color:rgba(255,255,255,0.3);
+}
+</style>
+<div id = 'main-row' class = 'row'>
+<div class = 'col-md-3'></div>
+<div class = 'col-md-6'>
+	<h1>Welcome to Boys Hope Girls Hope San Francisco</h1>
+	<p>
+		Boys Hope Girls Hope San Francisco Bay Area helps academically capable and motivated children-in-need to meet their full potential and become men and women for others by providing after-school academic support and tutoring, service learning, career exploration, college-related literacy, tuition assistance and financial support.
+	</p>
+	<div id = 'action-buttons'>
+	<%= link_to 'See Upcoming Events', events_path, class: 'btn btn-default action-btn' %>
+	<%= link_to 'View the Bragboard', '#' , class: 'btn btn-default action-btn' %>
+	<%= link_to 'Participate in the Forum', '#' , class: 'btn btn-default action-btn' %>
+	</div>
+</div>
+<div class = 'col-md-3'>
+</div>
