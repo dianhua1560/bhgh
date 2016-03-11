@@ -31,6 +31,13 @@
 .admin-btn{
     padding:10px;
 }
+.attending-div{
+     /*-webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);*/
+     padding:15px;
+}
+.attending-event-div{
+    margin-top:10px;
+}
 </style>
 <div class = 'col-md-3'>
 </div>
@@ -75,7 +82,7 @@
             <%= event.description %>
         </div>
         <div>
-            Time: <%= event.time %>
+            Time: <%= event.time_string %>
         </div>
         <div>
             Organizer: <%= event.organizer %>
@@ -98,5 +105,19 @@
     </div>
     <% end %>
 </div>
-<div class = 'col-md-3'></div>
+<div class = 'col-md-3'>
+    <% if @attending.length > 0 %>
+    <div class = 'attending-div affix'>
+        <%= @a_ids %>
+        <%= @e_ids %>
+        <h4>You Are Going To</h4>
+        <% @attending.each do |event| %>
+        <div class = 'attending-event-div'>
+            <%= link_to event.title, "#h3-#{event.id}" %>
+            <div class = 'text-muted smalltext'><%= event.time_string %></div>
+        </div>
+        <% end %>
+    </div>
+    <% end %>
+</div>
 

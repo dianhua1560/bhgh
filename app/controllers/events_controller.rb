@@ -1,7 +1,10 @@
 class EventsController < ApplicationController
     def index
         @events = Event.all.order('time desc')
-        @responses = EventResponse.where(email: myEmail).index_by(&:event_id)
+        @responses = EventResponse.where(email: myEmail)
+        a_ids = @responses.select{|x| x.response == 'Going'}.map{|x| x.event_id.to_i}
+        @attending = @events.select{|e| a_ids.include?(e.id)}
+        @responses = @responses.index_by(&:event_id)
         @responded_ids = @responses.keys.map{|x| x}
         @is_admin = current_member ? current_member.admin? : false
         @photos = Event.photo_hash
@@ -24,8 +27,6 @@ class EventsController < ApplicationController
             object_type: 'event',
             object_id: @event.id
             ).map{|x| x.url}
-        puts 'these are the urls'
-        puts @photo_urls
         render :edit
     end
 
@@ -37,7 +38,7 @@ class EventsController < ApplicationController
         end
         @event.title = params[:title]
         @event.description = params[:description]
-        @event.time = Time.new(params[:time])
+        @event.time = DateTime.strptime(params[:time], '%B %d, %Y')
         @event.location = params[:location]
         @event.organizer = params[:organizer] != '' ? params[:organizer] : myEmail
         @event.save

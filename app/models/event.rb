@@ -48,4 +48,8 @@ class Event < ActiveRecord::Base
 		rs = r['Going'].length + r['Not Going'].length + r['Interested'].length
 		return rs != 0
 	end
+
+	def time_string
+		self.time.strftime('%B %d, %Y')
+	end
 end
