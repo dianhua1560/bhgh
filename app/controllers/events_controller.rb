@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
     def index
-        @events = Event.all
+        @events = Event.all.paginate(:page => params[:page])
         @responses = EventResponse.where(email: myEmail).index_by(&:event_id)
         @responded_ids = @responses.keys.map{|x| x}
         @is_admin = current_member ? current_member.admin? : false

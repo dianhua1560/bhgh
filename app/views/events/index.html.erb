@@ -32,7 +32,9 @@
     <%= link_to "Add Event", new_event_path %>
     <%= link_to "Admin Panel", events_admin_path %>
 <% end %>
-
+    <div>
+    <%= will_paginate @events, renderer: BootstrapPagination::Rails, previous_label: t("newer"), :next_label => t("older") %>
+    </div>
     <% @events.each do |event| %>
     <div class = 'event-card'>
         <% if @responded_ids.include?(event.id.to_s) %>
@@ -71,9 +73,9 @@
             <% end %>
             <% end %>
         </div>
-        
     </div>
     <% end %>
+    <%= will_paginate @events, renderer: BootstrapPagination::Rails, previous_label: t("newer"), :next_label => t("older") %>
 </div>
 <div class = 'col-md-3'></div>
 

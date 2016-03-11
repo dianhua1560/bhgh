@@ -4,6 +4,11 @@ ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 
+
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+
+
 gem 'google_drive'
 gem 'show_me_the_cookies'
 

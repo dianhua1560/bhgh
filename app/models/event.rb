@@ -9,4 +9,5 @@ class Event < ActiveRecord::Base
 		end
 		return h
 	end
+	self.per_page = 4
 end
