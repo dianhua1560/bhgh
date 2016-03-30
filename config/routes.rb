@@ -21,9 +21,11 @@ Rails.application.routes.draw do
   get '/brags' => 'brags#index', as: 'brags'
   get '/brags/new' => 'brags#new', as: 'new_brag'
   get '/brags/edit/:id' => 'brags#edit', as: 'edit_brag'
+  post 'brags/update' => 'brags#update', as: 'update_brag'
   get '/brags/show/:id' => 'brags#show', as: 'brag'
   get '/brags/admin' => 'brags#admin', as: 'brags_admin'
   get '/brags/delete' => 'brags#delete', as: 'delete_brag'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
