@@ -3,6 +3,8 @@
 <img src="https://codeclimate.com/github/dianhua1560/bhgh/badges/gpa.svg" /></a>
 [![Build Status](https://travis-ci.org/dianhua1560/bhgh.svg?branch=master)](https://travis-ci.org/dianhua1560/bhgh)
 
+[![Coverage Status](https://coveralls.io/repos/github/dianhua1560/bhgh/badge.svg?branch=master)](https://coveralls.io/github/dianhua1560/bhgh?branch=master)
+
 https://www.pivotaltracker.com/n/projects/1543373
 
 # Project Info

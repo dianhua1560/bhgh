@@ -6,6 +6,7 @@ gem 'rails', '4.2.5.1'
 
 gem 'google_drive'
 gem 'show_me_the_cookies'
+gem 'coveralls', require: false
 
 gem "omniauth-google-oauth2"
 gem "twitter-bootstrap-rails"
