@@ -24,3 +24,7 @@ Scenario: view brags on the bragboard
 	And I should see "title2"
 
 Scenario: view single brag
+	Given that I am logged in as "davidbliu@gmail.com"
+	Given I visit "/brags"
+	Given I follow "title1"
+	Then I should see "title1"

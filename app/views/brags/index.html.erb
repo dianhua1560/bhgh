@@ -59,7 +59,7 @@
         <% if @is_admin %>
             <div class = 'admin-card pull-right'>
                 <%= link_to 'Edit', edit_brag_path(:id => brag.id) %>
-                 <%= link_to 'Delete', delete_brag_path(:id => brag.id) %>
+                 <%= link_to 'Delete', delete_brag_path(:id => brag.id), id: "delete-brag-#{brag.id}" %>
             </div>
         <% end %>
         <div>
