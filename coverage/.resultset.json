@@ -3,6 +3,16 @@
     "coverage": {
       "/Users/davidbliu/Desktop/169/bhgh/app/models/brag.rb": [
         1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        1,
+        null,
         null
       ],
       "/Users/davidbliu/Desktop/169/bhgh/app/models/member.rb": [
@@ -14,6 +24,61 @@
       ],
       "/Users/davidbliu/Desktop/169/bhgh/app/controllers/brags_controller.rb": [
         1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/davidbliu/Desktop/169/bhgh/app/controllers/application_controller.rb": [
@@ -25,18 +90,18 @@
         null,
         null,
         1,
-        23,
+        24,
         0,
         0,
         null,
-        23,
+        24,
         null,
         null,
         null,
         1,
-        23,
-        23,
-        23,
+        24,
+        24,
+        24,
         null,
         null,
         null,
@@ -54,11 +119,11 @@
       "/Users/davidbliu/Desktop/169/bhgh/app/helpers/auth_helper.rb": [
         1,
         1,
-        75,
+        78,
         null,
         null,
         1,
-        14,
+        15,
         null,
         null
       ],
@@ -67,6 +132,14 @@
         null
       ],
       "/Users/davidbliu/Desktop/169/bhgh/app/helpers/events_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/davidbliu/Desktop/169/bhgh/app/models/click.rb": [
+        1,
+        null
+      ],
+      "/Users/davidbliu/Desktop/169/bhgh/app/models/photo.rb": [
         1,
         null
       ],
@@ -209,15 +282,7 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/click.rb": [
-        1,
-        null
-      ],
       "/Users/davidbliu/Desktop/169/bhgh/app/models/event_response.rb": [
-        1,
-        null
-      ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/photo.rb": [
         1,
         null
       ],
@@ -246,7 +311,7 @@
         0
       ]
     },
-    "timestamp": 1459373742
+    "timestamp": 1459373921
   },
   "RSpec": {
     "coverage": {
