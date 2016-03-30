@@ -50,6 +50,6 @@ class Event < ActiveRecord::Base
 	end
 
 	def time_string
-		self.time.strftime('%B %d, %Y')
+		self.time ? self.time.strftime('%B %d, %Y') : ''
 	end
 end

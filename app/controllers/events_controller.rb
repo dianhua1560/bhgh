@@ -38,7 +38,7 @@ class EventsController < ApplicationController
         end
         @event.title = params[:title]
         @event.description = params[:description]
-        @event.time = DateTime.strptime(params[:time], '%B %d, %Y')
+        @event.time = params[:time].present? ? DateTime.strptime(params[:time], '%B %d, %Y') : nil
         @event.location = params[:location]
         @event.organizer = params[:organizer] != '' ? params[:organizer] : myEmail
         @event.save

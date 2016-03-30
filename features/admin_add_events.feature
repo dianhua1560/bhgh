@@ -27,7 +27,7 @@ Scenario: add an event
 	Then I should see "New Event"
 	When I fill in "title" with "newtitle"
 	And I fill in "description" with "newdescription"
-	And I fill in "time" with "5/13/2016"
+	And I fill in "time" with "May 13, 2016"
 	And I press "Save Event"
 	Then I should see "newtitle"
 
