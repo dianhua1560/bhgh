@@ -9,4 +9,26 @@ p, div {
 a{
 	color: #0077CC;
 }
-body { padding-top: 70px; }
+body { padding-top: 100px; }
+
+img:hover{
+	cursor:pointer;
+}
+.btn{
+	border-radius:0px !important;
+}
+.navbar .navbar-default{
+	text-align:center !important;
+}
+nav.navbar.navbar-default.navbar-fixed-top{
+	background-color: #0693C0;
+	border-color: #0693C0;
+	text-align: center;
+}	
+nav.navbar.navbar-default.navbar-fixed-top .navbar-nav>li>a{
+	color:white;
+}
+
+.smalltext{
+	font-size:0.7em;
+}
