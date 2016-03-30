@@ -16,6 +16,14 @@ Rails.application.routes.draw do
   get '/events/delete' => 'events#delete', as: 'delete_event'
   get 'events/respond' => 'events#respond', as: 'respond_to_event'
   get 'events/delete_response' => 'events#delete_response', as: 'delete_event_response'
+  
+  # Brags
+  get '/brags' => 'brags#index', as: 'brags'
+  get '/brags/new' => 'brags#new', as: 'new_brag'
+  get '/brags/edit/:id' => 'brags#edit', as: 'edit_brag'
+  get '/brags/show/:id' => 'brags#show', as: 'brag'
+  get '/brags/admin' => 'brags#admin', as: 'brags_admin'
+  get '/brags/delete' => 'brags#delete', as: 'delete_brag'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

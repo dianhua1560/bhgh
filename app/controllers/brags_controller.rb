@@ -1,0 +1,2 @@
+class BragsController < ApplicationController
+end
