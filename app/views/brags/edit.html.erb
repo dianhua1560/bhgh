@@ -20,6 +20,16 @@
 <% else %>
 	<h1>New Brag</h1>
 <% end %>
+
+<% if @errors %>
+<div class = 'banner'>
+	<h1>Errors</h1>
+	<% @brag.errors.full_messages.each do |error| %>
+		<p><%= error %></p>
+	<% end %>
+</div>
+<% end %>
+
 <%= link_to 'Back to Brags', brags_path %>
 <%= form_tag '/brags/update' %>
 

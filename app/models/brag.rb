@@ -1,4 +1,23 @@
 class Brag < ActiveRecord::Base
+	validate :subject_and_author_are_emails
+	validates :title, :presence => true
+	validates :body, :presence => true
+
+
+	def subject_and_author_are_emails
+		if not is_email(subject)
+			errors.add(:subject, "must be a valid email address")
+		end
+		if not is_email(author)
+			errors.add(:author, "must be a valid email address")
+		end
+	end
+
+	def is_email(string)
+		email_set = [".edu", ".com", ".org", ".net"]
+		return email_set.include? string[-4..-1]
+	end
+
 	def self.photo_hash
 		h = {}
 		Photo.where(object_type:'brag').all.each do |photo|

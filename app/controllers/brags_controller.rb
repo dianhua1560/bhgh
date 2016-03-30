@@ -36,17 +36,21 @@ class BragsController < ApplicationController
         @brag.author = params[:author] != '' ? params[:author] : myEmail
         @brag.subject = params[:subject]
         @brag.body = params[:body]
-        @brag.save
-        Photo.where(
-        	object_type:'brag',
-        	object_id: @brag.id).destroy_all
-        params[:photos].split(',').each do |photo_url|
-        	Photo.where(
-        		object_type:'brag',
-        		object_id: @brag.id,
-        		url: photo_url.strip).first_or_create!
-        end
-        redirect_to brags_path
+    	if @brag.save
+	        Photo.where(
+	        	object_type:'brag',
+	        	object_id: @brag.id).destroy_all
+	        params[:photos].split(',').each do |photo_url|
+	        	Photo.where(
+	        		object_type:'brag',
+	        		object_id: @brag.id,
+	        		url: photo_url.strip).first_or_create!
+	        end
+	        redirect_to brags_path
+	    else
+	    	@errors = true
+	    	render :edit
+	    end
 	end
 
 	def admin
