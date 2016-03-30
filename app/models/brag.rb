@@ -9,4 +9,13 @@ class Brag < ActiveRecord::Base
 		end
 		return h
 	end
+
+	def self.click_hash
+		clicks = Click.all.select{|x| x.path.include?('/brags/show')}
+		click_hash = {}
+		Brag.all.each do |brag|
+			click_hash[brag.id] = clicks.select{|x| x.path == "/brags/show/#{brag.id}"}
+		end
+		return click_hash
+	end
 end

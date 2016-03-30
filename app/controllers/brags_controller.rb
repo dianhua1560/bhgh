@@ -1,7 +1,7 @@
 class BragsController < ApplicationController
 	def index
+	    @brags = Brag.all.order('created_at desc')
 	    @is_admin = current_member ? current_member.admin? : false
-	    @brags = Brag.all
 	    @photos = Brag.photo_hash
 	end
 
@@ -47,6 +47,11 @@ class BragsController < ApplicationController
         		url: photo_url.strip).first_or_create!
         end
         redirect_to brags_path
+	end
+
+	def admin
+		@brags = Brag.all.order('created_at desc')
+		@click_hash = Brag.click_hash
 	end
 
 	def delete

@@ -55,7 +55,7 @@ class EventsController < ApplicationController
     end
 
     def admin
-        @events = @events = Event.all.order('time desc')
+        @events = Event.all.order('time desc')
         @click_hash = Event.click_hash
         @response_hash = Event.response_hash
     end
