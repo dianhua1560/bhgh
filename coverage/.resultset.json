@@ -345,7 +345,7 @@
         0
       ]
     },
-    "timestamp": 1459379524
+    "timestamp": 1459379903
   },
   "RSpec": {
     "coverage": {
@@ -868,7 +868,7 @@
         null,
         null,
         1,
-        1,
+        null,
         null
       ],
       "/Users/davidbliu/Desktop/169/bhgh/spec/models/brag_like_spec.rb": [
@@ -897,6 +897,10 @@
         1,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/davidbliu/Desktop/169/bhgh/app/models/brag.rb": [
@@ -910,14 +914,14 @@
         1,
         0,
         null,
+        1,
         0,
-        0,
         null,
         null,
         null,
         1,
-        1,
-        1,
+        2,
+        2,
         null,
         null,
         1,
@@ -945,7 +949,7 @@
         1,
         null,
         1,
-        1,
+        null,
         null
       ],
       "/Users/davidbliu/Desktop/169/bhgh/app/models/click.rb": [
@@ -1076,6 +1080,6 @@
         null
       ]
     },
-    "timestamp": 1459379492
+    "timestamp": 1459379892
   }
 }
