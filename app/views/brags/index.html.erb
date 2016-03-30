@@ -1,0 +1,89 @@
+<style type = 'text/css'>
+
+.event-card{
+    padding:15px;
+    /*border-bottom: 1px solid rgba(0,0,0,0.1);*/
+    margin-top: 30px;
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
+    /*border-radius:5px;*/
+}
+.admin-card{
+    padding: 10px;
+    border: 1px solid rgb(204, 234, 202);
+    background-color: rgb(230, 251, 231);
+    clear:both;
+    margin:5px;
+}
+.respond-div{
+    padding: 10px;
+    border: 1px solid rgb(204, 234, 202);
+    background-color: rgb(230, 251, 231);
+}
+.event-photo{
+    height:150px;
+}
+.response-link{
+    margin:2px;
+}
+.photos-div{
+    margin-top:10px;
+}
+.admin-btn{
+    padding:10px;
+}
+.attending-div{
+     /*-webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);*/
+     padding:15px;
+}
+.attending-event-div{
+    margin-top:10px;
+}
+</style>
+<div class = 'col-md-3'>
+</div>
+<div class = 'col-md-6'>
+<% if @is_admin %>
+<div id = 'admin-btns' class = 'pull-right'>
+    <%= link_to "Add Brag", new_brag_path, class: 'btn btn-default admin-btn' %>
+    <%= link_to "Admin Panel", brags_admin_path, class: 'btn btn-default admin-btn' %>
+</div>
+<% end %>
+
+<h1> Brags </h1>
+
+
+    <% @brags.each do |brag| %>
+    <!-- *******************FIX CLASS******************* -->
+    <div class = 'event-card'>
+
+        <% if @is_admin %>
+            <div class = 'admin-card pull-right'>
+                <%= link_to 'Edit', edit_brag_path(:id => brag.id) %>
+                 <%= link_to 'Delete', delete_brag_path(:id => brag.id) %>
+            </div>
+        <% end %>
+        <div>
+            <h3 id = 'h3-<%= brag.id %>'><%= link_to brag.title, brag_path(:id => brag.id) %></h3>
+        </div>
+        <div>
+            Subject: <%= brag.subject %>
+        </div>
+        <div>
+            <%= brag.body %>
+        </div>
+        <div>
+            Author: <%= brag.author %>
+        </div>
+        <div class = 'photos-div'>
+            <% if @photos[brag.id] %>
+            <% @photos[brag.id].each do |photo| %>
+            <img src = '<%= photo.url %>' class = 'event-photo'>
+            <% end %>
+            <% end %>
+        </div>
+
+
+        
+    </div>
+    <% end %>
+</div>

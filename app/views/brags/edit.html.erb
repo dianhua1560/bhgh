@@ -1,0 +1,43 @@
+<style type = 'text/css'>
+.form-control{
+	margin: 10px;
+}
+.photo{
+	height:100px;
+}
+</style>
+<div class = 'col-md-3'>
+	<% if @photo_urls and @photo_urls.length > 0 %>
+		<h3>Photos</h3>
+		<% @photo_urls.each do |url| %>
+			<img src = '<%= url %>' class = 'photo'>
+		<% end %>
+	<% end %>
+</div>
+<div class = 'col-md-6'>
+<% if @editing %>
+	<h1>Edit Brag</h1>
+<% else %>
+	<h1>New Brag</h1>
+<% end %>
+<%= link_to 'Back to Brags', brags_path %>
+<%= form_tag '/brags/update' %>
+
+Title
+<%= text_field_tag 'title', @brag.title, class: 'form-control', placeholder: 'Title (ex: Brag About Student Here)' %>
+
+Author
+<%= text_field_tag 'author', @brag.author, class: 'form-control', placeholder: 'Author (ex: Who is writing this brag?)' %>
+
+Subject
+<%= text_field_tag 'subject', @brag.subject, class: 'form-control', placeholder: 'Subject (ex: Who is this brag about?)' %>
+
+Body
+<%= text_area_tag 'body', @brag.body, class: 'form-control', placeholder: 'Body (ex: Student got into UC Berkeley!)' %>
+
+Photos
+<%= text_area_tag 'photos', @photo_urls ? @photo_urls.join(',') : '' , class: 'form-control', placeholder: 'Optional: Comma-separated list of photo urls' %>
+<%= hidden_field_tag 'id', @brag.id %>
+<%= submit_tag 'Save Brag', class: 'btn btn-default' %>
+</div>
+<div class = 'col-md-3'></div>
