@@ -48,7 +48,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'simplecov', :require => false
+  gem 'simplecov', '0.11.1', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'

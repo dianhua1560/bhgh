@@ -23,10 +23,7 @@ class EventsController < ApplicationController
     def edit
         @editing = true
         @event = Event.find(params[:id])
-        @photo_urls = Photo.where(
-            object_type: 'event',
-            object_id: @event.id
-            ).map{|x| x.url}
+        @photo_urls = Photo.where(object_type: 'event', object_id: @event.id).map{|x| x.url}
         render :edit
     end
 
@@ -42,14 +39,9 @@ class EventsController < ApplicationController
         @event.location = params[:location]
         @event.organizer = params[:organizer] != '' ? params[:organizer] : myEmail
         @event.save
-        Photo.where(
-            object_type:'event',
-            object_id: @event.id).destroy_all
+        Photo.where(object_type:'event', object_id: @event.id).destroy_all
         params[:photos].split(',').each do |photo_url|
-            Photo.where(
-                object_type:'event',
-                object_id: @event.id,
-                url: photo_url.strip).first_or_create!
+            Photo.where(object_type:'event', object_id: @event.id, url: photo_url.strip).first_or_create!
         end
         redirect_to events_path
     end

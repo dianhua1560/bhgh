@@ -28,6 +28,7 @@ Scenario: add an event
 	When I fill in "title" with "newtitle"
 	And I fill in "description" with "newdescription"
 	And I fill in "time" with "May 13, 2016"
+	And I fill in "photos" with "http://test.jpg"
 	And I press "Save Event"
 	Then I should see "newtitle"
 

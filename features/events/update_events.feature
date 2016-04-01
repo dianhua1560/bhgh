@@ -20,6 +20,11 @@ Background: events have been added to the database
 	| Alice | alice@gmail.com | tutor | 
 	| Bob | bob@gmail.com | user |
 
+	Given the following event photos exist
+	| title | url |
+	| title1 | url1 | 
+	| title2 | url2 | 
+
 
 Scenario: delete an event
 	Given that I am logged in as "davidbliu@gmail.com"
@@ -36,4 +41,12 @@ Scenario: update an event
 	Then I should be on the events page
 	And I should see "new description"
 
-
+Scenario: update an event with photos
+	Given that I am logged in as "davidbliu@gmail.com"
+	Given I am on the events admin page
+	When I edit "title1"
+	And I fill in "photos" with "photo1"
+	And I fill in "title" with "new_title"
+	And I press "Save Event"
+	Given I am on the events page
+	Then I should see "new_title"

@@ -12,6 +12,17 @@ Given /the following events exist/ do |events_table|
   end
 end
 
+Given /the following event photos exist/ do |table|
+  table.hashes.each do |row|
+    event = Event.where(title: row[:title]).first
+    p = Photo.new(
+      object_type: 'event',
+      object_id: event.id,
+      url: row[:url])
+    p.save!
+  end
+end
+
 When(/^I delete "([^"]*)"$/) do |title|
   event = Event.where(title: title).first
   click_link("delete-#{event.id}")
