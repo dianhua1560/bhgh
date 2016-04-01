@@ -9,15 +9,17 @@
 <div class = 'col-md-6'>
 <h1><%= @brag.title %></h1>
 <%= link_to "Back to Brags", brags_path %>
-<div>
-    <%= @brag.subject %>
+<div id='frame1'>
+	<a class='note sticky1'>
+		<div class='circle'></div>
+		<div class='text'> <%= @brag.subject %> </div>
+		<div class='text'> <%= @brag.body %> </div>
+		<div class='text'> Author: <%= @brag.author %> </div>
+	</a>
 </div>
-<div>
-    <%= @brag.body %>
-</div>
-<div>
-    Author: <%= @brag.author %>
-</div>
+
+
+
 <div class = 'event-photos-div'>
 <% @photos.each do |photo| %>
     <img src = '<%= photo.url %>' height = 200/>
