@@ -15,12 +15,30 @@
     margin: 12px;
     border: 1px solid rgba(0,0,0,.25);
 }
+
+.note2 {
+    width: 250px;
+    height: 250px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.25);
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.25);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.25);
+    float: left;
+    margin: 12px;
+    border: 1px solid rgba(0,0,0,.25);
+}
  
 .sticky1 {
     transform: rotate(-5deg);
     -webkit-transform: rotate(-5deg);
     -moz-transform: rotate(-5deg);
     background-color: #CBFAFA;
+}
+
+.sticky2 {
+    transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    background-color: #FFC0CB;
 }
 
 div#frame1 a:nth-child(3n) .pin {
@@ -42,7 +60,26 @@ div#frame1 {
     padding-left: 215px;
 }
 
+div#frame2 {
+    background: url("cork-board2.png") no-repeat;
+    width: 1000px;
+    height: 1000px;
+    padding-top: 35px;
+    padding-left: 25px;
+}
+
+
 .circle {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px; 
+    /* width and height can be anything, as long as they're equal */
+    background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, blue 50%, black 100%);
+    background-image: -webkit-radial-gradient(45px 45px, circle cover, blue, black);
+    background-image: radial-gradient(blue 50%, black 100%);
+}
+
+.circle2 {
     border-radius: 50%;
     width: 30px;
     height: 30px; 

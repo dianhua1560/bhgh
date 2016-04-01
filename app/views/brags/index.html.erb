@@ -9,10 +9,10 @@
 }
 .admin-card{
     padding: 10px;
-    border: 1px solid rgb(204, 234, 202);
+    border: 2px solid rgb(204, 234, 202);
     background-color: rgb(230, 251, 231);
     clear:both;
-    margin:5px;
+    margin:6px;
 }
 .respond-div{
     padding: 10px;
@@ -20,7 +20,7 @@
     background-color: rgb(230, 251, 231);
 }
 .event-photo{
-    height:150px;
+    height:160px;
 }
 .response-link{
     margin:2px;
@@ -51,11 +51,12 @@
 
 <h1> Brags </h1>
 
+<div id='frame2'>
 
     <% @brags.each do |brag| %>
     <!-- *******************FIX CLASS******************* -->
-    <div class = 'event-card'>
-
+    <div class = 'note2 sticky2'>
+        <div class='circle2'></div>
         <% if @is_admin %>
             <div class = 'admin-card pull-right'>
                 <%= link_to 'Edit', edit_brag_path(:id => brag.id) %>
@@ -81,9 +82,11 @@
             <% end %>
             <% end %>
         </div>
-
-
         
     </div>
     <% end %>
+
+</div>
+
+
 </div>
