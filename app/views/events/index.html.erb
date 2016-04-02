@@ -1,9 +1,18 @@
 <style type = 'text/css'>
 
 .event-card{
-    padding:15px;
+    padding:2px;
     /*border-bottom: 1px solid rgba(0,0,0,0.1);*/
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-bottom:20px;
+    width:210px;
+    height:350px;
+    float:left;
+    margin-left:20px;
+    margin-right:20px;
+    position:relative;
+    font-size:small;
+    
     -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
     /*border-radius:5px;*/
 }
@@ -18,9 +27,20 @@
     padding: 10px;
     border: 1px solid rgb(204, 234, 202);
     background-color: rgb(230, 251, 231);
+    position:absolute;
+    bottom:3px;
+    left:3px;
+    width:204px;
+    font-size: small;
 }
 .event-photo{
-    height:150px;
+    padding:5px;
+    margin-bottom:5px;
+    margin-top:1px;
+    width:100px;
+    height:100px;
+    position: top;
+    float:left;
 }
 .response-link{
     margin:2px;
@@ -34,14 +54,14 @@
 .attending-div{
      /*-webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);*/
      padding:15px;
+     float:right;
 }
 .attending-event-div{
     margin-top:10px;
+    float:right;
 }
 </style>
-<div class = 'col-md-3'>
-</div>
-<div class = 'col-md-6'>
+<div>
 <% if @is_admin %>
 <div id = 'admin-btns' class = 'pull-right'>
     <%= link_to "Add Event", new_event_path, class: 'btn btn-default admin-btn' %>
@@ -54,6 +74,13 @@
 
     <% @events.each do |event| %>
     <div class = 'event-card'>
+        <div class = 'photos-div'>
+            <% if @photos[event.id] %>
+            <% @photos[event.id].each do |photo| %>
+            <img src = '<%= photo.url %>' class = 'event-photo'>
+            <% end %>
+            <% end %>
+        </div>
         <% if @responded_ids.include?(event.id.to_s) %>
             <div class = 'respond-div pull-right'>
                 You responded: <%= @responses[event.id.to_s].response %>
@@ -92,20 +119,14 @@
                 Location: <%= event.location %>
             </div>
         <% end %>
-        <div class = 'photos-div'>
-            <% if @photos[event.id] %>
-            <% @photos[event.id].each do |photo| %>
-            <img src = '<%= photo.url %>' class = 'event-photo'>
-            <% end %>
-            <% end %>
-        </div>
+        
 
 
         
     </div>
     <% end %>
 </div>
-<div class = 'col-md-3'>
+<div class = 'info'>
     <% if @attending.length > 0 %>
     <div class = 'attending-div affix'>
         <%= @a_ids %>
