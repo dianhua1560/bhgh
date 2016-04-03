@@ -41,7 +41,9 @@
 </style>
 <div class = 'col-md-3'>
 </div>
+
 <div class = 'col-md-6'>
+
 <% if @is_admin %>
 <div id = 'admin-btns' class = 'pull-right'>
     <%= link_to "Add Brag", new_brag_path, class: 'btn btn-default admin-btn' %>
@@ -82,11 +84,8 @@
             <% end %>
             <% end %>
         </div>
-        
     </div>
     <% end %>
 
 </div>
-
-
 </div>
