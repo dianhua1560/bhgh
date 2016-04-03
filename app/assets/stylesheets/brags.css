@@ -42,11 +42,9 @@
 }
 
 div#frame1 a:nth-child(3n) .pin {
-        border-radius: 50%;
-
+    border-radius: 50%;
     width: 300px;
     height: 300px;
-
     background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 50%, black 100%);
     background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, black);
     background-image: radial-gradient(yellow 50%, black 100%);
@@ -68,12 +66,10 @@ div#frame2 {
     padding-left: 25px;
 }
 
-
 .circle {
     border-radius: 50%;
     width: 30px;
     height: 30px; 
-    /* width and height can be anything, as long as they're equal */
     background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, blue 50%, black 100%);
     background-image: -webkit-radial-gradient(45px 45px, circle cover, blue, black);
     background-image: radial-gradient(blue 50%, black 100%);
@@ -83,7 +79,6 @@ div#frame2 {
     border-radius: 50%;
     width: 30px;
     height: 30px; 
-    /* width and height can be anything, as long as they're equal */
     background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 50%, black 100%);
     background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, black);
     background-image: radial-gradient(yellow 50%, black 100%);
@@ -94,7 +89,6 @@ div#frame2 {
     color: black;
     font-family: "Helvetica";
     font-size: 20px;
-    /*font-weight: bold;*/
 }
 
 
