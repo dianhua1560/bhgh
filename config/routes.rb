@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
    get '/' => 'application#home'
    
+   get '/board' => 'application#board'
    # authentication 
   get "/auth/google_oauth2/callback", to: "auth#google_callback"
   get "/auth/logout", to: "auth#logout"

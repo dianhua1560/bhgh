@@ -9,7 +9,7 @@ p, div {
 a{
 	color: #0077CC;
 }
-body { padding-top: 100px; }
+body { padding-top: 0px; }
 
 img:hover{
 	cursor:pointer;
@@ -20,12 +20,14 @@ img:hover{
 .navbar .navbar-default{
 	text-align:center !important;
 }
-nav.navbar.navbar-default.navbar-fixed-top{
-	background-color: #0693C0;
-	border-color: #0693C0;
+nav.navbar.navbar-default.navbar-fixed-bottom{
+	background-color: rgba(6, 147, 192, 0.64);
+	border:0px;
 	text-align: center;
+	position:fixed;
+	bottom:-15px;
 }	
-nav.navbar.navbar-default.navbar-fixed-top .navbar-nav>li>a{
+nav.navbar.navbar-default.navbar-fixed-bottom .navbar-nav>li>a{
 	color:white;
 }
 

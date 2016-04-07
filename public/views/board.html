@@ -1,0 +1,155 @@
+<div ng-repeat = 'item in items' class = 'board-card {{item.type}}-card'>
+	<div ng-if = 'item.type == "event"' ng-click = 'showEventModal(item)'>
+		<div class = 'pull-right'>
+			<img src = '{{item.gravatar}}' class = 'gravatar'>
+		</div>
+		<h3>{{item.title}}</h3>
+		<div class = 'label label-info'>{{item.time_string}}</div>
+		<div ng-if = 'item.photos.length > 0' class = 'event-photo'>
+			<img src = '{{item.photos[0]}}' class = 'photo-width'>
+		</div>
+		<div>{{item.description}}</div>
+		
+		<div>Organizer: {{item.organizer}}</div>
+	</div>
+	<div ng-if = 'item.type == "brag"' ng-click = 'showBragModal(item)'>
+		<div class = 'pull-right'>
+			<img src = '{{item.gravatar}}' class = 'gravatar'>
+		</div>
+		<h3>{{item.title}}</h3>
+		<div ng-if = 'item.photos.length > 0' class = 'event-photo'>
+			<img src = '{{item.photos[0]}}' class = 'photo-width'>
+		</div>
+		<div>{{item.body}}</div>
+		<div>{{item.subject}}</div>
+		<div>{{item.author}}</div>
+		<div>{{item.created_at}}</div>
+
+	</div>
+</div>
+
+<nav style = 'border-radius:0px; margin-bottom:15px; padding:0px; ' class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+    	<li>
+      		<a href = 'javascript:void(0)'>BHGH Board</a>
+      	</li>
+    </ul>
+      <ul class="nav navbar-nav pull-right">
+      	
+      	<li>
+      		<a href = 'javascript:void(0)' ng-click = 'showAddEvent()'>+ Event</a></li>
+      	</li>
+      	<li><a href = 'javascript:void(0)' ng-click = 'showAddBrag()'>+ Brag</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id = 'add-event-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{modalTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        Title: <input type = 'text' ng-model = 'eventTitleInput' placeholder = 'title' class = 'form-control'>
+        Organizer: <input type = 'text' ng-model = 'eventOrganizerInput' placeholder= 'organizer' class = 'form-control'>
+        Time: <input type = 'text' ng-model = 'eventTimeInput' placeholder = 'time' class = 'form-control'>
+        Location: <input type = 'text' ng-model = 'eventLocationInput' placeholder = 'location' class = 'form-control'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click = 'saveEvent()'>Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id = 'add-brag-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{modalTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        <input type = 'text' ng-model = 'titleInput' placeholder = 'title' class = 'form-control'>
+        <input type = 'text' ng-model = 'organizerInput' placeholder= 'organizer' class = 'form-control'>
+        <input type = 'text' ng-model = 'timeInput' placeholder = 'time' class = 'form-control'>
+        <input type = 'text' ng-model = 'locationInput' placeholder = 'location' class = 'form-control'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click = 'saveItem()'>Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id = 'event-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{selectedEvent.title}}</h4>
+      </div>
+      <div class="modal-body">
+      		<h3>Details</h3>
+	       <div>Time: {{selectedEvent.time}}</div>
+	       <div>Organizer: {{selectedEvent.organizer}}</div>
+	       <div>Description: {{selectedEvent.description}}</div>
+	       
+	       <h3>Location</h3>
+	       <div>{{selectedEvent.location}}</div>
+	       <img src = '/sample_map.png' style = 'width:100%'>
+	       <h3>Photos</h3>
+	       <div>
+	       		<img ng-repeat = 'photo in selectedEvent.photos' class = 'photo-200' src = '{{photo}}'>
+	       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click = 'respondToEvent(event, "Going")'>Going</button>
+        <button type="button" class="btn btn-default" ng-click = 'respondToEvent(event, "Interested")'>Interested</button>
+        <button type="button" class="btn btn-default" ng-click = 'respondToEvent(event, "Not Going")'>Not Going</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id = 'brag-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{selectedBrag.title}}</h4>
+      </div>
+      <div class="modal-body">
+	       <div>Subject: {{selectedBrag.time}}</div>
+	       <div>Author: {{selectedBrag.author}}</div>
+	       <div>Body: {{selectedBrag.body}}</div>
+	       <div>Created At: {{selectedBrag.created_at}}</div>
+	       <div>
+	       		<img ng-repeat = 'photo in selectedBrag.photos' class = 'photo-200' src = '{{photo}}'>
+	       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click = 'likeBrag(selectedBrag)'></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
