@@ -1,5 +1,50 @@
 <style type = 'text/css'>
+#wrapper {
+    width: 90%;
+    max-width: 1100px;
+    min-width: 800px;
+    margin: 50px auto;
+}
 
+#columns {
+    -webkit-column-count: 4;
+    -webkit-column-gap: 10px;
+    -webkit-column-fill: auto;
+    -moz-column-count: 4;
+    -moz-column-gap: 10px;
+    -moz-column-fill: auto;
+    column-count: 4;
+    column-gap: 15px;
+    column-fill: auto;
+}
+
+.pin {
+    display: inline-block;
+    width: 100%;
+    background: #FEFEFE;
+    border: 2px solid #FAFAFA;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    margin: 0 2px 15px;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    padding: 15px;
+    padding-bottom: 5px;
+    background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+    opacity: 1;
+    
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.pin img {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 5px;
+}
 .event-card{
     padding:15px;
     /*border-bottom: 1px solid rgba(0,0,0,0.1);*/
@@ -39,22 +84,30 @@
     margin-top:10px;
 }
 </style>
-<div class = 'col-md-3'>
+<div class="row">
+<div class = 'col-md-1'>
 </div>
-<div class = 'col-md-6'>
+<div class = 'col-md-1'>
+<h1> Brags </h1>
+</div>
+<div class = 'col-md-9'>
 <% if @is_admin %>
 <div id = 'admin-btns' class = 'pull-right'>
     <%= link_to "Add Brag", new_brag_path, class: 'btn btn-default admin-btn' %>
     <%= link_to "Admin Panel", brags_admin_path, class: 'btn btn-default admin-btn' %>
 </div>
+</div>
+</div>
 <% end %>
 
-<h1> Brags </h1>
+
+<div id="wrapper">
+<div id="columns">
 
 
     <% @brags.each do |brag| %>
     <!-- *******************FIX CLASS******************* -->
-    <div class = 'event-card'>
+    <div class = 'pin'>
 
         <% if @is_admin %>
             <div class = 'admin-card pull-right'>
@@ -68,22 +121,24 @@
         <div>
             Subject: <%= brag.subject %>
         </div>
+        
+            <% if @photos[brag.id] %>
+            <% @photos[brag.id].each do |photo| %>
+            <img src = '<%= photo.url %>'>
+            <% end %>
+            <% end %>
+
         <div>
             <%= brag.body %>
         </div>
         <div>
-            Author: <%= brag.author %>
+            Written by: <%= brag.author %>
         </div>
-        <div class = 'photos-div'>
-            <% if @photos[brag.id] %>
-            <% @photos[brag.id].each do |photo| %>
-            <img src = '<%= photo.url %>' class = 'event-photo'>
-            <% end %>
-            <% end %>
-        </div>
+
 
 
         
     </div>
     <% end %>
+</div>
 </div>
