@@ -212,6 +212,8 @@ GEM
       fattr (>= 2.2.0)
       map (>= 6.1.0)
     map (6.6.0)
+    masonry-rails (0.2.4)
+      railties
     memoist (0.14.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -431,6 +433,7 @@ DEPENDENCIES
   jasmine-rails
   jbuilder (~> 2.0)
   jquery-rails
+  masonry-rails
   metric_fu
   omniauth-google-oauth2
   pg
