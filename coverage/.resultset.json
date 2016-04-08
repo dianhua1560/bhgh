@@ -1,7 +1,7 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/brag.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/brag.rb": [
         1,
         1,
         1,
@@ -43,14 +43,14 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/member.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/member.rb": [
         1,
         1,
         17,
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/brags_controller.rb": [
+      "/Users/Allen/Desktop/bhgh/app/controllers/brags_controller.rb": [
         1,
         1,
         14,
@@ -118,7 +118,7 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/application_controller.rb": [
+      "/Users/Allen/Desktop/bhgh/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -149,11 +149,11 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/application_helper.rb": [
+      "/Users/Allen/Desktop/bhgh/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/auth_helper.rb": [
+      "/Users/Allen/Desktop/bhgh/app/helpers/auth_helper.rb": [
         1,
         1,
         172,
@@ -164,23 +164,23 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/brags_helper.rb": [
+      "/Users/Allen/Desktop/bhgh/app/helpers/brags_helper.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/events_helper.rb": [
+      "/Users/Allen/Desktop/bhgh/app/helpers/events_helper.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/click.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/click.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/photo.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/photo.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/event.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/event.rb": [
         1,
         1,
         13,
@@ -237,7 +237,7 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/events_controller.rb": [
+      "/Users/Allen/Desktop/bhgh/app/controllers/events_controller.rb": [
         1,
         1,
         13,
@@ -311,11 +311,11 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/event_response.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/event_response.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/auth_controller.rb": [
+      "/Users/Allen/Desktop/bhgh/app/controllers/auth_controller.rb": [
         0,
         0,
         0,
@@ -332,62 +332,23 @@
         0,
         0
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/brag_like.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/brag_like.rb": [
         0,
         0
       ]
     },
-    "timestamp": 1459492552
+    "timestamp": 1460079658
   },
   "RSpec": {
     "coverage": {
-      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/application_helper.rb": [
+      "/Users/Allen/Desktop/bhgh/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/auth_helper.rb": [
+      "/Users/Allen/Desktop/bhgh/app/helpers/auth_helper.rb": [
         1,
         1,
         1,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null
-      ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/brags_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/events_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/application_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        0,
-        null,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
         null,
         null,
         1,
@@ -395,7 +356,46 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/auth_controller.rb": [
+      "/Users/Allen/Desktop/bhgh/app/helpers/brags_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/Allen/Desktop/bhgh/app/helpers/events_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/Allen/Desktop/bhgh/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/Allen/Desktop/bhgh/app/controllers/auth_controller.rb": [
         1,
         1,
         2,
@@ -412,7 +412,7 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/brags_controller.rb": [
+      "/Users/Allen/Desktop/bhgh/app/controllers/brags_controller.rb": [
         1,
         1,
         0,
@@ -480,11 +480,11 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/brag_like.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/brag_like.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/brag.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/brag.rb": [
         1,
         1,
         1,
@@ -526,15 +526,15 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/click.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/click.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/event_response.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/event_response.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/event.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/event.rb": [
         1,
         1,
         0,
@@ -586,23 +586,23 @@
         0,
         null,
         null,
-        1,
-        0,
-        null,
-        null
-      ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/member.rb": [
-        1,
         1,
         0,
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/photo.rb": [
+      "/Users/Allen/Desktop/bhgh/app/models/member.rb": [
+        1,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/Allen/Desktop/bhgh/app/models/photo.rb": [
         1,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/events_controller.rb": [
+      "/Users/Allen/Desktop/bhgh/app/controllers/events_controller.rb": [
         0,
         0,
         0,
@@ -677,6 +677,6 @@
         0
       ]
     },
-    "timestamp": 1459492518
+    "timestamp": 1460079675
   }
 }
