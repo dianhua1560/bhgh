@@ -1,6 +1,7 @@
 module AuthHelper
     def myEmail
-        cookies[:email] ? cookies[:email] : nil
+        return "mgandhi93@berkeley.edu"
+        #[:email] ? cookies[:email] : nil
     end
 
     def current_member
