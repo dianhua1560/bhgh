@@ -51,10 +51,12 @@ nav.navbar.navbar-default.navbar-fixed-top .navbar-nav>li>a{
 }
 .brag-card{
 	/*background-color:rgba(0, 255, 55, 0.06);*/
+	width:300px;
 	background-color:#D9EDF7;
 }
 .event-card{
 	/*background-color:rgba(0, 102, 255, 0.03);*/
+	width:300px;
 	background-color:#DFF0D8;
 }
 .board-card{

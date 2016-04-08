@@ -14,7 +14,7 @@
 	<h3>Photos</h3>
 	<% end %>
 	<% @event.photos.each do |photo| %>
-	<img src = '<%= @event.photos.first.url %>' class = 'card-photo'>
+	<img src = '<%= photo.url %>' class = 'card-photo'>
 	<% end %>
 </div>
 
