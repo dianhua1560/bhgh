@@ -1,8 +1,10 @@
 <head>
   <title>BHGH Board</title>
+  <script src = 'https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.js'></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -53,6 +55,7 @@
 	height:50px;
 }
 </style>
+<%= javascript_include_tag 'test' %>
 <script src = '/lib/underscore-min.js'></script>
 <script type = 'text/javascript'>
 var events = <%= raw(@events) %>;
