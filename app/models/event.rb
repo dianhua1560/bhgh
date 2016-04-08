@@ -1,13 +1,23 @@
 class Event < ActiveRecord::Base
-	def self.photo_hash
-		h = {}
-		Photo.where(object_type:'event').all.each do |photo|
-			if not h.keys.include?(photo.object_id)
-				h[photo.object_id] = []
-			end
-			h[photo.object_id] << photo
+	def photos
+		if Event.photo_hash.keys.include?(self.id)
+			Event.photo_hash[self.id]
+		else
+			[]
 		end
-		return h
+	end
+
+	def self.photo_hash
+		Rails.cache.fetch 'event_photo_hash' do
+			h = {}
+			Photo.where(object_type:'event').all.each do |photo|
+				if not h.keys.include?(photo.object_id)
+					h[photo.object_id] = []
+				end
+				h[photo.object_id] << photo
+			end
+			return h
+		end
 	end
 
 	def self.click_hash

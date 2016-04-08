@@ -13,6 +13,10 @@ class Brag < ActiveRecord::Base
 		end
 	end
 
+	def photos
+		[]
+	end
+
 	def is_email(string)
 		email_set = [".edu", ".com", ".org", ".net"]
 		return email_set.include? string[-4..-1]

@@ -14,6 +14,12 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id])
         @photos = Photo.where(object_type: 'event', object_id: @event.id)
     end
+
+    def modal_show
+        @event = Event.find(params[:id])
+        @photos = Photo.where(object_type: 'event', object_id: @event.id)
+        render layout: false
+    end
     
     def new
         @event = Event.new

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
    get '/' => 'application#home'
+   get '/board' => 'application#board'
    
    # authentication 
   get "/auth/google_oauth2/callback", to: "auth#google_callback"
@@ -9,6 +10,8 @@ Rails.application.routes.draw do
   # Events
   get '/events' => 'events#index'
   get '/events/show/:id' => 'events#show', as: 'event'
+  get '/events/modal_show/:id' => 'events#modal_show', as: 'event_modal'
+
   get '/events/new' => 'events#new', as: 'new_event'
   get '/events/edit/:id' => 'events#edit', as: 'edit_event'
   post '/events/update' => 'events#update', as: 'update_event'
@@ -23,6 +26,7 @@ Rails.application.routes.draw do
   get '/brags/edit/:id' => 'brags#edit', as: 'edit_brag'
   post 'brags/update' => 'brags#update', as: 'update_brag'
   get '/brags/show/:id' => 'brags#show', as: 'brag'
+  get '/brags/modal_show/:id' => 'brags#modal_show', as: 'brag_modal'
   get '/brags/admin' => 'brags#admin', as: 'brags_admin'
   get '/brags/delete' => 'brags#delete', as: 'delete_brag'
 

@@ -23,6 +23,18 @@ class ApplicationController < ActionController::Base
       params: request.params)
   end
 
+  def board
+    @events = Event.all
+    @brags = Brag.all
+    @items = @events + @brags
+    @brag_ids = Brag.all.pluck(:id)
+    @event_ids = Event.all.pluck(:id)
+    print @brag_ids
+    print @event_ids
+    @items = @items.shuffle
+    render 'layouts/board'
+  end
+
   def home
     render 'layouts/home'
   end

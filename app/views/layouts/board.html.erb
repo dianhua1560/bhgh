@@ -1,0 +1,63 @@
+<style type='text/css'>
+#main-row{
+}
+#main-row:after {
+	/*height:1000px;*/
+    content : "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url("http://saratogasales.com/images/corkboard_background.jpg");
+    width: 100%;
+    height: 100%;
+    opacity : 0.2;
+    z-index: -1;
+}
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+  <link rel = 'stylesheet' href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+  <script src = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+
+<%= render 'brags/brag_modal' %>
+<%= render 'events/event_modal' %>
+<script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+
+<script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.js"></script>
+
+<div id = 'main-row'>
+<div class="grid" id = 'grid'>
+<% @items.each do |item| %>
+	<div class = 'grid-item'>
+	<% if item.model_name.human == "Brag" %>
+	<div class = 'brag-card item-card' data-id = '<%= item.id %>'>
+		<h3><%= item.title %></h3>
+		<div><%= item.body %></div>
+		<div>Subject: <%= item.subject %></div>
+		<div>Author: <%= item.author %></div>
+		<div>Created At: <%= item.created_at %></div>
+	</div>
+	<% elsif item.model_name.human == "Event" %>
+	<div class = 'event-card item-card' data-id = '<%= item.id %>'>
+		<h3><%= item.title %></h3>
+		<div>Description: <%= item.description %></div>
+		<div>Organizer: <%= item.organizer %></div>
+		<div>Location: <%= item.location %></div>
+		<div>Time: <%= item.time %></div>
+		<% if item.photos.length > 0 %>
+		<div>
+			<img src = '<%= item.photos.first.url %>' class = 'card-photo'>
+		</div>
+		<% end %>
+	</div>
+	<% end %>
+	</div>
+
+<% end %>
+
+</div>
+<%= javascript_include_tag 'board' %>

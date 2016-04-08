@@ -10,6 +10,13 @@ class BragsController < ApplicationController
 		@photos = Photo.where(object_type:'brag', object_id: @brag.id)
 	end
 
+	def modal_show
+		@brag = Brag.find(params[:id])
+		@photos = Photo.where(object_type:'brag', object_id: @brag.id)
+		render layout: false
+	end
+
+
 	def new
 		@brag = Brag.new
 		render :edit
