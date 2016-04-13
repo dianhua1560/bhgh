@@ -8,28 +8,35 @@ Rails.application.routes.draw do
   get "/auth/logout", to: "auth#logout"
   
   # Events
-  get '/events' => 'events#index'
-  get '/events/show/:id' => 'events#show', as: 'event'
-  get '/events/modal_show/:id' => 'events#modal_show', as: 'event_modal'
+  get '/events/list' => 'events#list'
+  post '/events/create' => 'events#create'
+  get '/events/modal_show/:id' => 'events#modal_show'
+  # get '/events' => 'events#index'
+  # get '/events/show/:id' => 'events#show', as: 'event'
+  # get '/events/modal_show/:id' => 'events#modal_show', as: 'event_modal'
 
-  get '/events/new' => 'events#new', as: 'new_event'
-  get '/events/edit/:id' => 'events#edit', as: 'edit_event'
-  post '/events/update' => 'events#update', as: 'update_event'
-  get '/events/admin' => 'events#admin', as: 'events_admin'
-  get '/events/delete' => 'events#delete', as: 'delete_event'
-  get 'events/respond' => 'events#respond', as: 'respond_to_event'
-  get 'events/delete_response' => 'events#delete_response', as: 'delete_event_response'
+  # get '/events/new' => 'events#new', as: 'new_event'
+  # get '/events/edit/:id' => 'events#edit', as: 'edit_event'
+  # post '/events/update' => 'events#update', as: 'update_event'
+  # get '/events/admin' => 'events#admin', as: 'events_admin'
+  # get '/events/delete' => 'events#delete', as: 'delete_event'
+  # get 'events/respond' => 'events#respond', as: 'respond_to_event'
+  # get 'events/delete_response' => 'events#delete_response', as: 'delete_event_response'
   
   # Brags
-  get '/brags' => 'brags#index', as: 'brags'
-  get '/brags/new' => 'brags#new', as: 'new_brag'
-  get '/brags/edit/:id' => 'brags#edit', as: 'edit_brag'
-  post 'brags/update' => 'brags#update', as: 'update_brag'
-  get '/brags/show/:id' => 'brags#show', as: 'brag'
-  get '/brags/modal_show/:id' => 'brags#modal_show', as: 'brag_modal'
-  get '/brags/admin' => 'brags#admin', as: 'brags_admin'
-  get '/brags/delete' => 'brags#delete', as: 'delete_brag'
-
+  # get '/brags' => 'brags#index', as: 'brags'
+  # get '/brags/new' => 'brags#new', as: 'new_brag'
+  # get '/brags/edit/:id' => 'brags#edit', as: 'edit_brag'
+  # post 'brags/update' => 'brags#update', as: 'update_brag'
+  # get '/brags/show/:id' => 'brags#show', as: 'brag'
+  # get '/brags/modal_show/:id' => 'brags#modal_show', as: 'brag_modal'
+  # get '/brags/admin' => 'brags#admin', as: 'brags_admin'
+  # get '/brags/delete' => 'brags#delete', as: 'delete_brag'
+  get '/brags/list' => 'brags#list'
+  post '/brags' => 'brags#create'
+  post '/brags/:id' => 'brags#update'
+  post 'brags/delete/:id' => 'brags#delete'
+  get '/brags/modal_show/:id' => 'brags#modal_show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,5 +1,12 @@
 console.log('board.js');
-
+function activateAddBtns(){
+	$('#add-event-modal-btn').click(function(){
+		$('#add-event-modal').modal('show');
+	});
+	$('#add-brag-modal-btn').click(function(){
+		$('#add-brag-modal').modal('show');
+	});
+}
 $(document).ready(function(){
 	// init Masonry
 	var $grid = $('.grid').masonry({
@@ -34,6 +41,7 @@ $(document).ready(function(){
 		})
 		$('#brag-modal').modal('show');
 		$('#events-modal').modal('show');
-	})
+	});
+	activateAddBtns();
 
 })

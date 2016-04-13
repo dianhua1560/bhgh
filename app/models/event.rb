@@ -1,4 +1,19 @@
 class Event < ActiveRecord::Base
+
+	def self.do_new(params)
+		params[:time] = Event.convert_time_string(params[:time])
+		return Event.new(params)
+	end
+
+	def self.do_update(params)
+		params[:time] = Event.convert_time_string(params[:time])
+		return Event.update(params)
+	end
+
+	def self.convert_time_string(time_string)
+		return Time.now
+	end
+
 	def photos
 		if Event.photo_hash.keys.include?(self.id)
 			Event.photo_hash[self.id]
@@ -53,6 +68,7 @@ class Event < ActiveRecord::Base
 	def get_responses(response_hash)
 		return response_hash[self.id]
 	end
+	
 	def has_responses?(response_hash)
 		r = response_hash[self.id]
 		rs = r['Going'].length + r['Not Going'].length + r['Interested'].length
