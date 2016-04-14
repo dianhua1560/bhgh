@@ -17,5 +17,5 @@ class Post < ActiveRecord::Base
 	def comments
 		PostResponse.where(post_id: self.id).order('created_at asc').all[1..-1]
 	end
-
+	
 end
