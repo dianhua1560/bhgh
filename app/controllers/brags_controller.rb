@@ -1,66 +1,51 @@
 class BragsController < ApplicationController
-	def index
-	    @brags = Brag.all.order('created_at desc')
-	    @is_admin = current_member ? current_member.admin? : false
-	    @photos = Brag.photo_hash
-	end
 
-	def show
+	def modal_show
 		@brag = Brag.find(params[:id])
-		@photos = Photo.where(object_type:'brag', object_id: @brag.id)
+		render layout: false
 	end
 
-	def new
-		@brag = Brag.new
-		render :edit
+	def list
+		render json: Brag.all.map{|x| x.to_json}
 	end
 
-	def edit
-		@editing = true
-		@brag = Brag.find(params[:id])
-		@photo_urls = Photo.where(
-			object_type: 'brag',
-			object_id: @brag.id
-			).map{|x| x.url}
-		render :edit
+	def create
+		brag = Brag.new(
+			title: params[:title],
+			author: params[:author],
+			subject: params[:subject],
+			body: params[:body])
+		if brag.save
+			render json: brag.to_json
+		else
+			render json: brag.errors.to_json, status: 400
+		end
 	end
 
 	def update
-		# author title body subject
-		if params[:id] and params[:id] != ''
-            @brag = Brag.find(params[:id])
-        else
-            @brag = Brag.new
-        end
-        @brag.title = params[:title]
-        @brag.author = params[:author] != '' ? params[:author] : myEmail
-        @brag.subject = params[:subject]
-        @brag.body = params[:body]
-    	if @brag.save
-	        Photo.where(
-	        	object_type:'brag',
-	        	object_id: @brag.id).destroy_all
-	        params[:photos].split(',').each do |photo_url|
-	        	Photo.where(
-	        		object_type:'brag',
-	        		object_id: @brag.id,
-	        		url: photo_url.strip).first_or_create!
-	        end
-	        redirect_to brags_path
-	    else
-	    	@errors = true
-	    	render :edit
-	    end
-	end
-
-	def admin
-		@brags = Brag.all.order('created_at desc')
-		@click_hash = Brag.click_hash
+		brag = Brag.find(params[:id])
+		if brag.update(brag_params)
+			render json: brag.to_json
+		else
+			render json: brag.errors.to_json, status: 400
+		end
 	end
 
 	def delete
-		Brag.find(params[:id]).destroy
-		redirect_to :back
-	end
+	  	Brag.find(params[:id]).destroy
+	  	render nothing: true, status: 200
+	  end
+
+
+	 private
+
+  def brag_params
+    params.permit(:title, :author, :subject, :body)
+  end
+
+
+
+
+	
 
 end

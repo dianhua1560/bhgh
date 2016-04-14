@@ -6,9 +6,15 @@ Feature: Manage posts on the forum
 Background: posts and responses have been added to the forum
 
 	Given the following posts exist:
+<<<<<<< HEAD
 	| title   | author                       | body   | post_ID |
 	| title1 | admin1@gmail.com | body1 |     1        |
 	| title2 | tutor1@gmail.com    | body2 |     2        |
+=======
+	| title   | author          | body  | post_ID |
+	| title1 | admin1@gmail.com | body1 |   1     |
+	| title2 | tutor1@gmail.com | body2 |   2     |
+>>>>>>> 4929ff88999dda89c5419e733a58dab7c8a04a64
 
 	Given the following members exist:
 	| name | email | position |
@@ -17,6 +23,7 @@ Background: posts and responses have been added to the forum
 	| scholar1 | scholar1@gmail.com | scholar | 
 
 Scenario: Admin can see edit button for all posts
+<<<<<<< HEAD
     Given that I am logged in as “admin1@gmail.com”
     When I visit “/forum”
     And I follow “title2”
@@ -35,6 +42,26 @@ Scenario: Admin can edit a post
     And I fill in “title” with “new title”
     When I press “Save Post”
     Then I should see “new title” 
+=======
+    Given that I am logged in as "admin1@gmail.com"
+    When I visit "/forum"
+    And I follow "title2"
+    Then I should see "Edit Post"
+
+Scenario: Scholars can not see edit button for all posts
+    Given that I am logged in as "scholar1@gmail.com"
+    When I visit "/forums"
+    Given I follow "title1"
+    Then I should not see "Edit Post"
+
+Scenario: Admin can edit a post
+    Given that I am logged in as "admin1@gmail.com"
+    When I visit "/forum"
+    And I edit post "title1"
+    And I fill in "title" with "new title"
+    When I press "Save Post"
+    Then I should see "new title" 
+>>>>>>> 4929ff88999dda89c5419e733a58dab7c8a04a64
 	
 Scenario: Admin can delete posts
 	Given that I am logged in as "admin1@gmail.com"

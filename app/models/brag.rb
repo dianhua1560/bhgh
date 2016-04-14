@@ -3,6 +3,35 @@ class Brag < ActiveRecord::Base
 	validates :title, :presence => true
 	validates :body, :presence => true
 
+	def tojson
+		{
+			title: self.title,
+			time: self.created_at,
+			photos: self.photos,
+			author: self.author,
+			type: 'brag',
+			created_at: self.created_at,
+			subject: self.subject,
+			gravatar: self.gravatar
+		}
+	end
+
+	def sort_time
+		return self.created_at
+	end
+
+	def gravatar
+		email = self.author ? self.author : 'asdf@gmail.com'
+		gravatar_id = Digest::MD5.hexdigest(email.downcase)
+		return "http://gravatar.com/avatar/#{gravatar_id}.png"
+	end
+
+	def photos
+		p = Brag.photo_hash[self.id]
+		p = p ? p : []
+		p = p.map{|x| x.url}
+		return p
+	end
 
 	def subject_and_author_are_emails
 		if not is_email(subject)
@@ -13,20 +42,26 @@ class Brag < ActiveRecord::Base
 		end
 	end
 
+	def photos
+		[]
+	end
+
 	def is_email(string)
 		email_set = [".edu", ".com", ".org", ".net"]
 		return email_set.include? string[-4..-1]
 	end
 
 	def self.photo_hash
-		h = {}
-		Photo.where(object_type:'brag').all.each do |photo|
-			if not h.keys.include?(photo.object_id)
-				h[photo.object_id] = []
+		Rails.cache.fetch 'brag_photo_hash' do
+			h = {}
+			Photo.where(object_type:'brag').all.each do |photo|
+				if not h.keys.include?(photo.object_id)
+					h[photo.object_id] = []
+				end
+				h[photo.object_id] << photo
 			end
-			h[photo.object_id] << photo
+			return h
 		end
-		return h
 	end
 
 	def self.click_hash

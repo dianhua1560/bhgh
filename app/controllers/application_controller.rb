@@ -23,7 +23,28 @@ class ApplicationController < ActionController::Base
       params: request.params)
   end
 
+  def board
+    @events = Event.all
+    @brags = Brag.all
+    @items = @events + @brags
+    @brag_ids = Brag.all.pluck(:id)
+    @event_ids = Event.all.pluck(:id)
+    print @brag_ids
+    print @event_ids
+    @items = @items.shuffle
+    render 'layouts/board'
+  end
+
   def home
     render 'layouts/home'
+  end
+
+  def board
+    @events = Event.all.map{|x| x.tojson}.to_json
+    @brags = Brag.all.map{|x| x.tojson}.to_json
+    @items = Event.all.to_a + Brag.all.to_a
+    @items = @items.sort_by{|x| x.sort_time}.map{|x| x.tojson}
+    @items = @items.shuffle.to_json
+    render 'layouts/board', layout: false
   end
 end

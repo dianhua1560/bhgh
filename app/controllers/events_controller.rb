@@ -1,72 +1,42 @@
 class EventsController < ApplicationController
-    def index
-        @events = Event.all.order('time desc')
-        @responses = EventResponse.where(email: myEmail)
-        a_ids = @responses.select{|x| x.response == 'Going'}.map{|x| x.event_id.to_i}
-        @attending = @events.select{|e| a_ids.include?(e.id)}
-        @responses = @responses.index_by(&:event_id)
-        @responded_ids = @responses.keys.map{|x| x}
-        @is_admin = current_member ? current_member.admin? : false
-        @photos = Event.photo_hash
-    end
+   def modal_show
+    @event = Event.find(params[:id])
+   end
 
-    def show
-        @event = Event.find(params[:id])
-        @photos = Photo.where(object_type: 'event', object_id: @event.id)
-    end
-    
-    def new
-        @event = Event.new
-        render :edit
-    end
+   def list
+    render json: Event.all.map{|x| x.to_json}
+   end
 
-    def edit
-        @editing = true
-        @event = Event.find(params[:id])
-        @photo_urls = Photo.where(object_type: 'event', object_id: @event.id).map{|x| x.url}
-        render :edit
+   def create
+    event = Event.do_new(event_params)
+    if event.save
+        render json: event.to_json, status: 200
+    else
+        render json: event.errors.to_json, status: 400
     end
+   end
 
-    def update
-        if params[:id] and params[:id] != ''
-            @event = Event.find(params[:id])
-        else
-            @event = Event.new
-        end
-        @event.title = params[:title]
-        @event.description = params[:description]
-        @event.time = params[:time].present? ? DateTime.strptime(params[:time], '%B %d, %Y') : nil
-        @event.location = params[:location]
-        @event.organizer = params[:organizer] != '' ? params[:organizer] : myEmail
-        @event.save
-        Photo.where(object_type:'event', object_id: @event.id).destroy_all
-        params[:photos].split(',').each do |photo_url|
-            Photo.where(object_type:'event', object_id: @event.id, url: photo_url.strip).first_or_create!
-        end
-        redirect_to events_path
+   def update
+    event = Event.find(params[:id])
+    if event.do_update(event_params)
+        render json: event.to_json, status:200
+    else
+        render event.errors.to_json, status:400
     end
+   end
 
-    def admin
-        @events = Event.all.order('time desc')
-        @click_hash = Event.click_hash
-        @response_hash = Event.response_hash
-    end
+   def delete
+    Event.find(params[:id]).destroy
+    render nothing: true, status: 200
+   end
 
-    def delete
-        Event.find(params[:id]).destroy
-        redirect_to :back
-    end
+   def respond
+   end
 
-    def respond
-        response = EventResponse.where(event_id: params[:id],
-            email: myEmail).first_or_create!
-        response.response = params[:response]
-        response.save
-        redirect_to events_path
-    end
+   private
 
-    def delete_response
-        response = EventResponse.find(params[:id]).destroy
-        redirect_to events_path
-    end
+   def event_params
+     params.permit(:title,:description,:time,:organizer,:location)
+   end
+
 end

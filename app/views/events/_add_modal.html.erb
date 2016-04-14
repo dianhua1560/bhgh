@@ -1,0 +1,38 @@
+<div class="modal fade" tabindex="-1" role="dialog" id = 'add-event-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" id = 'event-modal-body'>
+      	Title: <input type = 'text' placeholder = 'Title' id = 'event-title-input'>
+      	Description: <input type = 'text' placeholder = 'Description' id = 'event-description-input'>
+      	Time: <input type = 'text' placeholder = 'Time' id = 'event-time-input'>
+      	Organizer: <input type = 'text' placeholder = 'Organizer' id = 'event-organizer-input'>
+      	Location: <input type = 'text' placeholder = 'Location' id = 'event-location-input'>
+      	<div class = 'btn btn-success' id = 'add-event-btn'>Add Event</div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type = 'text/javascript'>
+$('#add-event-btn').click(function(){
+	$.ajax({
+		url:'/events/create',
+		type:'post',
+		data:{
+			title:$('#event-title-input').val(),
+			description:$('#event-description-input').val(),
+			time:$('#event-time-input').val(),
+			organizer:$('#event-organizer-input').val(),
+			location:$('#event-location-input').val()
+		},
+		success:function(data){
+			console.log('data is '+data);
+		},
+		error:function(e){
+			console.log(e);
+			console.log(e.responseText);
+
+		}
+	})
+})
+</script>
