@@ -41,6 +41,10 @@ Rails.application.routes.draw do
   post 'brags/delete/:id' => 'brags#delete'
   get '/brags/modal_show/:id' => 'brags#modal_show'
 
+
+  # Forum
+  get '/forum/list' => 'forum#list'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
