@@ -23,6 +23,7 @@ myApp.controller("BoardCtrl", function ($scope) {
 			success:function(data){
 				console.log('successful response');
 				event.response = data;
+				$scope.$digest();
 			},
 			error:function(data){
 				console.log('error responding');
@@ -78,19 +79,47 @@ myApp.controller("BoardCtrl", function ($scope) {
 		$scope.selectedBrag = brag;
 		$('#brag-modal').modal('show');
 	}
-	$scope.likeBrag = function(brag){
-		console.log('liking brag');
-		console.log(brag);
+	$scope.updateBrag = function(brag){
 		$.ajax({
-			url:'/brags/like/'+brag.id,
+			url:'/brags/update/'+brag.id,
 			type:'post',
+			data:{
+				title: $('#edit-brag-title').text(),
+				subject:$('#edit-brag-subject').text(),
+				body:$('#edit-brag-body').text()
+			},
 			success:function(data){
-				alert('you liked the brag');
+				$('#edit-brag-title').fadeOut(100).fadeIn(100);
+				$scope.brags = data;
+				$scope.$digest();
 			},
 			error:function(data){
-				alert('error liking brag');
+				console.log('errors');
+				console.log(data);
+			}
+		})
+	};
+	$scope.likeBrag = function(brag, like){
+		if(like){
+			liked = true;
+			url = '/brags/like/'+brag.id;
+		}
+		else{
+			liked = false;
+			url = '/brags/unlike/'+brag.id;
+		}
+		$.ajax({
+			url:url,
+			type:'post',
+			success:function(data){
+				brag.liked = liked;
+				$scope.$digest();
+			},
+			error:function(data){
+				alert('error');
 			}
 		});
 	}
 	$scope.modalTitle = 'Add new event';
+	$('.editable').attr('contenteditable','true');
 });

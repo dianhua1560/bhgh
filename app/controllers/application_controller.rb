@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
   def board
     @events = Event.all.map{|x| x.tojson(myEmail)}.to_json
     @brags = Brag.all.map{|x| x.tojson(myEmail)}.to_json
+    @posts = []
     render 'layouts/board', layout: false
   end
 end

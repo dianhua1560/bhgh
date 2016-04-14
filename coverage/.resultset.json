@@ -427,6 +427,10 @@
         1,
         null
       ],
+      "/Users/davidbliu/Desktop/169/bhgh/app/helpers/forum_helper.rb": [
+        1,
+        null
+      ],
       "/Users/davidbliu/Desktop/169/bhgh/app/controllers/application_controller.rb": [
         1,
         1,
@@ -453,16 +457,6 @@
         null,
         null,
         null,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         null,
         null,
         1,
@@ -470,9 +464,6 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
         0,
         0,
         0,
@@ -505,7 +496,7 @@
         null,
         null,
         1,
-        3,
+        1,
         null,
         null,
         1,
@@ -533,6 +524,18 @@
         1,
         1,
         1,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
         null,
         null,
         null,
@@ -583,6 +586,11 @@
         null,
         null,
         1,
+        0,
+        0,
+        0,
+        null,
+        1,
         null,
         null,
         1,
@@ -591,6 +599,10 @@
         0,
         null,
         null,
+        null
+      ],
+      "/Users/davidbliu/Desktop/169/bhgh/app/controllers/forum_controller.rb": [
+        1,
         null
       ],
       "/Users/davidbliu/Desktop/169/bhgh/app/models/brag_like.rb": [
@@ -604,6 +616,12 @@
         1,
         null,
         1,
+        3,
+        null,
+        null,
+        1,
+        null,
+        null,
         null,
         null,
         null,
@@ -707,7 +725,12 @@
         null,
         null,
         null,
+        null,
         1,
+        0,
+        0,
+        null,
+        null,
         null,
         null,
         null,
@@ -720,6 +743,16 @@
         null,
         null,
         0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
         null,
         null,
         null,
@@ -801,8 +834,20 @@
       "/Users/davidbliu/Desktop/169/bhgh/app/models/photo.rb": [
         1,
         null
+      ],
+      "/Users/davidbliu/Desktop/169/bhgh/app/models/post_response_like.rb": [
+        1,
+        null
+      ],
+      "/Users/davidbliu/Desktop/169/bhgh/app/models/post_response.rb": [
+        1,
+        null
+      ],
+      "/Users/davidbliu/Desktop/169/bhgh/app/models/post.rb": [
+        1,
+        null
       ]
     },
-    "timestamp": 1460654248
+    "timestamp": 1460674695
   }
 }

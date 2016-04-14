@@ -27,27 +27,19 @@
 	float:left;
 	margin:10px;
 	padding:15px;
+	width:100%;
 	-webkit-box-shadow: 0px 0px 8px 2px rgba(100,100,100,0.1);
 	overflow:hidden;
 	cursor:pointer;
 }
-.event-photo{
-	margin-top:10px;
-	width:100%;
-	height:200px;
-	overflow:hidden;
+.selected-response{
+	background-color:#AAF7BE !important;
 }
 .brag-card{
 	background-color: rgba(239, 222, 242, 0.21);
 }
 .event-card{
 	background-color: rgba(0, 255, 126, 0.04);
-}
-.photo-200{
-	height:200px;
-}
-.photo-width{
-	width:100%;
 }
 .gravatar{
 	border-radius:100px;
@@ -56,8 +48,9 @@
 </style>
 <script src = '/lib/underscore-min.js'></script>
 <script type = 'text/javascript'>
-var events = <%= raw(@events) %>;
-var brags = <%= raw(@brags) %>;
+	var events = <%= raw(@events) %>;
+	var brags = <%= raw(@brags) %>;
+	var posts = <%= raw(@posts) %>;
 </script>
 <script src = '/lib/angular.min.js'></script>
 <script src = '/lib/angular-route.min.js'></script>
