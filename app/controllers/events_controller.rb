@@ -32,6 +32,8 @@ class EventsController < ApplicationController
 
    def respond
    end
+   def admin
+   end
 
    private
 

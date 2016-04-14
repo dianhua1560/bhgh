@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311001348) do
+ActiveRecord::Schema.define(version: 20160414215819) do
 
   create_table "brag_likes", force: :cascade do |t|
     t.string   "email"
@@ -70,6 +70,30 @@ ActiveRecord::Schema.define(version: 20160311001348) do
     t.string   "object_type"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "post_response_likes", force: :cascade do |t|
+    t.integer  "post_response_id"
+    t.string   "email"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "post_responses", force: :cascade do |t|
+    t.string   "author"
+    t.integer  "post_id"
+    t.text     "body"
+    t.string   "response_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.string   "author"
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
