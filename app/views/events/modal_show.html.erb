@@ -9,14 +9,7 @@
 	<img src = 'https://www.google.com/maps/vt/data=RfCSdfNZ0LFPrHSm0ublXdzhdrDFhtmHhN1u-gM,oyDa8oOD4P2uyBgWNlgXKmKfFARIZ2AzlNHrkR-s7hrDJ0jPucpdMMs_m6BwVcFloRugcBZRVbBojSVjqYjJE31oE3ZyhZnY2NADEqSrQOv_VUqdYuR5n-kkBeiUrfWKT639Z95eE14_BTNOEfASIPjj9EK3AAaFI8ybNvGEze57FZvsGtL3Dy55Ew47zXIncnGhgXCXBx9mPgk' style = 'width:100%'>
 	<%= @event.location %>
 </div>
-<div>
-	<% if @event.photos.length > 0 %>
-	<h3>Photos</h3>
-	<% end %>
-	<% @event.photos.each do |photo| %>
-	<img src = '<%= photo.url %>' class = 'card-photo'>
-	<% end %>
-</div>
+
 
 <div class = 'meta-div'>
 	<div class = 'btn btn-default'>Going</div>

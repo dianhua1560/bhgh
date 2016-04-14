@@ -1,54 +1,72 @@
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<%= javascript_include_tag 'board' %>
+<head>
+  <title>BHGH Board</title>
+  <script src = 'https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.js'></script>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
   <link rel = 'stylesheet' href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-<script src = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+  <script src = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+  
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+</head>
+<style type = 'text/css'>
+#add-btn{
+	position:fixed;
+	right:10px;
+	bottom:10px;
+}
+.board-card{
+	float:left;
+	margin:10px;
+	padding:15px;
+	-webkit-box-shadow: 0px 0px 8px 2px rgba(100,100,100,0.1);
+	overflow:hidden;
+	cursor:pointer;
+}
+.event-photo{
+	margin-top:10px;
+	width:100%;
+	height:200px;
+	overflow:hidden;
+}
+.brag-card{
+	background-color: rgba(239, 222, 242, 0.21);
+}
+.event-card{
+	background-color: rgba(0, 255, 126, 0.04);
+}
+.photo-200{
+	height:200px;
+}
+.photo-width{
+	width:100%;
+}
+.gravatar{
+	border-radius:100px;
+	height:50px;
+}
+</style>
+<%= javascript_include_tag 'test' %>
+<script src = '/lib/underscore-min.js'></script>
+<script type = 'text/javascript'>
+var events = <%= raw(@events) %>;
+var brags = <%= raw(@brags) %>;
+var items = <%= raw(@items) %>;
+</script>
+<script src = '/lib/angular.min.js'></script>
+<script src = '/lib/angular-route.min.js'></script>
 
-<script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
-
-<script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.js"></script>
-
-
-<%= render 'brags/brag_modal' %>
-<%= render 'events/event_modal' %>
-<%= render 'events/add_modal' %>
-<%= render 'brags/add_modal' %>
-
-<div class = 'btn btn-default' id = 'add-event-modal-btn'>Add Event</div>
-<div class = 'btn btn-default' id = 'add-brag-modal-btn'>Add Brag</div>
-
-<div id = 'main-row'>
-<div class="grid" id = 'grid'>
-<% @items.each do |item| %>
-	<div class = 'grid-item'>
-	<% if item.model_name.human == "Brag" %>
-	<div class = 'brag-card item-card' data-id = '<%= item.id %>'>
-		<h3><%= item.title %></h3>
-		<div><%= item.body %></div>
-		<div>Subject: <%= item.subject %></div>
-		<div>Author: <%= item.author %></div>
-		<div>Created At: <%= item.created_at %></div>
-	</div>
-	<% elsif item.model_name.human == "Event" %>
-	<div class = 'event-card item-card' data-id = '<%= item.id %>'>
-		<h3><%= item.title %></h3>
-		<div>Description: <%= item.description %></div>
-		<div>Organizer: <%= item.organizer %></div>
-		<div>Location: <%= item.location %></div>
-		<div>Time: <%= item.time %></div>
-		<% if item.photos.length > 0 %>
-		<div>
-			<img src = '<%= item.photos.first.url %>' class = 'card-photo'>
-		</div>
-		<% end %>
-	</div>
-	<% end %>
-	</div>
-
-<% end %>
-
+<script src = '/app.js'></script>
+<script src = '/controllers/boardCtrl.js'></script>
+<div ng-app = 'boardApp'>
+	<div ng-view></div>
 </div>
-<%= javascript_include_tag 'board' %>
+

@@ -22,6 +22,32 @@ class Event < ActiveRecord::Base
 		end
 	end
 
+	def tojson
+		{
+			time: self.time_string,
+			location: self.location,
+			photos: self.photos,
+			title: self.title,
+			organizer: self.organizer,
+			description:description,
+			time: self.time,
+			time_string: self.time_string,
+			type: 'event',
+			gravatar: self.gravatar
+		}
+	end
+
+
+	def gravatar
+		email = self.organizer ? self.organizer : 'asdf@gmail.com'
+		gravatar_id = Digest::MD5.hexdigest(email.downcase)
+		return "http://gravatar.com/avatar/#{gravatar_id}.png"
+	end
+
+	def sort_time
+		return self.time ? self.time : Time.now
+	end
+
 	def self.photo_hash
 		Rails.cache.fetch 'event_photo_hash' do
 			h = {}
