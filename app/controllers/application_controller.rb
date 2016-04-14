@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
     print @brag_ids
     print @event_ids
     @items = @items.shuffle
+    @posts = Post.all
     render 'layouts/board'
   end
 
@@ -45,6 +46,7 @@ class ApplicationController < ActionController::Base
     @items = Event.all.to_a + Brag.all.to_a
     @items = @items.sort_by{|x| x.sort_time}.map{|x| x.tojson}
     @items = @items.shuffle.to_json
+    @posts = Post.all.map{|x| x.tojson}.to_json
     render 'layouts/board', layout: false
   end
 end
