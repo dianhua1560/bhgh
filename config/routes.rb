@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/events/list' => 'events#list'
   post '/events/create' => 'events#create'
   get '/events/modal_show/:id' => 'events#modal_show'
-  post '/events/respond' => 'events#respond'
+  post '/events/respond/:id' => 'events#respond'
   get '/events/admin' => 'events#admin'
   # get '/events' => 'events#index'
   # get '/events/show/:id' => 'events#show', as: 'event'
@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   post '/brags/:id' => 'brags#update'
   post 'brags/delete/:id' => 'brags#delete'
   get '/brags/modal_show/:id' => 'brags#modal_show'
+  post '/brags/like/:id' => 'brags#like'
 
 
   # Forum

@@ -6,7 +6,7 @@ class BragsController < ApplicationController
 	end
 
 	def list
-		render json: Brag.all.map{|x| x.to_json}
+		render json: Brag.list
 	end
 
 	def create
@@ -34,7 +34,13 @@ class BragsController < ApplicationController
 	def delete
 	  	Brag.find(params[:id]).destroy
 	  	render nothing: true, status: 200
-	  end
+	end
+
+	def like
+		BragLike.where(email: myEmail).where(brag_id: params[:id]).first_or_create!
+		render json: Brag.list, status: 200
+	end
+
 
 
 	 private

@@ -3,7 +3,11 @@ class Brag < ActiveRecord::Base
 	validates :title, :presence => true
 	validates :body, :presence => true
 
-	def tojson
+	def self.list
+		Brag.all.map{|x| x.to_json}
+	end
+
+	def tojson(myEmail)
 		{
 			title: self.title,
 			time: self.created_at,
@@ -12,7 +16,9 @@ class Brag < ActiveRecord::Base
 			type: 'brag',
 			created_at: self.created_at,
 			subject: self.subject,
-			gravatar: self.gravatar
+			gravatar: self.gravatar,
+			id: self.id,
+			liked: BragLike.where(email: myEmail).where(brag_id: self.id).length > 0
 		}
 	end
 

@@ -1,7 +1,6 @@
 myApp.controller("BoardCtrl", function ($scope) {
 	$scope.events = events;
 	$scope.brags = brags;
-	$scope.items = items;
 	$scope.newEvent = {};
 	$scope.newBrag = {};
 	$scope.showAddEvent = function(){
@@ -14,6 +13,22 @@ myApp.controller("BoardCtrl", function ($scope) {
 		console.log('responding to event');
 		console.log(event);
 		console.log(response);
+		$.ajax({
+			url:'/events/respond/'+event.id,
+			type:'post',
+			dataType:'text',
+			data:{
+				response: response
+			},
+			success:function(data){
+				console.log('successful response');
+				event.response = data;
+			},
+			error:function(data){
+				console.log('error responding');
+				event.response = data;
+			}
+		})
 	};
 	$scope.saveEvent = function(){
 		$.ajax({
@@ -26,7 +41,8 @@ myApp.controller("BoardCtrl", function ($scope) {
 				location: $scope.newEvent.location
 			},
 			success:function(data){
-				$scope.items = data;
+				console.log('saved events');
+				$scope.events = [];
 			},
 			error:function(data){
 				alert('error saving event');
@@ -65,6 +81,16 @@ myApp.controller("BoardCtrl", function ($scope) {
 	$scope.likeBrag = function(brag){
 		console.log('liking brag');
 		console.log(brag);
+		$.ajax({
+			url:'/brags/like/'+brag.id,
+			type:'post',
+			success:function(data){
+				alert('you liked the brag');
+			},
+			error:function(data){
+				alert('error liking brag');
+			}
+		});
 	}
 	$scope.modalTitle = 'Add new event';
 });

@@ -22,7 +22,10 @@ class Event < ActiveRecord::Base
 		end
 	end
 
-	def tojson
+
+	def tojson(myEmail)
+		resp = EventResponse.where(event_id: self.id).where(email: myEmail).first
+		response = resp ? resp.response : nil
 		{
 			time: self.time_string,
 			location: self.location,
@@ -33,8 +36,20 @@ class Event < ActiveRecord::Base
 			time: self.time,
 			time_string: self.time_string,
 			type: 'event',
-			gravatar: self.gravatar
+			gravatar: self.gravatar,
+			id: self.id,
+			response: response
 		}
+	end
+
+	def self.response_hash
+		Rails.cache.fetch 'response_hash' do
+			h = {}
+			Event.all.each do |event|
+				h[event.id] = EventResponse.where(event_id: event.id).pluck(:email).uniq
+			end
+			return h
+		end
 	end
 
 

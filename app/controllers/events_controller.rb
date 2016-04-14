@@ -31,7 +31,10 @@ class EventsController < ApplicationController
    end
 
    def respond
-   end
+    EventResponse.where(event_id: params[:id]).where(email: myEmail).destroy_all
+    er = EventResponse.create!(event_id: params[:id],email:myEmail, response: params[:response])
+    render json: er.response, status: 200
+end
    def admin
    end
 
