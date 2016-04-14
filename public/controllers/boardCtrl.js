@@ -1,6 +1,7 @@
 myApp.controller("BoardCtrl", function ($scope) {
 	$scope.events = events;
 	$scope.brags = brags;
+	$scope.posts = posts;
 	$scope.newEvent = {};
 	$scope.newBrag = {};
 	$scope.showAddEvent = function(){

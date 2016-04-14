@@ -88,3 +88,17 @@ photos.each do |url|
 		object_id: event.id,
 		url: url)
 end
+
+#dummy posts
+Post.create(
+	title: 'Title1',
+	author: 'chenallen2012@gmail.com'
+	)
+Post.create(
+	title: 'Title2',
+	author: 'chenallen2012@gmail.com'
+	)
+Post.create(
+	title: 'Title3',
+	author: 'mwan2013@berkeley.edu'
+	)

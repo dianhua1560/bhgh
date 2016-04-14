@@ -21,6 +21,14 @@
 </div>
 </div>
 
+<div class = 'col-md-4'>
+
+<div ng-repeat = 'post in posts' class = 'board-card post-card' ng-click = 'showPostModal(post)'>
+  <div>{{post.title}}</div>
+  <div>{{post.author}}</div>
+</div>
+</div>
+
 <nav style = 'border-radius:0px; margin-bottom:15px; padding:0px; ' class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -43,6 +51,7 @@
       		<a href = 'javascript:void(0)' ng-click = 'showAddEvent()'>+ Event</a></li>
       	</li>
       	<li><a href = 'javascript:void(0)' ng-click = 'showAddBrag()'>+ Brag</a></li>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
