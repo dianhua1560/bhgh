@@ -5,10 +5,12 @@ class ForumController < ApplicationController
 			author: params[:author],
 			category: params[:cateogry])
 		if post.save
-			response = post.post_responses.new(response_params)
-			
-
-			render json: post.to_json
+			response = post.post_response.new(response_params)
+			if response.save
+				render json: post.to_json
+			else
+				render json: response.errors.to_json, status: 400
+			end
 		else
 			render json: post.errors.to_json, status:400
 		end
@@ -34,7 +36,7 @@ class ForumController < ApplicationController
 
     def response_create
         post = Post.find(params[:id])
-        response = post.post_responses.new(response_params)
+        response = post.post_response.new(response_params)
         if response.save
             render json: response.to_json, status: 200
         else
