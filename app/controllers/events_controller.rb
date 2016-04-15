@@ -4,13 +4,13 @@ class EventsController < ApplicationController
    end
 
    def list
-    render json: Event.all.map{|x| x.to_json}
+    render json: Event.all.map{|x| x.tojson(myEmail)}.to_json
    end
 
    def create
     event = Event.do_new(event_params)
     if event.save
-        render json: event.to_json, status: 200
+        render json: event.tojson(myEmail), status: 200
     else
         render json: event.errors.to_json, status: 400
     end
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
    def update
     event = Event.find(params[:id])
     if event.do_update(event_params)
-        render json: event.to_json, status:200
+        render json: event.tojson(myEmail), status:200
     else
         render event.errors.to_json, status:400
     end
