@@ -31,7 +31,6 @@
   <h3>{{post.title}}</h3>
   <div>
     <img src = '{{post.original.gravatar}}' class = 'small-gravatar'>{{post.original.body}}</div>
-  <div>Comments</div>
   <div ng-repeat = 'comment in post.comments'>
     <div><img src = '{{comment.gravatar}}' class = 'small-gravatar'>{{comment.body}}</div>
   </div>
@@ -184,7 +183,7 @@
         <div ng-repeat = 'response in selectedPost.comments' class = 'post-div'>
             <img src = '{{response.gravatar}}' class = 'small-gravatar'>
             {{response.body}} 
-            <div class = 'text-muted'>{{response.created_at}}</div>
+            <div class = 'text-muted'>{{response.timestamp}}</div>
         </div>
 
         <textarea class = 'form-control' ng-model = 'commentInput' placeholder = 'add a response'></textarea>

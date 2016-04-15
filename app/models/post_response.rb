@@ -8,7 +8,8 @@ class PostResponse < ActiveRecord::Base
 			body: self.body,
 			gravatar: self.gravatar,
 			created_at: self.created_at,
-			timestamp: self.timestamp
+			timestamp: self.timestamp,
+			is_mine: self.author == myEmail
 		}
 	end
 

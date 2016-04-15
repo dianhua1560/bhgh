@@ -28,13 +28,13 @@ class Post < ActiveRecord::Base
 	end
 	
 	def comments
-		a = PostResponse.where(post_id: self.id).order('created_at asc').to_a
-		if a.length > 1
-			return a[-1..1]
-		end
-		if a.length <= 1
-			return []
-		end
+		PostResponse.where(post_id: self.id).order('created_at asc').to_a
+		# if a.length > 1
+		# 	return a[-1..1]
+		# end
+		# if a.length <= 1
+		# 	return []
+		# end
 	end
 	
 	def timestamp
