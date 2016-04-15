@@ -2,8 +2,7 @@ class ForumController < ApplicationController
 	def create
 		post = Post.new(
 			title: params[:title],
-			author: params[:author],
-			category: params[:cateogry])
+            author: myEmail)
 		if post.save
 			response = post.post_response.new(response_params)
 			if response.save
