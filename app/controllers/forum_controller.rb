@@ -28,8 +28,8 @@ class ForumController < ApplicationController
         params.permit(:author, :category, :title)
     end
         
-    def delete
-        post = Post.find(params[:id])
+    def delete_post
+        Post.find(params[:id]).destroy
         render nothing: true, status: 200
     end
 

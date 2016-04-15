@@ -61,11 +61,11 @@ RSpec.describe ForumController, type: :controller do
 		end
 
 		it 'adds good responses' do 
-			new_params={
-				author = 'author2@gmail.com'
+			new_params = {
+				author: 'author2@gmail.com',
 				id: @post1.id,
 				response_type: 'Answer',
-				body, 'ANSWERSSSS1'
+				body: 'ANSWERSSSS1'
 			}
 			post //fix this
 			expect(response) to have_http_status(200)
