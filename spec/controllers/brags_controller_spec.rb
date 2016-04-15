@@ -34,7 +34,7 @@ RSpec.describe BragsController, type: :controller do
 			bad_brag_params = {
 				title:'title3',
 				author:'author1',
-				subject:'subject@gmail.com',
+				subject:'subjectmailm',
 				body:'body1'
 			}
 			post :create, bad_brag_params

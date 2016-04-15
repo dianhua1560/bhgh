@@ -1,7 +1,12 @@
 class EventsController < ApplicationController
-   def modal_show
-    @event = Event.find(params[:id])
-   end
+   before_filter :is_admin, :only => [:create]
+
+   def is_admin
+        q = Member.where(email: myEmail)
+        if q.length == 0 or not q.first.admin?
+            render json: 'not authorized', status: 200
+        end
+    end
 
    def list
     render json: Event.list(myEmail)

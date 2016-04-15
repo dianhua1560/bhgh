@@ -4,48 +4,35 @@ Feature: Respond to posts on the forum
 	I want to comment on a post
 
 Background: posts and responses have been added to the forum
-
-	Given the following posts exist:
-	| title   | 	author 	      | body  | post_ID     |
-	| title1  | author1@gmail.com | body1 |      1      |
-	| title2  | author2@gmail.com | body2 |      2      |
 	
 	Given the following members exist:
 	| name    | 	email         | position  |
 	| author1 | author1@gmail.com | user      |
 	| author2 | author2@gmail.com | user      |
+	| admin | admin1@gmail.com  | admin |
 
-	Given the following responses exist:
-	| author            | post_ID     | body      |
-	| author1@gmail.com |       1     | response1 |
-	| author2@gmail.com |       2     | response2 |
+	Given that I am logged in as "admin1@gmail.com"
 
-Scenario: view responses to a post
-	Given that I am logged in as "author1@gmail.com"
-	When I visit "/forums"
-	And I follow "title1"
-	Then I should see "response1"
-	And I should not see "response2"
+	Given the following posts exist:
+	| title   | 	author 	      | body  |
+	| title1  | author1@gmail.com | body1 |
+	| title2  | author2@gmail.com | body2 |
 
 Scenario: add response to a post
-	Given that I am logged in as "author1@gmail.com"
-	When I visit "/forums"
-	And I follow "title2"
-	Then I should see "title2"
-  	And I should see "body2"
-  	And I should see "response2"
-    When I fill in "response" with "response3"
-  	And I press "Save Response"
-  	Then I should be on "/forums/2"
-  	And I should see "response3"
-  	When I visit "/forums"
-  	And I follow "title1"
-	Then I should not see "response3"
+	Given there should be "2" posts
+	Given I add response "{body:'body'}" to "title1"
+	Then post "title1" should have "2" responses
 
 Scenario: response should validate body
+	Given I add response "{}" to "title1"
+	Then post "title1" should have "1" responses
+
+Scenario: view responses to a post
+	Given I am on the board page
+	Then I should see post responses
+
+Scenario: can delete response to post
 	Given that I am logged in as "author1@gmail.com"
-	When I visit "/forums"
-	And I follow "title1"
-	And I press "Save Response"
-	Then I should be on "/forums/1"
-	And I should see "Errors"
+	Given I add response "{body:'body'}" to "title1"
+	Given I delete response "body" on "title1"
+	Then post "title1" should have "1" responses

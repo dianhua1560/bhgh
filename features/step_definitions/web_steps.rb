@@ -35,6 +35,15 @@ Given(/I visit "(.*)"$/) do |path|
   visit path
 end
 
+Given(/I post "(.*)" to "(.*)"/) do |params, route|
+  params = eval(params)
+  page.driver.post(route, params)
+end
+
+Then /^the response should be "([^\"]*)"$/ do |status|
+  last_response.status.should == status.to_i
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }

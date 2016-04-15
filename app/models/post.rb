@@ -15,8 +15,13 @@ class Post < ActiveRecord::Base
 			comments: self.comments.map{|x| x.tojson(myEmail)},
 			author: self.author,
 			gravatar: self.gravatar,
+			is_mine: self.is_mine(myEmail),
 			can_edit: true
 		}
+	end
+
+	def is_mine(myEmail)
+		return self.author == myEmail
 	end
 
 	def gravatar
@@ -31,12 +36,6 @@ class Post < ActiveRecord::Base
 	
 	def comments
 		PostResponse.where(post_id: self.id).order('created_at asc').to_a
-		# if a.length > 1
-		# 	return a[-1..1]
-		# end
-		# if a.length <= 1
-		# 	return []
-		# end
 	end
 	
 	def timestamp

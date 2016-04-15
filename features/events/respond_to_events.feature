@@ -16,13 +16,4 @@ Background: events have been added to the database
 
 Scenario: respond going to an event
 	Given that I am logged in as "asdf@gmail.com"
-	And I am on the events page
-	And I respond "Going" on "title1"
-	Then I should see "You responded: Going"
-
-Scenario: delete response to event
-	Given that I am logged in as "asdf@gmail.com"
-	And I am on the events page
-	And I respond "Going" on "title1"
-	And I delete my response on "title1"
-	Then I should not see "You responded: Going"
+	Then I can post "Going" to "title1"

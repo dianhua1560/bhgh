@@ -20,33 +20,18 @@ Background: events have been added to the database
 	| Alice | alice@gmail.com | tutor | 
 	| Bob | bob@gmail.com | user |
 
-	Given the following event photos exist
-	| title | url |
-	| title1 | url1 | 
-	| title2 | url2 | 
-
 
 Scenario: delete an event
 	Given that I am logged in as "davidbliu@gmail.com"
-	Given I am on the events admin page
 	When I delete "title1"
-	Then I should not see "title1"
+	Then there should be "4" events
 
 Scenario: update an event
 	Given that I am logged in as "davidbliu@gmail.com"
-	Given I am on the events admin page
-	When I edit "title1"
-	When I fill in "description" with "new description" 
-	And I press "Save Event"
-	Then I should be on the events page
-	And I should see "new description"
+	When I update "title1" with "{title: 'randomtitle'}"
+	Then there should be an event "randomtitle"
 
-Scenario: update an event with photos
+Scenario: update event with wrong params
 	Given that I am logged in as "davidbliu@gmail.com"
-	Given I am on the events admin page
-	When I edit "title1"
-	And I fill in "photos" with "photo1"
-	And I fill in "title" with "new_title"
-	And I press "Save Event"
-	Given I am on the events page
-	Then I should see "new_title"
+	When I update "title1" with "{title: ''}"
+	Then there should be an event "title1"

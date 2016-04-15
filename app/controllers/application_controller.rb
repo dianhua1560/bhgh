@@ -23,10 +23,6 @@ class ApplicationController < ActionController::Base
       params: request.params)
   end
 
-  def home
-    render 'layouts/home'
-  end
-
   def board
     @events = Event.all.map{|x| x.tojson(myEmail)}.to_json
     @brags = Brag.all.map{|x| x.tojson(myEmail)}.to_json

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post '/events/respond/:id' => 'events#respond'
   get '/events/admin' => 'events#admin'
   post '/events/delete/:id'=>'events#delete'
+  post '/events/update/:id' => 'events#update'
   # get '/events' => 'events#index'
   # get '/events/show/:id' => 'events#show', as: 'event'
   # get '/events/modal_show/:id' => 'events#modal_show', as: 'event_modal'

@@ -5,20 +5,18 @@ Feature: See posts on the forum
 
 Background: posts have been added to the forum
 
+	Given that I am logged in as "admin1@gmail.com"
 	Given the following posts exist:
 	| title  | author           | body  |
 	| title1 | admin1@gmail.com | body1 |
 	| title2 | admin1@gmail.com | body2 |
 
+	
+
 Scenario: view all forum posts
-	Given that I am logged in as "davidbliu@gmail.com"
-	When I visit "/forum"
-	Then I should see "title1"
-	And I should see "title2"
+	Given I am on the board page
+	Then there should be "2" posts
 
 Scenario: view single forum post
-	Given that I am logged in as "davidbliu@gmail.com"
-	When I visit "/brags"
-	And I follow "title1"
-	Then I should see "title1"
-	And I should not see "title2"
+	Given I am on the board page
+	Then I should see a post with title "title2"

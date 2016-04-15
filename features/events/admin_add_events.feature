@@ -19,21 +19,21 @@ Background: events have been added to the database
 	| Alice | alice@gmail.com | tutor | 
 	| Bob | bob@gmail.com | user |
 
+Scenario: test google oauth
+	Given I test google_callback
+	
 Scenario: add an event
 	Given that I am logged in as "davidbliu@gmail.com"
-	And I am on the events page
-	Then I should see "Add Event"
-	When I follow "Add Event"
-	Then I should see "New Event"
-	When I fill in "title" with "newtitle"
-	And I fill in "description" with "newdescription"
-	And I fill in "time" with "May 13, 2016"
-	And I fill in "photos" with "http://test.jpg"
-	And I press "Save Event"
-	Then I should see "newtitle"
+	Given I post a sample event
+	Then there should be "6" events
 
 Scenario: normal user cannot add events
 	Given that I am logged in as "asdf@gmail.com"
-	And I am on the events page
-	Then I should not see "Add Event"
+	Given I post a sample event
+	Then there should be "5" events
+
+Scenario: add bad event params
+	Given that I am logged in as "davidbliu@gmail.com"
+	Given I post a bad sample event
+	Then there should be "5" events
 

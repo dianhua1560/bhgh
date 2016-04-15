@@ -1,10 +1,5 @@
 class BragsController < ApplicationController
 
-	def modal_show
-		@brag = Brag.find(params[:id])
-		render layout: false
-	end
-
 	def list
 		render json: Brag.list(myEmail)
 	end

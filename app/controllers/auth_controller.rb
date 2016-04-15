@@ -1,4 +1,5 @@
 class AuthController < ApplicationController
+
     def google_callback
         authentication_info = request.env["omniauth.auth"]
         cookies[:email] = authentication_info['info']['email']
