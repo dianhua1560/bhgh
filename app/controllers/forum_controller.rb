@@ -58,7 +58,9 @@ class ForumController < ApplicationController
     end
 
     def like
-        response = PostResponse.find(params[:id])
+        like = PostResponseLike.create!(post_response_id: params[:id], email:myEmail)
+        render json: like.response, status: 200
+    end
 
     def list
         render json: Post.all.map{|x| x.tojson(myEmail)}.to_json
