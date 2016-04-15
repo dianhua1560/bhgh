@@ -1,5 +1,7 @@
 class PostResponse < ActiveRecord::Base
 	belongs_to :post
+	has_many :post_response_likes, :dependent => :destroy
+
 	def tojson
 		{
 			author: self.author,
@@ -14,5 +16,6 @@ class PostResponse < ActiveRecord::Base
 		gravatar_id = Digest::MD5.hexdigest(email.downcase)
 		return "http://gravatar.com/avatar/#{gravatar_id}.png"
 	end
+	
 
 end

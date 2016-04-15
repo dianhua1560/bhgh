@@ -1,9 +1,10 @@
 class Post < ActiveRecord::Base
-	has_many :post_response, :dependent => :destroy
+	has_many :post_responses, :dependent => :destroy
 	def self.list
 		Post.all.map{|x| x.tojson}
 	end
-	def tojson
+	
+	def tojson(myEmail)
 		{
 			title: self.title,
 			id: self.id,
