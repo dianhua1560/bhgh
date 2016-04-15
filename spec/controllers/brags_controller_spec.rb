@@ -66,10 +66,6 @@ RSpec.describe BragsController, type: :controller do
 			expect(Brag.all.length).to eq(1)
 		end
 
-		it 'shows brag modal' do
-			params = {id: @brag1.id}
-			get :modal_show, params
-		end
 
 
 	end

@@ -28,11 +28,7 @@ RSpec.describe ForumController, type: :controller do
 		end
 
 		it 'returns errors for bad new posts' do
-			bad_post_params = {
-				title: 'title1',
-				author: 'author1', 
-				body: 'None'
-			}
+			bad_post_params = {}
 			post :create_post, bad_post_params
 			expect(response).to have_http_status(400)
 		end
@@ -48,16 +44,13 @@ RSpec.describe ForumController, type: :controller do
 
 		it 'returns errors for bad posts updates' do 
 			bad_update_params = {
+				title: "",
 				id: @post1.id
 			}
 			post :update_post, bad_update_params
 			expect(response).to have_http_status(400)
 		end
 
-		it 'shows post modal' do
-			params = {id: @post1.id}
-			get :modal_show, params
-		end
 
 		it 'adds good responses' do 
 			good_params = {
@@ -72,10 +65,7 @@ RSpec.describe ForumController, type: :controller do
 
 		it 'returns error for adding bad responses' do
 			bad_params={
-				author: 'author2',
-				id: @post1.id,
-				response_type: 'Answer',
-				body: 'ANSWER1'
+				id: @post1.id
 			}
 			post :create_response, bad_params
 			expect(response).to have_http_status(400)

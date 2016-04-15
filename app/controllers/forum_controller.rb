@@ -20,7 +20,7 @@ class ForumController < ApplicationController
         if post.update(post_params)
             render json: post.tojson(myEmail).to_json, status:200
         else
-            render post.errors.to_json, status:400
+            render json: post.errors.to_json, status:400
         end
     end
         
