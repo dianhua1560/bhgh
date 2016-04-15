@@ -54,7 +54,7 @@ class ForumController < ApplicationController
     end
 
     def list
-        render json: Post.all.map{|x| x.tojson}
+        render json: Post.all.map{|x| x.to_json}
     end
 
     def modal_show
