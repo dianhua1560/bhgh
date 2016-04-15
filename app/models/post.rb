@@ -6,7 +6,8 @@ class Post < ActiveRecord::Base
 			created_at: self.created_at,
 			original: self.original,
 			comments: self.comments,
-			author: self.author
+			author: self.author,
+			timestamp: self.timestamp
 		}
 	end
 
@@ -18,4 +19,7 @@ class Post < ActiveRecord::Base
 		PostResponse.where(post_id: self.id).order('created_at asc').all[1..-1]
 	end
 	
+	def timestamp
+		self.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%B %d, %Y at %r")
+	end
 end
