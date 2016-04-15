@@ -1,0 +1,14 @@
+<div class="modal fade" tabindex="-1" role="dialog" id = 'add-brag-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1>Add a brag</h1>
+        Title: <input type = 'text' ng-model = 'newBrag.title' placeholder = 'title' class = 'form-control'>
+        Subject: <input type = 'text' ng-model = 'newBrag.subject' placeholder = 'subject' class = 'form-control'>
+        Body: <input type = 'text' ng-model = 'newBrag.body' placeholder = 'body' class = 'form-control'>
+      
+        <button type="button" class="btn btn-primary" ng-click = 'saveBrag()'>Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

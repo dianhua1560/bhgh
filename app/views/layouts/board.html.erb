@@ -1,7 +1,5 @@
-
-<%= javascript_include_tag 'board' %>
 <head>
-  <title>BHGH Board</title>
+  <title>BHGH</title>
   <script src = 'https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.js'></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -16,44 +14,9 @@
   <script src = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
   
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.css' rel = 'stylesheet'>
 </head>
-<style type = 'text/css'>
-#add-btn{
-	position:fixed;
-	right:10px;
-	bottom:10px;
-}
-.board-card{
-	float:left;
-	margin:10px;
-	padding:15px;
-	width:100%;
-	-webkit-box-shadow: 0px 0px 8px 2px rgba(100,100,100,0.1);
-	overflow:hidden;
-	cursor:pointer;
-}
-.selected-response{
-	background-color:#AAF7BE !important;
-}
-.brag-card{
-	background-color: rgba(239, 222, 242, 0.21);
-}
-.event-card{
-	background-color: rgba(0, 255, 126, 0.04);
-}
-.gravatar{
-	border-radius:100px;
-	height:50px;
-}
-.small-gravatar{
-	height:30px;
-	border-radius:100px;
-}
-.post-div{
-	padding:10px;
-	margin:10px;
-}
-</style>
+
 <script src = '/lib/underscore-min.js'></script>
 <script type = 'text/javascript'>
 	var events = <%= raw(@events) %>;
@@ -66,6 +29,77 @@
 <script src = '/app.js'></script>
 <script src = '/controllers/boardCtrl.js'></script>
 <div ng-app = 'boardApp'>
-	<div ng-view></div>
+
+
+<div ng-controller = 'BoardCtrl'>
+
+
+
+<div class = 'jumbotron' id = 'top-jumbotron'>
+	<h3>Boys Hope Girls Hope Bulletin Board</h3>
+	<div class = 'centered'>
+	<input id = 'search-input' class = 'form-control' placeholder = 'SEARCH' ng-model = 'searchTerm'>
+</div>
+</div>
+
+
+<div class = 'col-md-4'>
+  <div ng-repeat = 'event in events | filter:searchTerm' class = 'board-card event-card' ng-click = 'showEventModal(event)'>
+  <h3>{{event.title}}</h3>
+  <div>Desc: {{event.description}}</div>
+  <div>Time: {{event.time}}</div>
+  <div>Organizer: {{event.organizer}}</div>
+  <div>Location: {{event.location}}</div>
+  <div>Response: {{event.response}}</div>
+  <img src = '{{event.gravatar}}' class = 'gravatar'></img>
+</div>
+</div>
+
+<div class = 'col-md-4'>
+<div ng-repeat = 'brag in brags | filter:searchTerm' class = 'board-card brag-card' ng-click = 'showBragModal(brag)'>
+   <div class = 'row'>
+          <img src = 'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xfa1/t31.0-8/457094_272896449485041_248431489_o.jpg' style = 'width:100%'>
+        </div>
+  <div class = 'pull-right'>
+    <img src = '{{brag.gravatar}}' class = 'gravatar'>
+  </div>
+  <h3>{{brag.title}}</h3>
+  <div class = 'brag-body'>{{brag.body}}</div>
+  <div>Subject: {{brag.subject}}</div>
+  <div>Author: {{brag.author}}</div>
+  <div ng-show = 'brag.liked' class = 'pull-right'>
+  	Liked
+  </div>
+</div>
+</div>
+
+<div class = 'col-md-4'>
+<div ng-repeat = 'post in posts | filter:searchTerm' class = 'board-card post-card' ng-click = 'showPostModal(post)'>
+  <h3>{{post.title}}</h3>
+  <p>{{post.original.body}}</p>
+  {{post.comments.length}} responses
+  <div style = 'display:none'>
+    <img src = '{{post.original.gravatar}}' class = 'small-gravatar'>{{post.original.body}}</div>
+  <div style = 'display:none' ng-repeat = 'comment in post.comments'>
+    <div><img src = '{{comment.gravatar}}' class = 'small-gravatar'>{{comment.body}}</div>
+  </div>
+</div>
+</div>
+
+
+<%= render 'forum/add_post_modal' %>
+<%= render 'events/add_event_modal' %>
+<%= render 'brags/add_brag_modal' %>
+<%= render 'events/event_modal' %>
+<%= render 'brags/brag_modal' %>
+<%= render 'forum/post_modal' %>
+<div class = 'affix' id = 'btns-container'>
+	<button class = 'btn btn-danger round-btn' ng-click = 'showAddEvent()'>+ Event</button>
+	<button class = 'btn btn-danger round-btn' ng-click = 'showAddBrag()'>+ Brag</button>
+	<button class = 'btn btn-danger round-btn' ng-click = 'showAddPost()'>+ Post</button>
+
+</div>
+
+</div><!--end of board ctrl-->
 </div>
 

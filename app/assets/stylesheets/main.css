@@ -9,11 +9,30 @@ p, div {
 a{
 	color: #0077CC;
 }
+#top-jumbotron{
+	color:white;
+	text-align:center;
+	background-color:333;
+	color:#f2f2f2;
+}
+#search-input{
+	margin-top:2em;
+	text-align: center;
+	width:30%;
+	margin-left:35%;
+	border:none;
+	border-radius:0px;
+}
+.centered{
+	width:100%;
+	text-align: center;
+}
 
 body { 
+	background-color:#f2f2f2 !important;
 	/*padding-top: 100px; */
 }
-body { padding-top: 70px; }
+/*body { padding-top: 70px; }*/
 
 img:hover{
 	cursor:pointer;
@@ -54,31 +73,91 @@ nav.navbar.navbar-default.navbar-fixed-top .navbar-nav>li>a{
 }
 .brag-card{
 	/*background-color:rgba(0, 255, 55, 0.06);*/
-	width:300px;
+	/*width:300px;*/
+	padding-top:0px !important;
 	background-color:#D9EDF7;
 }
 .event-card{
 	/*background-color:rgba(0, 102, 255, 0.03);*/
-	width:300px;
+	/*width:300px;*/
 	background-color:#DFF0D8;
 }
 .post-card{
 	/*background-color:rgba(0, 102, 255, 0.03);*/
-	width:300px;
+	/*width:300px;*/
 	background-color:#F6E3D3;
 }
-.board-card{
-	/*-webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.1);
-	height:400px;
-	width:300px;
-	padding:10px;
-	float:left;
-	margin:10px;*/
-}
+
 .brag-modal{
 	width:500px;
 	height:200px;
 }
 .modal-content{
 	border-radius:0px !important;
+}
+#add-btn{
+	position:fixed;
+	right:10px;
+	bottom:10px;
+}
+.board-card{
+	float:left;
+	margin:10px;
+	padding:15px;
+	width:100%;
+	-webkit-box-shadow: 0px 0px 8px 2px rgba(100,100,100,0.1);
+	overflow:hidden;
+	cursor:pointer;
+	line-height:2em;
+}
+.selected-response{
+	background-color:#AAF7BE !important;
+}
+/*.brag-card{
+	background-color: rgba(239, 222, 242, 0.21);
+}
+.event-card{
+	background-color: rgba(0, 255, 126, 0.04);
+}*/
+.gravatar{
+	border-radius:100px;
+	height:50px;
+}
+.small-gravatar{
+	height:30px;
+	border-radius:100px;
+}
+.response-div{
+	padding:10px;
+	margin:10px;
+	background-color:#eaeaea;
+}
+#btns-container{
+	bottom:0px;
+	right:0px;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+.round-btn{
+	height:75px;
+	width:75px;
+	border-radius:1000px !important;
+}
+#save-response-btn{
+	margin-top:10px;
+}
+#post-input-div{
+	padding:15px;
+	padding-left:30px;
+	padding-right:30px;
+	margin:10px;
+	background-color:#eaeaea;
+}
+#delete-post-btn{
+	margin-right:10px;
+}
+.admin-controls{
+	border: 1px solid rgba(0,0,0,0.1);
+	padding: 10px;
+	margin:5px;
 }

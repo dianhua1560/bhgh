@@ -1,0 +1,34 @@
+
+<div class="modal fade" tabindex="-1" role="dialog" id = 'brag-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+        
+      <div class="modal-body">
+
+        <div class = 'pull-right'>
+          <button type="button" class="btn btn-default" ng-click = 'likeBrag(selectedBrag, true)' ng-show = '!selectedBrag.liked'>Like</button>
+          <button type="button" class="btn btn-default" ng-click = 'likeBrag(selectedBrag, false)' ng-show = 'selectedBrag.liked'>Unlike</button>
+        </div>
+        <h4 class="editable" id = 'edit-brag-title'>{{selectedBrag.title}}</h4>
+	       <div>
+          Subject: 
+          <span class = 'editable' id = 'edit-brag-subject'>{{selectedBrag.subject}}</span>
+        </div>
+	       <div>Author: {{selectedBrag.author}}</div>
+	       <div>Body: 
+          <span class = 'editable' id = 'edit-brag-body'>{{selectedBrag.body}}</span>
+        </div>
+	       <div>Created At: 
+            {{selectedBrag.created_at}}
+        </div>
+        
+
+        <div class = 'admin-controls'>
+          <button class = 'btn btn-default' ng-click = 'updateBrag(selectedBrag)'>Save Changes</button>
+         <button class = 'btn btn-default' ng-click = 'deleteBrag(selectedBrag)'>Delete</button>
+        </div>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

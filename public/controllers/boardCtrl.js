@@ -11,8 +11,8 @@ myApp.controller("BoardCtrl", function ($scope) {
 	$scope.showAddBrag = function(){
 		$('#add-brag-modal').modal('show');
 	}
-	$scope.showAddQuestion = function(){
-		$('#add-question-modal').modal('show');	
+	$scope.showAddPost = function(){
+		$('#add-post-modal').modal('show');	
 	}
 	$scope.respondToEvent = function(event, response){
 		$.ajax({
@@ -64,26 +64,28 @@ myApp.controller("BoardCtrl", function ($scope) {
 				body: $scope.newBrag.body
 			},
 			success:function(data){
-				$scope.brags = data;
-				console.log('success')
+				$scope.brags = data.brags;
+				$('#add-brag-modal').modal('hide');
+				$scope.$digest();
 			},
 			error:function(data){
-				alert('error saving brag');
+				alert(data.responseText);
 				console.log(data);
 			}
 		})
 	}
-	$scope.saveQuestion = function(){
+	$scope.savePost = function(newPost){
 		$.ajax({
 			url:'/forum/create',
 			type:'post',
 			data:{
-				title: $scope.newPost.title,
-				body: $scope.newPost.body,
+				title: newPost.title,
+				body: newPost.body,
 			},
 			success:function(data){
-				console.log('success');
-				console.log(data);
+				$scope.posts = data.posts;
+				$scope.$digest();
+				$('#add-post-modal').modal('hide');
 			},
 			error:function(data){
 				console.log('error');
@@ -182,7 +184,49 @@ myApp.controller("BoardCtrl", function ($scope) {
 			}
 		})
 	}
+	$scope.deleteBrag = function(brag){
+		$.ajax({
+			url:'/brags/delete/'+brag.id,
+			type:'post',
+			success:function(data){
+				$scope.brags = data;
+				$scope.$digest();
+				$('#brag-modal').modal('hide');
+			},
+			error:function(data){
+				console.log('error deleting brag');
+			}
+		})
+	}
+	$scope.deleteEvent = function(event){
+		$.ajax({
+			url:'/events/delete/'+event.id,
+			type:'post',
+			success:function(data){
+				$scope.events = data;
+				$scope.$digest();
+				$('#event-modal').modal('hide');
+			},
+			error:function(data){
+				console.log('errror deleting event');
+			}
+		})
+	}
+	$scope.deleteResponse = function(response){
+		$.ajax({
+			url:'/forum/response/delete/'+response.id,
+			type:'post',
+			success:function(data){
+				
+				$scope.selectedPost.comments = _.filter($scope.selectedPost.comments, function(x){
+					return x.id != response.id;
+				});
+				$scope.$digest();
+			}
+		})
+	}
 
 	$scope.modalTitle = 'Add new event';
 	$('.editable').attr('contenteditable','true');
 });
+

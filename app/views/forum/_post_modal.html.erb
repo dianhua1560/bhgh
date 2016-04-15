@@ -1,0 +1,32 @@
+<div class="modal fade" tabindex="-1" role="dialog" id = 'post-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class = 'centered'>
+          <h3>{{selectedPost.title}}</h3>
+          <h4>{{selectedPost.original.body}}</h4>
+          <div>{{selectedPost.timestamp}}</div>
+          <img src = '{{selectedPost.gravatar}}' class = 'gravatar'>
+
+        </div>
+        <div ng-repeat = 'response in selectedPost.comments' class = 'response-div'>
+            <div ng-show = 'response.can_edit' class = 'pull-right'>
+              <a ng-click = 'deleteResponse(response)' href = 'javascript:void(0)'>x</a>
+            </div>
+            <img src = '{{response.gravatar}}' class = 'small-gravatar'>
+            {{response.body}} 
+            <div class = 'text-muted'>{{response.timestamp}}</div>
+        </div>
+
+        <div id = 'post-input-div'>
+         <textarea class = 'form-control' ng-model = 'commentInput' placeholder = 'add a response'></textarea>
+          <button id = 'save-response-btn' class = 'btn btn-default' ng-click = 'saveResponse(selectedPost, commentInput)'>Save Response</button>
+        </div>
+
+         <div class = 'row'>
+          <button id = 'delete-post-btn' class = 'btn btn-danger pull-right' ng-click = 'deletePost(selectedPost)'>Delete</button>
+        </div>
+      </div><!-- end of modal body -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,5 +1,8 @@
 class Event < ActiveRecord::Base
 
+	def self.list(myEmail)
+		Event.all.map{|x| x.tojson(myEmail)}.to_json
+	end
 	def self.do_new(params)
 		params[:time] = Event.convert_time_string(params[:time])
 		return Event.new(params)

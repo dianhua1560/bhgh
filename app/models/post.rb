@@ -13,7 +13,8 @@ class Post < ActiveRecord::Base
 			timestamp: self.timestamp,
 			comments: self.comments.map{|x| x.tojson(myEmail)},
 			author: self.author,
-			gravatar: self.gravatar
+			gravatar: self.gravatar,
+			can_edit: true
 		}
 	end
 

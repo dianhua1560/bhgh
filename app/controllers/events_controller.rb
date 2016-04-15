@@ -4,7 +4,7 @@ class EventsController < ApplicationController
    end
 
    def list
-    render json: Event.all.map{|x| x.tojson(myEmail)}.to_json
+    render json: Event.list(myEmail)
    end
 
    def create
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
 
    def delete
     Event.find(params[:id]).destroy
-    render nothing: true, status: 200
+    render json: Event.list(myEmail), status: 200
    end
 
    def respond

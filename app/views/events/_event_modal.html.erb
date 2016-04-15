@@ -1,0 +1,27 @@
+<div class="modal fade" tabindex="-1" role="dialog" id = 'event-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class = 'pull-right'>
+          <button type="button" class="btn btn-default" ng-class = 'selectedEvent.response == "Going" ? "selected-response" : ""' ng-click = 'respondToEvent(selectedEvent, "Going")'>Going</button>
+          <button type="button" class="btn btn-default" ng-click = 'respondToEvent(selectedEvent, "Interested")' ng-class = 'selectedEvent.response == "Interested" ? "selected-response" : ""'>Interested</button>
+          <button type="button" class="btn btn-default" ng-click = 'respondToEvent(selectedEvent, "Not Going")' ng-class = 'selectedEvent.response == "Not Going" ? "selected-response" : ""'>Not Going</button>
+        </div>
+
+      	<h3 class = 'editable'>{{selectedEvent.title}}</h3>
+	       <div>Time: {{selectedEvent.time}}</div>
+	       <div>Organizer: {{selectedEvent.organizer}}</div>
+	       <div>Description: {{selectedEvent.description}}</div>
+	       <h3>Location</h3>
+	       <div>{{selectedEvent.location}}</div>
+	       <img src = '/sample_map.png' style = 'width:100%'>
+        
+        <div class = 'row'>
+        <button class = 'btn btn-success pull-right'>Save Changes</button>
+        <button class = 'btn btn-danger pull-right' ng-click = 'deleteEvent(selectedEvent)'>Delete</button>
+      </div>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

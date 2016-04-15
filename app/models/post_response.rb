@@ -9,7 +9,9 @@ class PostResponse < ActiveRecord::Base
 			gravatar: self.gravatar,
 			created_at: self.created_at,
 			timestamp: self.timestamp,
-			is_mine: self.author == myEmail
+			is_mine: self.author == myEmail,
+			id: self.id,
+			can_edit: true
 		}
 	end
 

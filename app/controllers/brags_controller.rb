@@ -13,12 +13,11 @@ class BragsController < ApplicationController
 		puts params[:body]
 		brag = Brag.new(
 			title: params[:title],
-			author: params[:author],
+			author: myEmail,
 			subject: params[:subject],
 			body: params[:body])
-
 		if brag.save
-			render json: Brag.list(myEmail) #json: brag.tojson(myEmail)
+			render json: {:brags=>Brag.list(myEmail), :brag=>brag.tojson(myEmail)} #json: brag.tojson(myEmail)
 		else
 			render json: brag.errors.to_json, status: 400
 		end
@@ -35,7 +34,7 @@ class BragsController < ApplicationController
 
 	def delete
 	  	Brag.find(params[:id]).destroy
-	  	render nothing: true, status: 200
+	  	render json: Brag.list(myEmail), status: 200
 	end
 
 	def like

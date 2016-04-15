@@ -6,7 +6,7 @@ class ForumController < ApplicationController
 		if post.save
 			response = post.post_responses.new(response_params)
 			if response.save
-				render json: post.tojson(myEmail).to_json
+				render json: {:posts=>Post.list(myEmail), :post=>post.tojson(myEmail)}.to_json
 			else
 				render json: response.errors.to_json, status: 400
 			end
