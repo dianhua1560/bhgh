@@ -88,3 +88,51 @@ photos.each do |url|
 		object_id: event.id,
 		url: url)
 end
+
+#dummy posts
+p1 = Post.create(
+	title: 'Title1',
+	author: 'chenallen2012@gmail.com'
+	)
+p2 = Post.create(
+	title: 'Title2',
+	author: 'chenallen2012@gmail.com'
+	)
+p3 = Post.create(
+	title: 'Title3',
+	author: 'mwan2013@berkeley.edu'
+	)
+
+#dummy post (body) responses
+PostResponse.create(
+	post_id: p1.id, 
+	author: 'chenallen2012@gmail.com',
+	body: 'test post body #1'
+	)
+PostResponse.create(
+	post_id: p2.id, 
+	author: 'chenallen2012@gmail.com',
+	body: 'test post body #2'
+	)
+PostResponse.create(
+	post_id: p3.id, 
+	author: 'mwan2013@berkeley.edu',
+	body: 'test post body #3'
+	)
+
+#dummy post (comment) responses
+PostResponse.create(
+	post_id: p1.id, 
+	author: 'davidbliu@gmail.com',
+	body: 'test post comment #1'
+	)
+PostResponse.create(
+	post_id: p2.id, 
+	author: 'davidbliu@gmail.com',
+	body: 'test post comment #2'
+	)
+PostResponse.create(
+	post_id: p3.id, 
+	author: 'davidbliu@berkeley.edu',
+	body: 'test post comment #3'
+	)
