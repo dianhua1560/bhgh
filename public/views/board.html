@@ -7,17 +7,21 @@
   <div>Organizer: {{event.organizer}}</div>
   <div>Location: {{event.location}}</div>
   <div>Response: {{event.response}}</div>
+  <img src = '{{event.gravatar}}' class = 'gravatar'></img>
 </div>
 </div>
 
 <div class = 'col-md-4'>
 
 <div ng-repeat = 'brag in brags' class = 'board-card brag-card' ng-click = 'showBragModal(brag)'>
+  <div class = 'pull-right'>
+    <img src = '{{brag.gravatar}}' class = 'gravatar'>
+  </div>
   <h3>{{brag.title}}</h3>
   <div>Body: {{brag.body}}</div>
   <div>Subject: {{brag.subject}}</div>
   <div>Author: {{brag.author}}</div>
-  <div>Liked:{{brag.liked}}</div>
+  <div>Liked: {{brag.liked}}</div>
 </div>
 </div>
 
@@ -25,12 +29,11 @@
 
 <div ng-repeat = 'post in posts' class = 'board-card post-card' ng-click = 'showPostModal(post)'>
   <h3>{{post.title}}</h3>
-  <div>{{post.author}}</div>
-  <div>{{post.original.body}}</div>
+  <div>
+    <img src = '{{post.original.gravatar}}' class = 'small-gravatar'>{{post.original.body}}</div>
   <div>Comments</div>
   <div ng-repeat = 'comment in post.comments'>
-    <div>{{comment.body}}</div>
-    <div>{{comment.author}}</div>
+    <div><img src = '{{comment.gravatar}}' class = 'small-gravatar'>{{comment.body}}</div>
   </div>
 </div>
 </div>
@@ -133,6 +136,7 @@
         <button type="button" class="btn btn-default" ng-click = 'respondToEvent(selectedEvent, "Not Going")' ng-class = 'selectedEvent.response == "Not Going" ? "selected-response" : ""'>Not Going</button>
 
         <button class = 'btn btn-success pull-right'>Save Changes</button>
+        <button class = 'btn btn-default' ng-click = 'deleteEvent(selectedEvent)'>Delete</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -159,8 +163,44 @@
         <button type="button" class="btn btn-default" ng-click = 'likeBrag(selectedBrag, false)' ng-show = 'selectedBrag.liked'>Unlike</button>
 
         <button class = 'btn btn-default pull-right' ng-click = 'updateBrag(selectedBrag)'>Save Changes</button>
+        <button class = 'btn btn-default' ng-click = 'deleteBrag(selectedBrag)'>Delete</button>
 
       </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id = 'post-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <h3>{{selectedPost.title}}</h3>
+       <h4>Original Question</h4>
+       <div class = 'post-div'>
+        
+        <div>{{selectedPost.original.body}}</div>
+        <div>{{selectedPost.original.created_at}}</div>
+        <div>{{selectedPost.original.author}}</div>
+      </div>
+      <div>
+        <h4>Comments</h4>
+        <div ng-repeat = 'response in selectedPost.comments' class = 'post-div'>
+          <div>{{response.body}}</div>
+          <div>{{response.created_at}}</div>
+          <div>{{response.author}}</div>
+        </div>
+      </div>
+
+      <div id = 'add-comment-form'>
+        <textarea class = 'form-control' ng-model = 'commentInput' placeholder = 'add a response'></textarea>
+        <button class = 'btn btn-default' ng-click = 'saveResponse(selectedPost, commentInput)'>Save Response</button>
+      </div>
+
+      <div id = 'post-modal-btns'>
+         <button class = 'btn btn-default' ng-click = 'deletePost(selectedPost)'>Delete</button>
+       </div>
+       
+      </div><!-- end of modal body -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
