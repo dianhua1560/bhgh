@@ -41,4 +41,11 @@ class Post < ActiveRecord::Base
 	def timestamp
 		self.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%B %d, %Y at %r")
 	end
+
+	def can_edit(email)
+		if email == self.author or Member.is_admin_email(email)
+			return true
+		end
+		return false
+	end
 end

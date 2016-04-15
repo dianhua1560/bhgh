@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   post '/forum/response/create/:id' => 'forum#create_response'
   post '/forum/response/update/:id' => 'forum#update_response'
   post '/forum/response/delete/:id' => 'forum#delete_response'
+  get '/forum/admin/:id' => 'forum#admin'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

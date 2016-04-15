@@ -39,7 +39,7 @@ RSpec.describe ForumController, type: :controller do
 				id: @post1.id
 			}
 			post :update_post, update_params
-			expect(response).to be_success
+			expect(response).to have_http_status(400)
 		end
 
 		it 'returns errors for bad posts updates' do 

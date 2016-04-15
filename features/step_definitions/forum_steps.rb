@@ -55,3 +55,19 @@ Given /I delete response "(.*)" on "(.*)"/ do |body, title|
 	response = post.post_responses.where(body: body).first
 	page.driver.post('/forum/response/delete/'+response.id.to_s)
 end
+
+Then /I should be able to use the admin page for post "(.*)"/ do |title|
+	post = Post.find_by_title(title)
+	page.driver.get('/forum/admin/'+post.id.to_s)
+end
+
+Then /I should be able to use the admin page for all posts/ do
+	Post.all.each do |post|
+		step 'I should be able to use the admin page for post "'+post.title+'"'
+	end
+end
+
+When(/^I try to use the admin page for post "([^"]*)"$/) do |title|
+	post = Post.find_by_title(title)
+	visit '/forum/admin/'+post.id.to_s
+end

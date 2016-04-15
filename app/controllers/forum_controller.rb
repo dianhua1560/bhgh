@@ -1,4 +1,11 @@
 class ForumController < ApplicationController
+    before_filter :is_admin, :only => [:admin]
+     def is_admin
+        q = Member.where(email: myEmail)
+        if q.length == 0 or not q.first.admin?
+            render json: 'not authorized', status: 200
+        end
+    end
 	def create_post
         if params[:body].present?
             if not params[:author].present? or not Member.is_email(params[:author])
@@ -18,10 +25,14 @@ class ForumController < ApplicationController
 	
     def update_post
         post = Post.find(params[:id])
-        if post.update(post_params)
-            render json: post.tojson(myEmail).to_json, status:200
+        if post.can_edit(myEmail)
+            if post.update(post_params)
+                render json: post.tojson(myEmail).to_json, status:200
+            else
+                render json: post.errors.to_json, status:400
+            end
         else
-            render json: post.errors.to_json, status:400
+            render json: 'not authorized', status: 400
         end
     end
         
@@ -65,6 +76,11 @@ class ForumController < ApplicationController
     def list
         render json: Post.list(myEmail)
     end
+
+    def admin
+        render nothing: true, status: 200
+    end
+
 
     private
     def post_params
