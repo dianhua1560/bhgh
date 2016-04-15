@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get '/brags/modal_show/:id' => 'brags#modal_show'
   post '/brags/like/:id' => 'brags#like'
   post '/brags/unlike/:id' => 'brags#unlike'
+  post '/brags/create_form' => 'brags#create_form'
 
 
   # Forum

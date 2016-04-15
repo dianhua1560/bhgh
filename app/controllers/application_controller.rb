@@ -15,8 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def log_click
-    puts "path was #{request.path}"
-    puts "params were#{request.params}"
     Click.create(
       email: myEmail,
       path: request.path,

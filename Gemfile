@@ -11,6 +11,9 @@ gem 'coveralls', require: false
 gem "omniauth-google-oauth2"
 gem "twitter-bootstrap-rails"
 gem "therubyracer"
+gem 'paperclip'
+# gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

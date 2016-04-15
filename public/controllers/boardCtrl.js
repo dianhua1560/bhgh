@@ -61,7 +61,8 @@ myApp.controller("BoardCtrl", function ($scope) {
 			data:{
 				title: $scope.newBrag.title,
 				subject: $scope.newBrag.subject,
-				body: $scope.newBrag.body
+				body: $scope.newBrag.body,
+				file: $('#brag-add-image-input')[0].files[0]
 			},
 			success:function(data){
 				$scope.brags = data.brags;

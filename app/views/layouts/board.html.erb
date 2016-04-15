@@ -57,9 +57,11 @@
 
 <div class = 'col-md-4'>
 <div ng-repeat = 'brag in brags | filter:searchTerm' class = 'board-card brag-card' ng-click = 'showBragModal(brag)'>
-   <div class = 'row'>
-          <img src = 'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xfa1/t31.0-8/457094_272896449485041_248431489_o.jpg' style = 'width:100%'>
-        </div>
+
+  <div class = 'row brag-img-div' ng-show = 'brag.photo_url != ""'>
+    <img  src = '{{brag.photo_url}}' style = 'width:100%'>
+  </div>
+
   <div class = 'pull-right'>
     <img src = '{{brag.gravatar}}' class = 'gravatar'>
   </div>
@@ -67,6 +69,7 @@
   <div class = 'brag-body'>{{brag.body}}</div>
   <div>Subject: {{brag.subject}}</div>
   <div>Author: {{brag.author}}</div>
+  <div>{{brag.photo_url}}</div>
   <div ng-show = 'brag.liked' class = 'pull-right'>
   	Liked
   </div>

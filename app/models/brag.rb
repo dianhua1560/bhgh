@@ -2,6 +2,9 @@ class Brag < ActiveRecord::Base
 	validate :subject_and_author_are_emails
 	validates :title, :presence => true
 	validates :body, :presence => true
+	has_attached_file :avatar
+	validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
 
 	def self.list(myEmail)
 		Brag.all.map{|x| x.tojson(myEmail)}
@@ -12,6 +15,7 @@ class Brag < ActiveRecord::Base
 			title: self.title,
 			time: self.created_at,
 			photos: self.photos,
+			photo_url: self.avatar.exists? ? self.avatar.url : '',
 			author: self.author,
 			type: 'brag',
 			created_at: self.created_at,

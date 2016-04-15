@@ -157,7 +157,9 @@ nav.navbar.navbar-default.navbar-fixed-top .navbar-nav>li>a{
 	margin-right:10px;
 }
 .admin-controls{
-	border: 1px solid rgba(0,0,0,0.1);
 	padding: 10px;
 	margin:5px;
+}
+.brag-img-div{
+	margin-bottom:10px;
 }

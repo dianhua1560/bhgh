@@ -6,8 +6,19 @@
         Title: <input type = 'text' ng-model = 'newBrag.title' placeholder = 'title' class = 'form-control'>
         Subject: <input type = 'text' ng-model = 'newBrag.subject' placeholder = 'subject' class = 'form-control'>
         Body: <input type = 'text' ng-model = 'newBrag.body' placeholder = 'body' class = 'form-control'>
-      
+        
+        Photo: <input id = 'brag-add-image-input' type="file" name="filename" accept="image/gif, image/jpeg, image/png">
+
         <button type="button" class="btn btn-primary" ng-click = 'saveBrag()'>Save</button>
+
+
+        <%= form_for Brag.new, url: '/brags/create_form', html: { multipart: true } do |form| %>
+          <%= form.text_field :title, :placeholder => 'title' %>
+          <%= form.text_field :subject, :placeholder  => 'subject' %>
+          <%= form.text_field :body, :placeholder => 'body' %>
+          <%= form.file_field :avatar %>
+          <%= form.submit "Create" %>
+        <% end %>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
