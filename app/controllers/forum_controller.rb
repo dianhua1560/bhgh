@@ -4,7 +4,7 @@ class ForumController < ApplicationController
 			title: params[:title],
             author: myEmail)
 		if post.save
-			response = post.post_response.new(response_params)
+			response = post.post_responses.new(response_params)
 			if response.save
 				render json: post.tojson(myEmail).to_json
 			else

@@ -136,7 +136,7 @@
         <button type="button" class="btn btn-default" ng-click = 'respondToEvent(selectedEvent, "Not Going")' ng-class = 'selectedEvent.response == "Not Going" ? "selected-response" : ""'>Not Going</button>
 
         <button class = 'btn btn-success pull-right'>Save Changes</button>
-        <button class = 'btn btn-default' ng-click = 'deleteEvent(selectedEvent)'>Delete</button>
+        <button class = 'btn btn-danger pull-right' ng-click = 'deleteEvent(selectedEvent)'>Delete</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -174,31 +174,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-       <h3>{{selectedPost.title}}</h3>
-       <h4>Original Question</h4>
-       <div class = 'post-div'>
-        
-        <div>{{selectedPost.original.body}}</div>
-        <div>{{selectedPost.original.created_at}}</div>
-        <div>{{selectedPost.original.author}}</div>
-      </div>
-      <div>
+        <img src = '{{selectedPost.gravatar}}' class = 'pull-right' class = 'gravatar'>
+        <div class = 'centered'>
+          <h3>{{selectedPost.title}}</h3>
+          <h4>{{selectedPost.original.body}}</h4>
+          <div>{{selectedPost.original.created_at}}</div>
+        </div>
         <h4>Comments</h4>
         <div ng-repeat = 'response in selectedPost.comments' class = 'post-div'>
-          <div>{{response.body}}</div>
-          <div>{{response.created_at}}</div>
-          <div>{{response.author}}</div>
+            <img src = '{{response.gravatar}}' class = 'small-gravatar'>
+            {{response.body}} 
+            <div class = 'text-muted'>{{response.created_at}}</div>
         </div>
-      </div>
 
-      <div id = 'add-comment-form'>
         <textarea class = 'form-control' ng-model = 'commentInput' placeholder = 'add a response'></textarea>
         <button class = 'btn btn-default' ng-click = 'saveResponse(selectedPost, commentInput)'>Save Response</button>
-      </div>
 
-      <div id = 'post-modal-btns'>
-         <button class = 'btn btn-default' ng-click = 'deletePost(selectedPost)'>Delete</button>
-       </div>
+         <button class = 'btn btn-danger pull-right' ng-click = 'deletePost(selectedPost)'>Delete</button>
        
       </div><!-- end of modal body -->
     </div><!-- /.modal-content -->
