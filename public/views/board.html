@@ -1,7 +1,7 @@
 
 <div class = 'col-md-4'>
   <div ng-repeat = 'event in events' class = 'board-card event-card' ng-click = 'showEventModal(event)'>
-  <div>{{event.title}}</div>
+  <h3>{{event.title}}</h3>
   <div>Desc: {{event.description}}</div>
   <div>Time: {{event.time}}</div>
   <div>Organizer: {{event.organizer}}</div>
@@ -13,7 +13,7 @@
 <div class = 'col-md-4'>
 
 <div ng-repeat = 'brag in brags' class = 'board-card brag-card' ng-click = 'showBragModal(brag)'>
-  <div>{{brag.title}}</div>
+  <h3>{{brag.title}}</h3>
   <div>Body: {{brag.body}}</div>
   <div>Subject: {{brag.subject}}</div>
   <div>Author: {{brag.author}}</div>
@@ -24,8 +24,14 @@
 <div class = 'col-md-4'>
 
 <div ng-repeat = 'post in posts' class = 'board-card post-card' ng-click = 'showPostModal(post)'>
-  <div>{{post.title}}</div>
+  <h3>{{post.title}}</h3>
   <div>{{post.author}}</div>
+  <div>{{post.original.body}}</div>
+  <div>Comments</div>
+  <div ng-repeat = 'comment in post.comments'>
+    <div>{{comment.body}}</div>
+    <div>{{comment.author}}</div>
+  </div>
 </div>
 </div>
 
@@ -51,12 +57,28 @@
       		<a href = 'javascript:void(0)' ng-click = 'showAddEvent()'>+ Event</a></li>
       	</li>
       	<li><a href = 'javascript:void(0)' ng-click = 'showAddBrag()'>+ Brag</a></li>
-
+        <li><a href = 'javascript:void(0)' ng-click = 'showAddQuestion()'>+ Question</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id = 'add-question-modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1>Add a question</h1>
+        Title: <input type = 'text' ng-model = 'newPost.title' placeholder = 'title' class = 'form-control'>
+        Body: <input type = 'text' ng-model = 'newPost.body' aceholder = 'body' class = 'form-control'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click = 'saveQuestion()'>Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id = 'add-event-modal'>

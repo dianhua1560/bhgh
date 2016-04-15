@@ -4,11 +4,15 @@ myApp.controller("BoardCtrl", function ($scope) {
 	$scope.posts = posts;
 	$scope.newEvent = {};
 	$scope.newBrag = {};
+	$scope.newPost = {};
 	$scope.showAddEvent = function(){
 		$('#add-event-modal').modal('show');
 	}
 	$scope.showAddBrag = function(){
 		$('#add-brag-modal').modal('show');
+	}
+	$scope.showAddQuestion = function(){
+		$('#add-question-modal').modal('show');	
 	}
 	$scope.respondToEvent = function(event, response){
 		console.log('responding to event');
@@ -72,6 +76,24 @@ myApp.controller("BoardCtrl", function ($scope) {
 			}
 		})
 	}
+	$scope.saveQuestion = function(){
+		$.ajax({
+			url:'/forum/create',
+			type:'post',
+			data:{
+				title: $scope.newPost.title,
+				body: $scope.newPost.body,
+			},
+			success:function(data){
+				console.log('success');
+				console.log(data);
+			},
+			error:function(data){
+				console.log('error');
+				console.log(data);
+			}
+		})
+	}
 	$scope.showEventModal = function(event){
 		$scope.selectedEvent = event;
 		$('#event-modal').modal('show');
@@ -121,6 +143,7 @@ myApp.controller("BoardCtrl", function ($scope) {
 			}
 		});
 	}
+
 	$scope.modalTitle = 'Add new event';
 	$('.editable').attr('contenteditable','true');
 });
