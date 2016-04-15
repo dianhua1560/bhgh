@@ -47,12 +47,13 @@ Rails.application.routes.draw do
 
   # Forum
   get '/forum/list' => 'forum#list'
-  post '/forum/create' => 'forum#create'
-  post '/forum/create_response' => 'forum#create_response'
+  post '/forum/create' => 'forum#create_post'
+  post '/forum/update/:id' => 'forum#update_post'
   post '/forum/delete_post/:id' => 'forum#delete_post'
+  get '/forum/modal_show/:id' => 'forum#modal_show'
 
-  post '/forum/response/create/:id' => 'forum#response_create'
-  post '/forum/response/update/:id' => 'forum#response_update'
+  post '/forum/response/create/:id' => 'forum#create_response'
+  post '/forum/response/update/:id' => 'forum#update_response'
   post '/forum/response/delete/:id' => 'forum#delete_response'
 
   # The priority is based upon order of creation: first created -> highest priority.

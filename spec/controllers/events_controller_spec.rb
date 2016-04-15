@@ -18,3 +18,4 @@ RSpec.describe EventsController, type: :controller do
 		
 	end
 end
+##test bad update

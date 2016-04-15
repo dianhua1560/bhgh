@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
 	has_many :post_responses, :dependent => :destroy
+	validates :title, :presence => true
 	def self.list(myEmail)
 		Post.all.map{|x| x.tojson(myEmail)}
 	end

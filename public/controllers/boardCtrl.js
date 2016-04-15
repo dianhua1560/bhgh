@@ -97,10 +97,9 @@ myApp.controller("BoardCtrl", function ($scope) {
 		console.log(post);
 		console.log('saving response');
 		$.ajax({
-			url:'/forum/create_response',
+			url:'/forum/response/create/'+post.id,
 			type:'post',
 			data:{
-				id: post.id,
 				body: body
 			},
 			success:function(data){

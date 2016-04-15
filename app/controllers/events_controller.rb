@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     if event.do_update(event_params)
         render json: event.tojson(myEmail), status:200
     else
-        render event.errors.to_json, status:400
+        render json: event.errors.to_json, status:400
     end
    end
 

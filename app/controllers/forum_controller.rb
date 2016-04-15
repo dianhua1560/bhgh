@@ -1,5 +1,5 @@
 class ForumController < ApplicationController
-	def create
+	def create_post
 		post = Post.new(
 			title: params[:title],
             author: myEmail)
@@ -15,16 +15,14 @@ class ForumController < ApplicationController
 		end
 	end
 	
-    def update
+    def update_post
         post = Post.find(params[:id])
         if post.update(post_params)
             render json: post.tojson(myEmail).to_json, status:200
         else
-            render post.errors.to_json, status:400
+            render json: post.errors.to_json, status:400
         end
     end
-
-    
         
     def delete_post
         post = Post.find(params[:id]).destroy
