@@ -24,9 +24,7 @@ class ForumController < ApplicationController
         end
     end
 
-    def post_params
-        params.permit(:author, :category, :title)
-    end
+    
         
     def delete_post
         post = Post.find(params[:id]).destroy
@@ -40,9 +38,9 @@ class ForumController < ApplicationController
 
     def create_response
         post = Post.find(params[:id])
-        response = post.post_response.new(response_params)
+        response = post.post_responses.new(response_params)
         if response.save
-            render json: {:post=> Post.find(params[:id]).tojson , :posts=>Post.list}, status: 200
+            render json: {:post=> Post.find(params[:id]).tojson(myEmail) , :posts=>Post.list(myEmail)}, status: 200
         else
             render json: response.errors.to_json, status: 400
         end
@@ -59,9 +57,10 @@ class ForumController < ApplicationController
 
     def like
         response = PostResponse.find(params[:id])
+    end
 
     def list
-        render json: Post.list
+        render json: Post.list(myEmail)
     end
 
     def modal_show
@@ -69,12 +68,10 @@ class ForumController < ApplicationController
     end
 
     private
+    def post_params
+        params.permit(:author, :category, :title)
+    end
     def response_params
         params.permit(:author, :response_type, :body)
     end
 end
-
-
-
-
-

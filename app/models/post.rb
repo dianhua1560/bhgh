@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
 	has_many :post_responses, :dependent => :destroy
-	def self.list
-		Post.all.map{|x| x.tojson}
+	def self.list(myEmail)
+		Post.all.map{|x| x.tojson(myEmail)}
 	end
 	
 	def tojson(myEmail)
@@ -9,8 +9,8 @@ class Post < ActiveRecord::Base
 			title: self.title,
 			id: self.id,
 			created_at: self.created_at,
-			original: self.original.tojson,
-			comments: self.comments.map{|x| x.tojson},
+			original: self.original.tojson(myEmail),
+			comments: self.comments.map{|x| x.tojson(myEmail)},
 			author: self.author
 		}
 	end
