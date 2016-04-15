@@ -178,7 +178,7 @@
         <div class = 'centered'>
           <h3>{{selectedPost.title}}</h3>
           <h4>{{selectedPost.original.body}}</h4>
-          <div>{{selectedPost.original.created_at}}</div>
+          <div>{{selectedPost.timestamp}}</div>
         </div>
         <h4>Comments</h4>
         <div ng-repeat = 'response in selectedPost.comments' class = 'post-div'>
@@ -191,7 +191,7 @@
         <button class = 'btn btn-default' ng-click = 'saveResponse(selectedPost, commentInput)'>Save Response</button>
 
          <button class = 'btn btn-danger pull-right' ng-click = 'deletePost(selectedPost)'>Delete</button>
-       
+
       </div><!-- end of modal body -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

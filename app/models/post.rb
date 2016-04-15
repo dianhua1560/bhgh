@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
 			id: self.id,
 			created_at: self.created_at,
 			original: self.original ? self.original.tojson(myEmail) : {},
+			timestamp: self.timestamp,
 			comments: self.comments.map{|x| x.tojson(myEmail)},
 			author: self.author,
 			gravatar: self.gravatar
@@ -36,4 +37,7 @@ class Post < ActiveRecord::Base
 		end
 	end
 	
+	def timestamp
+		self.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%B %d, %Y at %r")
+	end
 end
