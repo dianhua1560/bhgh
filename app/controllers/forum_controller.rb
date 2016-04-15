@@ -28,16 +28,16 @@ class ForumController < ApplicationController
         params.permit(:author, :category, :title)
     end
         
-    def delete
-        post = Post.find(params[:id])
+    def delete_post
+        post = Post.find(params[:id]).destroy
         render nothing: true, status: 200
     end
 
-    def response_create
+    def create_response
         post = Post.find(params[:id])
         response = post.post_response.new(response_params)
         if response.save
-            render json: response.to_json, status: 200
+            render json: {:post=> Post.find(params[:id]).tojson , :posts=>Post.list}, status: 200
         else
             render json: response.errors.to_json, status: 400
         end
@@ -53,7 +53,7 @@ class ForumController < ApplicationController
     end
 
     def list
-        render json: Post.all.map{|x| x.tojson}
+        render json: Post.list
     end
 
     def modal_show

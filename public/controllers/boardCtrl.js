@@ -15,9 +15,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 		$('#add-question-modal').modal('show');	
 	}
 	$scope.respondToEvent = function(event, response){
-		console.log('responding to event');
-		console.log(event);
-		console.log(response);
 		$.ajax({
 			url:'/events/respond/'+event.id,
 			type:'post',
@@ -94,6 +91,27 @@ myApp.controller("BoardCtrl", function ($scope) {
 			}
 		})
 	}
+	$scope.saveResponse = function(post, body){
+		console.log(post);
+		console.log('saving response');
+		$.ajax({
+			url:'/forum/create_response',
+			type:'post',
+			data:{
+				id: post.id,
+				body: body
+			},
+			success:function(data){
+				$scope.selectedPost = data.post;
+				$scope.posts = data.posts;
+				$scope.commentInput = '';
+				$scope.$digest();
+			},
+			error:function(data){
+				alert('error');
+			}
+		})
+	}
 	$scope.showEventModal = function(event){
 		$scope.selectedEvent = event;
 		$('#event-modal').modal('show');
@@ -101,6 +119,10 @@ myApp.controller("BoardCtrl", function ($scope) {
 	$scope.showBragModal = function(brag){
 		$scope.selectedBrag = brag;
 		$('#brag-modal').modal('show');
+	}
+	$scope.showPostModal = function(post){
+		$scope.selectedPost = post;
+		$('#post-modal').modal('show');
 	}
 	$scope.updateBrag = function(brag){
 		$.ajax({
@@ -142,6 +164,23 @@ myApp.controller("BoardCtrl", function ($scope) {
 				alert('error');
 			}
 		});
+	}
+
+	$scope.deletePost = function(post){
+		$.ajax({
+			url:'/forum/delete_post/'+post.id,
+			type:'post',
+			success:function(data){
+				$('#post-modal').modal('hide');
+				$scope.posts = _.filter($scope.posts, function(x){
+					return x.id != post.id;
+				});
+				$scope.$digest();
+			},
+			error:function(data){
+				console.log('error');
+			}
+		})
 	}
 
 	$scope.modalTitle = 'Add new event';
