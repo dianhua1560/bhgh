@@ -47,9 +47,10 @@ Rails.application.routes.draw do
   # Forum
   get '/forum/list' => 'forum#list'
   post '/forum/create' => 'forum#create'
+  post '/forum/delete/:id' => 'forum#delete_post'
   post '/forum/response/create/:id' => 'forum#response_create'
   post '/forum/response/update/:id' => 'forum#response_update'
-  post '/forum/delete/:id' => 'forum#delete_post'
+  post '/forum/response/delete/:id' => 'forum#delete_response'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

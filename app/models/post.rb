@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
-	has_many :post_response, :dependent => :destroy
-	def tojson
+	has_many :post_responses, :dependent => :destroy
+	def tojson(myEmail)
 		{
 			title: self.title,
 			created_at: self.created_at,
