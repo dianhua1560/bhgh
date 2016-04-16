@@ -12,8 +12,10 @@ gem "omniauth-google-oauth2"
 gem "twitter-bootstrap-rails"
 gem "therubyracer"
 gem 'paperclip'
-# gem 'aws-sdk'
 gem 'aws-sdk', '< 2.0'
+gem "image_optim_bin", group: :production
+gem 'paperclip-optimizer'
+
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

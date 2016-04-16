@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   post '/brags/like/:id' => 'brags#like'
   post '/brags/unlike/:id' => 'brags#unlike'
   post '/brags/create_form' => 'brags#create_form'
+  post '/brags/update_photo' => 'brags#update_photo'
+  post '/brags/delete_photo/:id' => 'brags#delete_photo'
 
 
   # Forum

@@ -14,7 +14,17 @@
   <script src = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
   
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.css' rel = 'stylesheet'>
+  
+  <!-- <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'> -->
+
+
+
+  <link rel="icon" 
+      type="image/png" 
+      href="/logo.png">
+
+
+ <link href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.css' rel = 'stylesheet'>
 </head>
 
 <script src = '/lib/underscore-min.js'></script>
@@ -28,7 +38,7 @@
 
 <script src = '/app.js'></script>
 <script src = '/controllers/boardCtrl.js'></script>
-<div ng-app = 'boardApp'>
+<div ng-app = 'boardApp' id = 'main-row'>
 
 
 <div ng-controller = 'BoardCtrl'>
@@ -36,7 +46,7 @@
 
 
 <div class = 'jumbotron' id = 'top-jumbotron'>
-	<h3>Boys Hope Girls Hope Bulletin Board</h3>
+  <img src = '/logo.png'>
 	<div class = 'centered'>
 	<input id = 'search-input' class = 'form-control' placeholder = 'SEARCH' ng-model = 'searchTerm'>
 </div>
@@ -45,13 +55,15 @@
 
 <div class = 'col-md-4'>
   <div ng-repeat = 'event in events | filter:searchTerm' class = 'board-card event-card' ng-click = 'showEventModal(event)'>
+    <div class = 'pull-right'>
+    <img src = '{{event.gravatar}}' class = 'gravatar'>
+  </div>
   <h3>{{event.title}}</h3>
-  <div>Desc: {{event.description}}</div>
-  <div>Time: {{event.time}}</div>
+  <p>{{event.description}}</p>
+  <div>{{event.time_string}}</div>
   <div>Organizer: {{event.organizer}}</div>
   <div>Location: {{event.location}}</div>
   <div>Response: {{event.response}}</div>
-  <img src = '{{event.gravatar}}' class = 'gravatar'></img>
 </div>
 </div>
 
@@ -69,7 +81,6 @@
   <div class = 'brag-body'>{{brag.body}}</div>
   <div>Subject: {{brag.subject}}</div>
   <div>Author: {{brag.author}}</div>
-  <div>{{brag.photo_url}}</div>
   <div ng-show = 'brag.liked' class = 'pull-right'>
   	Liked
   </div>
@@ -88,8 +99,6 @@
   </div>
 </div>
 </div>
-
-
 <%= render 'forum/add_post_modal' %>
 <%= render 'events/add_event_modal' %>
 <%= render 'brags/add_brag_modal' %>
@@ -106,3 +115,17 @@
 </div><!--end of board ctrl-->
 </div>
 
+
+<script>
+      var map;
+      function initMap() {
+        console.log('initializing google map');
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      };
+    </script>
+  <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=<%= @maps_api_key %>&callback=initMap">
+    </script>

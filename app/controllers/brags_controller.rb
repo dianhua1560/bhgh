@@ -18,6 +18,19 @@ class BragsController < ApplicationController
 		redirect_to '/'
 	end
 
+	def update_photo
+		brag = Brag.find(params[:id])
+		brag.avatar = params[:avatar]
+		brag.save!
+		redirect_to '/'
+	end
+	def delete_photo
+		brag = Brag.find(params[:id])
+		brag.avatar = nil
+		brag.save!
+		render json: {:brags => Brag.list(myEmail), :brag => brag.tojson(myEmail)}.to_json , status: 200
+	end
+
 	def create
 		puts params[:file]
 		puts 'this was the file'

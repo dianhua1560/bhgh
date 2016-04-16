@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     @events = Event.all.map{|x| x.tojson(myEmail)}.to_json
     @brags = Brag.all.map{|x| x.tojson(myEmail)}.to_json
     @posts = Post.all.map{|x| x.tojson(myEmail)}.to_json
+    @maps_api_key = ENV['MAPS_API_KEY']
     render 'layouts/board', layout: false
   end
 end

@@ -198,6 +198,19 @@ myApp.controller("BoardCtrl", function ($scope) {
 			}
 		})
 	}
+	$scope.deleteBragPhoto = function(brag){
+		console.log('deleting brag photo');
+		$.ajax({
+			url:'/brags/delete_photo/'+brag.id,
+			type:'post',
+			success:function(data){
+				console.log(data);
+				$scope.brags = data.brags;
+				$scope.selectedBrag = data.brag;
+				$scope.$digest();
+			}
+		})
+	}
 	$scope.deleteEvent = function(event){
 		$.ajax({
 			url:'/events/delete/'+event.id,

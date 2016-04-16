@@ -3,21 +3,14 @@
     <div class="modal-content">
       <div class="modal-body">
         <h1>Add a brag</h1>
-        Title: <input type = 'text' ng-model = 'newBrag.title' placeholder = 'title' class = 'form-control'>
-        Subject: <input type = 'text' ng-model = 'newBrag.subject' placeholder = 'subject' class = 'form-control'>
-        Body: <input type = 'text' ng-model = 'newBrag.body' placeholder = 'body' class = 'form-control'>
-        
-        Photo: <input id = 'brag-add-image-input' type="file" name="filename" accept="image/gif, image/jpeg, image/png">
-
-        <button type="button" class="btn btn-primary" ng-click = 'saveBrag()'>Save</button>
-
 
         <%= form_for Brag.new, url: '/brags/create_form', html: { multipart: true } do |form| %>
-          <%= form.text_field :title, :placeholder => 'title' %>
-          <%= form.text_field :subject, :placeholder  => 'subject' %>
-          <%= form.text_field :body, :placeholder => 'body' %>
-          <%= form.file_field :avatar %>
-          <%= form.submit "Create" %>
+          Title: <%= form.text_field :title, :placeholder => 'title', :class => 'form-control' %>
+          Subject: <%= form.text_field :subject, :placeholder  => 'subject', :class => 'form-control' %>
+          Body: <%= form.text_area :body, :placeholder => 'body', :class => 'form-control' %>
+          Photo: 
+          <%= form.file_field :avatar, :class => 'form-control' %>
+          <%= form.submit "Create", :class => 'btn btn-default' %>
         <% end %>
       </div>
     </div><!-- /.modal-content -->
