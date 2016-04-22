@@ -19,21 +19,18 @@ Background: brags have been added to the bragboard
 
 Scenario: Admin can see admin button
 	Given that I am logged in as "admin1@gmail.com"
-	Given I visit "/brags"
-	Then I should see "Admin Panel"
+	Then I should be able to use the admin page for brag "title1"
 
 Scenario: Scholars cannot see admin button
 	Given that I am logged in as "scholar1@gmail.com"
-	Given I visit "/brags"
-	Then I should not see "Admin Panel"
+	When I try to use the admin page for brag "title1"
+	Then I should not be authorized
 
 Scenario: Scholars cannot access admin page
 	Given that I am logged in as "scholar1@gmail.com"
-	When I try to use the admin panel
-	Then I should see "not authorized"
+	When I try to use the admin page for all brags
+	Then I should not be authorized
 
 Scenario: Admins can access admin page
 	Given that I am logged in as "admin1@gmail.com"
-	Given I visit "/brags"
-	Given I follow "Admin Panel"
-	Then I should see "Brags Admin"
+	Then I should be able to use the admin page for all brags

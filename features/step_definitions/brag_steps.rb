@@ -46,3 +46,29 @@ end
 Then /there should be "(.*)" brag likes/ do |num|
 	expect BragLike.all.length == num.to_i
 end
+
+Then /I should be able to use the admin page for brag "(.*)"/ do |title|
+	# brag = Brag.find_by_title(title)
+	# page.driver.get('/brags/admin/'+brag.id.to_s)
+end
+
+Then /I should be able to use the admin page for all brags/ do
+	# Brag.all.each do |brag|
+	# 	step 'I should be able to use the admin page for brag "'+brag.title+'"'
+	# end
+end
+
+When(/^I try to use the admin page for brag "([^"]*)"$/) do |title|
+	# brag = Brag.find_by_title(title)
+	# visit '/brags/admin/'+brag.id.to_s
+end
+
+When /I try to use the admin page for all brags/ do
+	# Brag.all.each do |brag|
+	# 	step 'I try to use the admin page for brag "'+brag.title+'"'
+	# end
+end
+
+When /I should not be authorized/ do
+
+end
