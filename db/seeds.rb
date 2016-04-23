@@ -92,15 +92,18 @@ end
 #dummy posts
 p1 = Post.create(
 	title: 'Title1',
-	author: 'chenallen2012@gmail.com'
+	author: 'chenallen2012@gmail.com',
+	body: 'body1'
 	)
 p2 = Post.create(
 	title: 'Title2',
-	author: 'chenallen2012@gmail.com'
+	author: 'chenallen2012@gmail.com',
+	body: 'body2'
 	)
 p3 = Post.create(
 	title: 'Title3',
-	author: 'mwan2013@berkeley.edu'
+	author: 'mwan2013@berkeley.edu',
+	body: 'body3'
 	)
 
 #dummy post (body) responses

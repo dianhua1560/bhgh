@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
 	has_many :post_responses, :dependent => :destroy
 	validates :title, :presence => true
+	validates :body, :presence => true
 	def self.list(myEmail)
 		Post.all.map{|x| x.tojson(myEmail)}
 	end
@@ -10,12 +11,12 @@ class Post < ActiveRecord::Base
 			title: self.title,
 			id: self.id,
 			created_at: self.created_at,
-			original: self.original ? self.original.tojson(myEmail) : {},
 			timestamp: self.timestamp,
 			comments: self.comments.map{|x| x.tojson(myEmail)},
 			author: self.author,
 			gravatar: self.gravatar,
 			is_mine: self.is_mine(myEmail),
+			body: self.body,
 			can_edit: true
 		}
 	end
@@ -28,10 +29,6 @@ class Post < ActiveRecord::Base
 		email = self.author ? self.author : 'asdf@gmail.com'
 		gravatar_id = Digest::MD5.hexdigest(email.downcase)
 		return "http://gravatar.com/avatar/#{gravatar_id}.png"
-	end
-
-	def original
-		PostResponse.where(post_id: self.id).order('created_at asc').first
 	end
 	
 	def comments
