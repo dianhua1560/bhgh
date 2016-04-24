@@ -38,4 +38,8 @@ class Post < ActiveRecord::Base
 	def timestamp
 		self.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%B %d, %Y at %r")
 	end
+
+	def num_clicks
+		Click.where(path: "/forum/click/#{self.id}").length
+	end
 end

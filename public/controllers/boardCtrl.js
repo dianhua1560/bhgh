@@ -117,14 +117,35 @@ myApp.controller("BoardCtrl", function ($scope) {
 	$scope.showEventModal = function(event){
 		$scope.selectedEvent = event;
 		$('#event-modal').modal('show');
+		$.ajax({
+			url: '/events/click/'+event.id,
+			type:'post',
+			success:function(data){
+				console.log('logged event click');
+			}
+		});
 	}
 	$scope.showBragModal = function(brag){
 		$scope.selectedBrag = brag;
 		$('#brag-modal').modal('show');
+		$.ajax({
+			url: '/brags/click/'+brag.id,
+			type:'post',
+			success:function(data){
+				console.log('logged brag click');
+			}
+		});
 	}
 	$scope.showPostModal = function(post){
 		$scope.selectedPost = post;
 		$('#post-modal').modal('show');
+		$.ajax({
+			url: '/forum/click/'+post.id,
+			type:'post',
+			success:function(data){
+				console.log('logged forum click');
+			}
+		});
 	}
 	$scope.updateBrag = function(brag){
 		$.ajax({

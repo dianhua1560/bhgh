@@ -4,6 +4,11 @@ class BragsController < ApplicationController
 		render json: Brag.list(myEmail)
 	end
 
+	def click
+		render nothing: true, status: 200
+	end
+
+
 	def create_form
 		brag = params[:brag]
 		puts 'brag was '
@@ -58,7 +63,11 @@ class BragsController < ApplicationController
 
 	def delete
 	  	Brag.find(params[:id]).destroy
-	  	render json: Brag.list(myEmail), status: 200
+	  	if request.get?
+	  		redirect_to '/admin'
+	  	else
+	  		render json: Brag.list(myEmail), status: 200
+	  	end
 	end
 
 	def like

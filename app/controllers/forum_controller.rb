@@ -10,6 +10,10 @@ class ForumController < ApplicationController
 			render json: post.errors.to_json, status:400
 		end
 	end
+
+	def click
+		render nothing: true, status: 200
+	end
 	
 	def update_post
 		post = Post.find(params[:id])
@@ -24,7 +28,11 @@ class ForumController < ApplicationController
 		post = Post.find(params[:id])
 		if post.author == myEmail or Member.is_admin_email(myEmail)
 			post.destroy
-			render nothing: true, status: 200
+			if request.get?
+				redirect_to '/admin'
+			else
+				render nothing: true, status: 200
+			end
 		else
 			render json: 'cannot delete other peoples posts', status: 400
 		end

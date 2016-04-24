@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   get '/events/modal_show/:id' => 'events#modal_show'
   post '/events/respond/:id' => 'events#respond'
   get '/events/admin' => 'events#admin'
-  post '/events/delete/:id'=>'events#delete'
+  match '/events/delete/:id'=>'events#delete', via: [:get , :post]
   post '/events/update/:id' => 'events#update'
+  post '/events/click/:id' => 'events#click'
   # get '/events' => 'events#index'
   # get '/events/show/:id' => 'events#show', as: 'event'
   # get '/events/modal_show/:id' => 'events#modal_show', as: 'event_modal'
@@ -40,25 +41,33 @@ Rails.application.routes.draw do
   get '/brags/list' => 'brags#list'
   post '/brags/create' => 'brags#create'
   post '/brags/update/:id' => 'brags#update'
-  post 'brags/delete/:id' => 'brags#delete'
+  match 'brags/delete/:id' => 'brags#delete', via: [:get, :post]
+  get 'brags/delete/:id' => 'brags#delete'
   get '/brags/modal_show/:id' => 'brags#modal_show'
   post '/brags/like/:id' => 'brags#like'
   post '/brags/unlike/:id' => 'brags#unlike'
   post '/brags/create_form' => 'brags#create_form'
   post '/brags/update_photo' => 'brags#update_photo'
   post '/brags/delete_photo/:id' => 'brags#delete_photo'
+  post '/brags/click/:id' => 'brags#click'
 
 
   # Forum
   get '/forum/list' => 'forum#list'
   post '/forum/create' => 'forum#create_post'
   post '/forum/update/:id' => 'forum#update_post'
-  post '/forum/delete_post/:id' => 'forum#delete_post'
+  match '/forum/delete_post/:id' => 'forum#delete_post', via: [:get, :post]
+  # get '/forum/delete_post/:id' => 'forum#delete_post'
   get '/forum/modal_show/:id' => 'forum#modal_show'
+  post '/forum/click/:id' => 'forum#click'
 
   post '/forum/response/create/:id' => 'forum#create_response'
   post '/forum/response/update/:id' => 'forum#update_response'
   post '/forum/response/delete/:id' => 'forum#delete_response'
+
+  # Admin
+  get '/admin' => 'admin#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

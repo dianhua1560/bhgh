@@ -5,6 +5,13 @@ class Brag < ActiveRecord::Base
 	has_attached_file :avatar
 	validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+	def num_clicks
+		Click.where(path: "/brags/click/#{self.id}").length
+	end
+
+	def num_likes
+		return 0
+	end
 
 	def self.list(myEmail)
 		Brag.all.map{|x| x.tojson(myEmail)}

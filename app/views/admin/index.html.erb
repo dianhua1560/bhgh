@@ -1,0 +1,68 @@
+<h1>Brags</h1>
+<table class = 'table table-bordered'>
+<thead>
+	<th>Title</th>
+	<th>Likes</th>
+	<th>Clicks</th>
+	<th>Options</th>
+</thead>
+<tbody>
+	<% @brags.each do |brag| %>
+	<tr>
+		<td><%= brag.title %></td>
+		<td><%= brag.num_clicks %></td>
+		<td><%= brag.num_likes %></td>
+		<td>
+			<%= link_to "Delete", "/brags/delete/#{brag.id}" %>
+		</td>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+
+<h1>Events</h1>
+<table class = 'table table-bordered'>
+<thead>
+	<th>Title</th>
+	<th>Responses</th>
+	<th>Clicks</th>
+	<th>Options</th>
+</thead>
+<tbody>
+	<% @events.each do |event| %>
+	<tr>
+		<td><%= event.title %></td>
+		<td>
+			<div>Going: <%= event.num_responses("Going") %></div>
+			<div>Interested: <%= event.num_responses("Interested") %></div>
+			<div>Not Going: <%= event.num_responses("Not Going") %></div>
+			
+		</td>
+		<td><%= event.num_clicks %></td>
+		<td>
+			<%= link_to "Delete", "/events/delete/#{event.id}" %>
+		</td>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+
+<h1>Forum</h1>
+<table class = 'table table-bordered'>
+<thead>
+	<th>Title</th>
+	<th>Clicks</th>
+	<th>Number of Comments</th>
+	<th>Options</th>
+</thead>
+<tbody>
+	<% @posts.each do |post| %>
+	<tr>
+		<td><%= post.title %></td>
+		<td><%= post.num_clicks %></td>
+		<td><%= post.comments.length %></td>
+		<td><%= link_to "Delete", "/forum/delete_post/#{post.id}" %></td>
+	</tr>
+	<% end %>
+</tbody>
+</table>

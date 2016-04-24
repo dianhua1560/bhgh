@@ -21,11 +21,11 @@ Background: posts and responses have been added to the forum
 Scenario: add response to a post
 	Given there should be "2" posts
 	Given I add response "{body:'body'}" to "title1"
-	Then post "title1" should have "2" responses
+	Then post "title1" should have "1" responses
 
 Scenario: response should validate body
 	Given I add response "{}" to "title1"
-	Then post "title1" should have "1" responses
+	Then post "title1" should have "0" responses
 
 Scenario: view responses to a post
 	Given I am on the board page
@@ -35,4 +35,4 @@ Scenario: can delete response to post
 	Given that I am logged in as "author1@gmail.com"
 	Given I add response "{body:'body'}" to "title1"
 	Given I delete response "body" on "title1"
-	Then post "title1" should have "1" responses
+	Then post "title1" should have "0" responses

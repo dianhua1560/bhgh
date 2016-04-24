@@ -8,6 +8,10 @@ class EventsController < ApplicationController
         end
     end
 
+    def click
+      render nothing: true, status: 200
+    end
+
    def list
     render json: Event.list(myEmail)
    end
@@ -32,7 +36,11 @@ class EventsController < ApplicationController
 
    def delete
     Event.find(params[:id]).destroy
-    render json: Event.list(myEmail), status: 200
+    if request.get?
+      redirect_to '/admin'
+    else 
+      render json: Event.list(myEmail), status: 200
+    end
    end
 
    def respond

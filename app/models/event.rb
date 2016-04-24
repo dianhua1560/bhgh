@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
 	validates :title, :presence => true
+
 	def self.list(myEmail)
 		Event.all.map{|x| x.tojson(myEmail)}.to_json
 	end
@@ -55,4 +56,13 @@ class Event < ActiveRecord::Base
 	def time_string
 		self.time ? self.time.strftime('%B %d, %Y') : ''
 	end
+
+	def num_clicks
+		Click.where(path: "/events/click/#{self.id}").length
+	end
+
+	def num_responses(response)
+		EventResponse.where(event_id: self.id, response: response).length
+	end
+
 end
