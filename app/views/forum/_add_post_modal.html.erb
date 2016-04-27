@@ -2,10 +2,22 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
+        <div ng-show = 'has_errors && error_type == "post"'>
+          <h1>Errors</h1>
+          <div ng-repeat = 'error in errors'>
+            <div>{{error}}</div>
+          </div>
+        </div>
+
         <h1>Add a question</h1>
-        Title: <input type = 'text' ng-model = 'newPost.title' placeholder = 'title' class = 'form-control'>
+         <%= form_for Post.new, url: '/forum/create' do |form| %>
+          Title: <%= form.text_field :title, :placeholder => 'title', :class => 'form-control', :id=> 'add-post-title' %>
+          Body: <%= form.text_field :body, :placeholder  => 'subject', :class => 'form-control', :id=> 'add-post-body' %>
+          <%= form.submit "Post", :class => 'btn btn-default' %>
+        <% end %>
+        <!-- Title: <input type = 'text' ng-model = 'newPost.title' placeholder = 'title' class = 'form-control'>
         Body: <input type = 'text' ng-model = 'newPost.body' placeholder = 'body' class = 'form-control'>
-        <button type="button" class="btn btn-primary" ng-click = 'savePost(newPost)'>Save</button>
+        <button type="button" class="btn btn-primary" ng-click = 'savePost(newPost)'>Save</button> -->
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

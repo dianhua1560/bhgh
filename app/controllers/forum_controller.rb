@@ -1,14 +1,30 @@
 class ForumController < ApplicationController
+	# def create_post
+	# 	if not params[:author].present? or not Member.is_email(params[:author])
+	# 		params[:author] = myEmail
+	# 	end
+	# 	post = Post.new(post_params)
+	# 	if post.save
+	# 		render json: {:posts=>Post.list(myEmail), :post=>post.tojson(myEmail)}.to_json
+	# 	else
+	# 		render json: post.errors.to_json, status:400
+	# 	end
+	# end
+
 	def create_post
-		if not params[:author].present? or not Member.is_email(params[:author])
-			params[:author] = myEmail
+		pp = params[:post]
+		if not pp[:author].present? or not Member.is_email(pp[:author])
+			pp[:author] = myEmail
 		end
-		post = Post.new(post_params)
-		if post.save
-			render json: {:posts=>Post.list(myEmail), :post=>post.tojson(myEmail)}.to_json
+		post = Post.do_new(author: pp[:author], body: pp[:body], title: pp[:title])
+		if post.valid?
+			post.save!
 		else
-			render json: post.errors.to_json, status:400
+			flash[:errors] = post.errors.full_messages
+			flash[:object_params] = params[:post]
+			flash[:error_type] = 'post'
 		end
+		redirect_to '/'
 	end
 
 	def click
@@ -21,7 +37,7 @@ class ForumController < ApplicationController
 			render json: post.tojson(myEmail).to_json, status:200
 		else
 			render json: post.errors.to_json, status:400
-		end
+		end	
 	end
 		
 	def delete_post
@@ -71,7 +87,7 @@ class ForumController < ApplicationController
 
 	private
 	def post_params
-		params.permit(:author, :category, :title, :body)
+		params.permit(:author, :title, :body)
 	end
 	def response_params
 		params.permit(:author, :response_type, :body)

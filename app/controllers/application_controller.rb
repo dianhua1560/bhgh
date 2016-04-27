@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   def board
+    # validation stuff
+    @errors = flash[:errors].to_json
+    @params = flash[:object_params].to_json
+    @error_type = flash[:error_type]
+
     @events = Event.all.map{|x| x.tojson(myEmail)}.to_json
     @brags = Brag.all.map{|x| x.tojson(myEmail)}.to_json
     @posts = Post.all.map{|x| x.tojson(myEmail)}.to_json

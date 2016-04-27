@@ -17,26 +17,28 @@ class EventsController < ApplicationController
    end
 
    def create
-    event = Event.do_new(event_params)
-    if event.save
-        render json: event.tojson(myEmail), status: 200
+    ep = params[:event]
+    ep[:time] = Event.convert_time_string(ep[:time])
+    puts ep
+    event = Event.new(
+      organizer: ep[:organizer],
+      description: ep[:description],
+      title: ep[:title],
+      time: ep[:time],
+      location: ep[:location]
+      )
+    if event.valid?
+        event.save!
     else
-        render json: event.errors.to_json, status: 400
+      flash[:errors] = event.errors.full_messages
+      flash[:object_params] = ep
+      flash[:error_type] = 'event'
+        
     end
+    redirect_to '/'
    end
 
-   def create_form
-    event = params[:event]
-    Event.create!(
-      title: event[:title],
-      description: event[:description],
-      organizer: event[:organizer] ? event[:organizer] : myEmail,
-      avatar: event[:avatar],
-      location: event[:location],
-      time: Time.now-1.year
-      )
-    redirect_to '/'
-  end
+  
 
 
    def update

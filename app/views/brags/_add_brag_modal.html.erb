@@ -2,12 +2,20 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
+
+        <div ng-show = 'has_errors && error_type == "brag"'>
+          <h1>Errors</h1>
+          <div ng-repeat = 'error in errors'>
+            <div>{{error}}</div>
+          </div>
+        </div>
+
         <h1>Add a brag</h1>
 
         <%= form_for Brag.new, url: '/brags/create_form', html: { multipart: true } do |form| %>
-          Title: <%= form.text_field :title, :placeholder => 'title', :class => 'form-control' %>
-          Subject: <%= form.text_field :subject, :placeholder  => 'subject', :class => 'form-control' %>
-          Body: <%= form.text_area :body, :placeholder => 'body', :class => 'form-control' %>
+          Title: <%= form.text_field :title, :placeholder => 'title', :class => 'form-control', :id=> 'add-brag-title' %>
+          Subject: <%= form.text_field :subject, :placeholder  => 'subject', :class => 'form-control', :id=> 'add-brag-subject' %>
+          Body: <%= form.text_area :body, :placeholder => 'body', :class => 'form-control', :id=> 'add-brag-body' %>
           Photo: 
           <div>
             <input type="file" name="brag[avatar]" id="add-brag-avatar" onchange = "readURL(this, '#brag-add-img-preview')">

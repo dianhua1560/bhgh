@@ -12,6 +12,8 @@
         <div class = 'edit-toggles'>
           <div ng-show = '!isEditingBrag && selectedBrag.can_edit' class = 'btn btn-default' ng-click = 'isEditingBrag = true'>Edit</div>
           <div ng-show = 'isEditingBrag' ng-click = 'isEditingBrag = false' class = 'btn btn-default'>Done</div>
+          <div ng-show = 'isEditingBrag' ng-click = 'deleteBrag(selectedBrag)' class = 'btn btn-default'>Delete</div>
+
         </div>
 
         
@@ -21,7 +23,7 @@
             <p>{{selectedBrag.body}}</p>
             <div>Subject: {{selectedBrag.subject}}</div>
            <div>Author: {{selectedBrag.author}}</div>
-           <div>Created At: {{selectedBrag.created_at}}</div>
+           <div>Created On: {{selectedBrag.time_string}}</div>
 
             <img ng-show = 'selectedBrag.photo_url != ""' src = '{{selectedBrag.photo_url}}' class = 'brag-modal-photo'>
         </div>

@@ -27,6 +27,7 @@ class BragsController < ApplicationController
 		brag.save!
 		redirect_to '/'
 	end
+
 	def delete_photo
 		brag = Brag.find(params[:id])
 		brag.avatar = nil
@@ -35,16 +36,22 @@ class BragsController < ApplicationController
 	end
 
 	def create
+		bragparams = params[:brag]
 		brag = Brag.new(
-			title: params[:title],
-			author: myEmail,
-			subject: params[:subject],
-			body: params[:body])
-		if brag.save
-			render json: {:brags=>Brag.list(myEmail), :brag=>brag.tojson(myEmail)} #json: brag.tojson(myEmail)
+			title: bragparams[:title],
+			subject: bragparams[:subject],
+			author: bragparams[:author] ? bragparams[:author] : myEmail,
+			avatar: bragparams[:avatar],
+			body: bragparams[:body]
+			)
+		if brag.valid?
+			brag.save!
 		else
-			render json: brag.errors.to_json, status: 400
-		end
+			flash[:errors] = brag.errors.full_messages
+      		flash[:object_params] = bragparams
+      		flash[:error_type] = 'brag'
+  		end
+		redirect_to '/'
 	end
 
 	def update

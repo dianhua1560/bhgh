@@ -21,6 +21,10 @@ class Post < ActiveRecord::Base
 		}
 	end
 
+	def self.do_new(params)
+		return Post.new(params)
+	end
+
 	def can_edit(myEmail)
 		self.author == myEmail or Member.is_admin_email(myEmail)
 	end

@@ -6,6 +6,7 @@
         <div>
           <div ng-show = 'selectedPost.can_edit && !isEditingPost' ng-click = 'isEditingPost = true' class = 'btn btn-default'>Edit</div>
           <div ng-show = 'isEditingPost' class = 'btn btn-default' ng-click = 'isEditingPost = false'>Done</div>
+          <div ng-show = 'isEditingPost' class = 'btn btn-default' ng-click = 'deletePost(selectedPost)'>Delete</div>
       </div>
 
         <div class = 'centered' ng-show = '!isEditingPost'>
@@ -53,10 +54,6 @@
         </div>
 
         
-
-         <div class = 'row'>
-          <button id = 'delete-post-btn' class = 'btn btn-danger pull-right' ng-click = 'deletePost(selectedPost)'>Delete</button>
-        </div>
       </div><!-- end of modal body -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

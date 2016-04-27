@@ -1,14 +1,24 @@
 class Event < ActiveRecord::Base
 	validates :title, :presence => true
+	validates :description, :presence => true
+	validate :organizer_is_email
+	validates :location, :presence => true
+	validates :time, :presence => true
+	# validate :time_format_correct
+
 	has_attached_file :avatar
 	validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+	def organizer_is_email
+		if not Member.is_email(self.organizer)
+			errors.add(:organizer, "Must be valid email address")
+		end
+	end
 
 	def self.list(myEmail)
 		Event.all.map{|x| x.tojson(myEmail)}.to_json
 	end
 	def self.do_new(params)
-		params[:time] = Event.convert_time_string(params[:time])
 		return Event.new(params)
 	end
 
@@ -18,7 +28,11 @@ class Event < ActiveRecord::Base
 	end
 
 	def self.convert_time_string(time_string)
-		return Time.now
+		begin
+			return Time.strptime(time_string, "%B %e, %Y")
+		rescue
+			return nil
+		end
 	end
 
 	def photos
@@ -41,7 +55,7 @@ class Event < ActiveRecord::Base
 			gravatar: self.gravatar,
 			id: self.id,
 			response: response,
-			can_edit: true
+			can_edit: Member.is_admin_email(myEmail)
 		}
 	end
 

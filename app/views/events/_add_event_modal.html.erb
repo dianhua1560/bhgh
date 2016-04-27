@@ -4,13 +4,20 @@
 
       <div class="modal-body">
 
+        <div ng-show = 'has_errors && error_type == "event"'>
+          <h1>Errors</h1>
+          <div ng-repeat = 'error in errors'>
+            <div>{{error}}</div>
+          </div>
+        </div>
+
         <%= form_for Event.new, url: '/events/create_form', html: { multipart: true } do |form| %>
         <h1>Add an event</h1>
-        Title: <%= form.text_field :title, :placeholder => 'title', :class => 'form-control' %>
-        Description: <%= form.text_field :description, :placeholder => 'description', :class => 'form-control' %>
-        Time: <%= form.text_field :time, :placeholder => 'time', :class => 'form-control' %>
-        Organizer: <%= form.text_field :organizer, :placeholder => 'organizer', :class => 'form-control' %>
-        Location: <%= form.text_field :location, :placeholder => 'location', :class => 'form-control' %>
+        Title: <%= form.text_field :title, :placeholder => 'title', :class => 'form-control', :id => "add-event-title" %>
+        Description: <%= form.text_field :description, :placeholder => 'description', :class => 'form-control', :id =>  'add-event-description' %>
+        Time: <%= form.text_field :time, :placeholder => 'time', :class => 'form-control', :id => 'add-event-time'  %>
+        Organizer: <%= form.text_field :organizer, :placeholder => 'organizer', :class => 'form-control', :id=> 'add-event-organizer' %>
+        Location: <%= form.text_field :location, :placeholder => 'location', :class => 'form-control', :id=> 'add-event-location' %>
         Photo: 
         <div>
             <input type="file" name="event[avatar]" id="add-event-avatar" onchange = "readURL(this, '#event-add-img-preview')">

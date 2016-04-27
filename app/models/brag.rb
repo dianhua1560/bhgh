@@ -30,14 +30,21 @@ class Brag < ActiveRecord::Base
 			gravatar: self.gravatar,
 			id: self.id,
 			body: self.body,
+			time_string: self.time_string,
 			liked: BragLike.where(email: myEmail).where(brag_id: self.id).length > 0,
-			can_edit: true
+			can_edit: Member.is_admin_email(myEmail)
 		}
 	end
 
 	def sort_time
 		return self.created_at
 	end
+
+
+	def time_string
+		self.created_at ? self.created_at.strftime('%B %d, %Y') : ''
+	end
+
 
 	def gravatar
 		email = self.author ? self.author : 'asdf@gmail.com'

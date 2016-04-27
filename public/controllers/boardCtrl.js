@@ -9,19 +9,50 @@ myApp.controller("BoardCtrl", function ($scope) {
 	$scope.isEditingBrag = false;
 	$scope.isEditingPost = false;
 	$scope.editingResponseId = -1;
+	$scope.has_errors = has_errors;
+	$scope.error_type = error_type;
+	
+	function init(){
+		$scope.errors = errors; 
+
+		$scope.params = params;
+		if(has_errors && error_type == 'event'){
+			showAddEvent();
+			$('#add-event-title').val(params['title']);
+			$('#add-event-description').val(params['title']);
+			$('#add-event-time').val(params['title']);
+			$('#add-event-organizer').val(params['organizer']);
+			$('#add-event-location').val(params['location']);
+		}
+		if(has_errors && error_type == 'brag'){
+			showAddBrag();
+			$('#add-brag-title').val(params['title']);
+			$('#add-brag-body').val(params['body']);
+			$('#add-brag-subject').val(params['subject']);
+		}
+		if(has_errors && error_type == 'post'){
+			showAddPost();
+			$('#add-post-title').val(params['title']);
+			$('#add-post-body').val(params['body']);
+		}
+	}
+	init();
 	$scope.editResponse = function(response){
 		$scope.editingResponseId = response.id;
 	}
 	$scope.doneEditingResponse = function(response){
 		$scope.editingResponseId = -1;
 	}
-	$scope.showAddEvent = function(){
+	$scope.showAddEvent = showAddEvent;
+	function showAddEvent(){
 		$('#add-event-modal').modal('show');
 	}
-	$scope.showAddBrag = function(){
+	$scope.showAddBrag = showAddBrag;
+	 function showAddBrag(){
 		$('#add-brag-modal').modal('show');
 	}
-	$scope.showAddPost = function(){
+	$scope.showAddPost = showAddPost;
+	function showAddPost(){
 		$('#add-post-modal').modal('show');	
 	}
 	function updateEvent(){
