@@ -13,9 +13,15 @@
   <link rel = 'stylesheet' href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
   <script src = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
   
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
   
-  <!-- <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/roboto.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js"></script> -->
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
 
 
@@ -54,34 +60,35 @@
     </div>
   </div>
   <div class = 'col-md-4'>
-    <div id = 'months-select'>
-    <div><a href = '#'>August 2015</a></div>
-    <div><a href = '#'>September 2015</a></div>
-    <div><a href = '#'>October 2015</a></div>
-    <div><a href = '#'>November 2015</a></div>
-  </div>
+
   </div>
 
 </div>
 
 
 <h2 class = 'centered'>13 Updates May 2016</h2>
-<div class = 'col-md-1'></div>
-<div class = 'col-md-3'>
+<div class = 'col-md-4'>
   <div ng-repeat = 'event in events | filter:searchTerm' class = 'board-card event-card' ng-click = 'showEventModal(event)'>
-    <div class = 'pull-right'>
-    <img src = '{{event.gravatar}}' class = 'gravatar'>
-  </div>
-  <h3>{{event.title}}</h3>
-  <p>{{event.description}}</p>
-  <div>{{event.time_string}}</div>
-  <div>Organizer: {{event.organizer}}</div>
-  <div>Location: {{event.location}}</div>
-  <div>Response: {{event.response}}</div>
+        <div class = 'pull-right'>
+        <img src = '{{event.gravatar}}' class = 'gravatar'>
+      </div>
+      <h3>{{event.title}}</h3>
+      <p>{{event.description}}</p>
+      <div>{{event.time_string}}</div>
+      <div>Organizer: {{event.organizer}}</div>
+      <div>Location: 
+        <a href = 'https://www.google.com/maps/place/{{event.location}}'>{{event.location}}
+        </a>
+      </div>
+
+      <div ng-show = 'event.response'>You are {{event.response}}</div>
+      <div ng-show = 'event.photo_url'>
+        <img src = '{{event.photo_url}}' class = 'event-photo'>
+      </div>
 </div>
 </div>
 
-<div class = 'col-md-3'>
+<div class = 'col-md-4'>
 <div ng-repeat = 'brag in brags | filter:searchTerm' class = 'board-card brag-card' ng-click = 'showBragModal(brag)'>
 
   <div class = 'row brag-img-div' ng-show = 'brag.photo_url != ""'>
@@ -101,7 +108,7 @@
 </div>
 </div>
 
-<div class = 'col-md-3'>
+<div class = 'col-md-4'>
 <div ng-repeat = 'post in posts | filter:searchTerm' class = 'board-card post-card' ng-click = 'showPostModal(post)'>
   <h3>{{post.title}}</h3>
   <p>{{post.body}}</p>
@@ -127,16 +134,3 @@
 </div>
 
 
-<script>
-      var map;
-      function initMap() {
-        console.log('initializing google map');
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      };
-    </script>
-  <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%= @maps_api_key %>&callback=initMap">
-    </script>

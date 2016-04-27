@@ -13,8 +13,12 @@ class PostResponse < ActiveRecord::Base
 			timestamp: self.timestamp,
 			is_mine: self.author == myEmail,
 			id: self.id,
-			can_edit: true
+			can_edit: self.can_edit(myEmail)
 		}
+	end
+
+	def can_edit(myEmail)
+		self.author == myEmail or Member.is_admin_email(myEmail)
 	end
 
 	def gravatar

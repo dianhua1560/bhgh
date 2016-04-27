@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416230309) do
+ActiveRecord::Schema.define(version: 20160427183654) do
 
   create_table "brag_likes", force: :cascade do |t|
     t.string   "email"
@@ -54,9 +54,13 @@ ActiveRecord::Schema.define(version: 20160416230309) do
     t.string   "description"
     t.datetime "time"
     t.string   "organizer"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "location"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "members", force: :cascade do |t|

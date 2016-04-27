@@ -9,7 +9,10 @@
           Subject: <%= form.text_field :subject, :placeholder  => 'subject', :class => 'form-control' %>
           Body: <%= form.text_area :body, :placeholder => 'body', :class => 'form-control' %>
           Photo: 
-          <%= form.file_field :avatar, :class => 'form-control' %>
+          <div>
+            <input type="file" name="brag[avatar]" id="add-brag-avatar" onchange = "readURL(this, '#brag-add-img-preview')">
+            <img src = '' id = 'brag-add-img-preview' class = 'img-preview'>
+          </div>
           <%= form.submit "Create", :class => 'btn btn-default' %>
         <% end %>
       </div>

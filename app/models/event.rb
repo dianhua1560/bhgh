@@ -1,5 +1,8 @@
 class Event < ActiveRecord::Base
 	validates :title, :presence => true
+	has_attached_file :avatar
+	validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
 
 	def self.list(myEmail)
 		Event.all.map{|x| x.tojson(myEmail)}.to_json
@@ -27,9 +30,8 @@ class Event < ActiveRecord::Base
 		resp = EventResponse.where(event_id: self.id).where(email: myEmail).first
 		response = resp ? resp.response : nil
 		{
-			time: self.time_string,
 			location: self.location,
-			photos: self.photos,
+			photo_url: self.avatar.exists? ? self.avatar.url : '',
 			title: self.title,
 			organizer: self.organizer,
 			description:description,
@@ -38,10 +40,10 @@ class Event < ActiveRecord::Base
 			type: 'event',
 			gravatar: self.gravatar,
 			id: self.id,
-			response: response
+			response: response,
+			can_edit: true
 		}
 	end
-
 
 	def gravatar
 		email = self.organizer ? self.organizer : 'asdf@gmail.com'

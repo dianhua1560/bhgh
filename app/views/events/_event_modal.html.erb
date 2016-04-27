@@ -2,45 +2,57 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
+
         <div class = 'pull-right'>
           <button type="button" class="btn btn-default" ng-class = 'selectedEvent.response == "Going" ? "selected-response" : ""' ng-click = 'respondToEvent(selectedEvent, "Going")'>Going</button>
           <button type="button" class="btn btn-default" ng-click = 'respondToEvent(selectedEvent, "Interested")' ng-class = 'selectedEvent.response == "Interested" ? "selected-response" : ""'>Interested</button>
           <button type="button" class="btn btn-default" ng-click = 'respondToEvent(selectedEvent, "Not Going")' ng-class = 'selectedEvent.response == "Not Going" ? "selected-response" : ""'>Not Going</button>
         </div>
 
-      	<h2 class = 'editable'>{{selectedEvent.title}}</h2>
-        <p class = 'editable'>{{selectedEvent.description}}</p>
+         <div class = 'edit-toggles'>
 
-	       <div>Time: {{selectedEvent.time}}</div>
-	       <div>Organizer: {{selectedEvent.organizer}}</div>
-	       
- 
+            <div class = 'btn btn-default' ng-show = 'selectedEvent.can_edit && !isEditingEvent' ng-click = 'isEditingEvent = true'>Edit</div>
+            <div ng-show = 'isEditingEvent' class = 'btn btn-default' ng-click = 'isEditingEvent = false'>Done</div>
+            <a  ng-show = 'isEditingEvent' href = '/events/delete/{{selectedEvent.id}}'>
+              <div class = 'btn btn-default'>Delete</div>
+            </a>
 
-         <h3>Location</h3>
-	       <div>{{selectedEvent.location}}</div>
- <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 400px;
-      }
-    </style>
+        </div>
+       
 
-    <div id="map"></div>
-    
-
-    <div class = 'box'>
-        <button class = 'btn btn-success'>Save Changes</button>
-        <button class = 'btn btn-danger' ng-click = 'deleteEvent(selectedEvent)'>Delete</button>
+        <div id = 'selected-event-show' ng-hide = 'isEditingEvent'>
+          	<h2 ng-blur = 'alert("what")'>{{selectedEvent.title}}</h2>
+            <p>{{selectedEvent.description}}</p>
+           <div>Time: {{selectedEvent.time_string}}</div>
+           <div>Organizer: {{selectedEvent.organizer}}</div>
+           <div>Location: <a href = "https://www.google.com/maps/place/{{selectedEvent.location}}">{{selectedEvent.location}}</a>
+           </div>
       </div>
+
+      <div ng-show = 'isEditingEvent'>
+        <h2><input ng-model = 'selectedEvent.title' class = 'event-input'></h2>
+        <p>Description: <input ng-model = 'selectedEvent.description' class = 'event-input'></p>
+        <div>Time: <input ng-model = 'selectedEvent.time_string' class = 'event-input'></div>
+        <div>Organizer: <input ng-model = 'selectedEvent.organizer' class = 'event-input'></div>
+        <div>Location: <input ng-model = 'selectedEvent.location' class = 'event-input'></div>
+        <div id = 'update-event-photo-div' class = 'box'>
+            Photo: 
+          <form class="update-photo-form" id="update-photo-form" enctype="multipart/form-data" action="/events/update_photo" accept-charset="UTF-8" method="post">
+            <input  type = 'hidden' name = 'id' value = '{{selectedEvent.id}}'>
+            <img src = '{{selectedEvent.photo_url}}' id = 'event-img-preview' class = 'img-preview'>
+            <input type="file" name="avatar" id="update-event-avatar" onchange = "readURL(this, '#event-img-preview')" >
+            <input type = 'submit' class = 'btn btn-default' value = 'Update Photo'>
+            </form>
+
+        </div>
+      </div>
+
+       
 
         
        
 
-      </div>
+      </div><!-- modal-body-->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

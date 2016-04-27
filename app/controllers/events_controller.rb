@@ -25,6 +25,20 @@ class EventsController < ApplicationController
     end
    end
 
+   def create_form
+    event = params[:event]
+    Event.create!(
+      title: event[:title],
+      description: event[:description],
+      organizer: event[:organizer] ? event[:organizer] : myEmail,
+      avatar: event[:avatar],
+      location: event[:location],
+      time: Time.now-1.year
+      )
+    redirect_to '/'
+  end
+
+
    def update
     event = Event.find(params[:id])
     if event.do_update(event_params)
@@ -37,7 +51,7 @@ class EventsController < ApplicationController
    def delete
     Event.find(params[:id]).destroy
     if request.get?
-      redirect_to '/admin'
+      redirect_to :back
     else 
       render json: Event.list(myEmail), status: 200
     end
@@ -50,6 +64,14 @@ class EventsController < ApplicationController
 end
    def admin
    end
+
+   def update_photo
+    event = Event.find(params[:id])
+    event.avatar = params[:avatar]
+    event.save!
+    redirect_to '/'
+  end
+
 
    private
 

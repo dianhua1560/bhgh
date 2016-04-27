@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 	validates :title, :presence => true
 	validates :body, :presence => true
 	def self.list(myEmail)
-		Post.all.map{|x| x.tojson(myEmail)}
+		Post.all.order("created_at desc").map{|x| x.tojson(myEmail)}
 	end
 	
 	def tojson(myEmail)
@@ -17,8 +17,12 @@ class Post < ActiveRecord::Base
 			gravatar: self.gravatar,
 			is_mine: self.is_mine(myEmail),
 			body: self.body,
-			can_edit: true
+			can_edit: self.can_edit(myEmail)
 		}
+	end
+
+	def can_edit(myEmail)
+		self.author == myEmail or Member.is_admin_email(myEmail)
 	end
 
 	def is_mine(myEmail)
@@ -32,7 +36,7 @@ class Post < ActiveRecord::Base
 	end
 	
 	def comments
-		PostResponse.where(post_id: self.id).order('created_at asc').to_a
+		PostResponse.where(post_id: self.id).order('created_at desc').to_a
 	end
 	
 	def timestamp

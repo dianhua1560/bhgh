@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   # Events
   get '/events/list' => 'events#list'
   post '/events/create' => 'events#create'
+  post '/events/create_form' => 'events#create_form'
   get '/events/modal_show/:id' => 'events#modal_show'
   post '/events/respond/:id' => 'events#respond'
   get '/events/admin' => 'events#admin'
   match '/events/delete/:id'=>'events#delete', via: [:get , :post]
   post '/events/update/:id' => 'events#update'
   post '/events/click/:id' => 'events#click'
+  post '/events/update_photo' => 'events#update_photo'
   # get '/events' => 'events#index'
   # get '/events/show/:id' => 'events#show', as: 'event'
   # get '/events/modal_show/:id' => 'events#modal_show', as: 'event_modal'

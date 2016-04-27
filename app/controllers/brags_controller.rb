@@ -11,8 +11,6 @@ class BragsController < ApplicationController
 
 	def create_form
 		brag = params[:brag]
-		puts 'brag was '
-		puts brag
 		Brag.create!(
 			title: brag[:title],
 			subject: brag[:subject],
@@ -37,9 +35,6 @@ class BragsController < ApplicationController
 	end
 
 	def create
-		puts params[:file]
-		puts 'this was the file'
-		puts params[:body]
 		brag = Brag.new(
 			title: params[:title],
 			author: myEmail,

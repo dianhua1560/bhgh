@@ -5,6 +5,16 @@ myApp.controller("BoardCtrl", function ($scope) {
 	$scope.newEvent = {};
 	$scope.newBrag = {};
 	$scope.newPost = {};
+	$scope.isEditingEvent = false;
+	$scope.isEditingBrag = false;
+	$scope.isEditingPost = false;
+	$scope.editingResponseId = -1;
+	$scope.editResponse = function(response){
+		$scope.editingResponseId = response.id;
+	}
+	$scope.doneEditingResponse = function(response){
+		$scope.editingResponseId = -1;
+	}
 	$scope.showAddEvent = function(){
 		$('#add-event-modal').modal('show');
 	}
@@ -13,6 +23,47 @@ myApp.controller("BoardCtrl", function ($scope) {
 	}
 	$scope.showAddPost = function(){
 		$('#add-post-modal').modal('show');	
+	}
+	function updateEvent(){
+		$.ajax({
+			url: '/events/update/'+ $scope.selectedEvent.id,
+			type:'post',
+			data: $scope.selectedEvent
+		})
+	}
+	function updateBrag(){
+		$.ajax({
+			url: '/brags/update/'+$scope.selectedBrag.id,
+			type:'post',
+			data: $scope.selectedBrag
+		})
+	}
+	function updatePost(){
+		$.ajax({
+			url:'/forum/update/'+$scope.selectedPost.id,
+			type:'post',
+			data: $scope.selectedPost
+		})
+	}
+	$('.event-input').focusout(function(){
+		updateEvent();
+	});
+	$('.brag-input').focusout(function(){
+		updateBrag();
+	});
+	$('.post-input').focusout(function(){
+		updatePost();
+	})
+	$scope.updateResponse = function(response){
+		$.ajax({
+			url:'/forum/response/update/'+response.id,
+			type:'post',
+			data: response,
+			success:function(data){
+				$scope.editingResponseId = -1;
+				$scope.$digest();
+			}
+		})
 	}
 	$scope.respondToEvent = function(event, response){
 		$.ajax({
@@ -116,6 +167,7 @@ myApp.controller("BoardCtrl", function ($scope) {
 	}
 	$scope.showEventModal = function(event){
 		$scope.selectedEvent = event;
+		$scope.isEditingEvent = false;
 		$('#event-modal').modal('show');
 		$.ajax({
 			url: '/events/click/'+event.id,
@@ -127,6 +179,7 @@ myApp.controller("BoardCtrl", function ($scope) {
 	}
 	$scope.showBragModal = function(brag){
 		$scope.selectedBrag = brag;
+		$scope.isEditingBrag = false;
 		$('#brag-modal').modal('show');
 		$.ajax({
 			url: '/brags/click/'+brag.id,
@@ -138,6 +191,8 @@ myApp.controller("BoardCtrl", function ($scope) {
 	}
 	$scope.showPostModal = function(post){
 		$scope.selectedPost = post;
+		$scope.isEditingPost = false;
+		$scope.editingResponseId = -1;
 		$('#post-modal').modal('show');
 		$.ajax({
 			url: '/forum/click/'+post.id,
@@ -225,7 +280,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 			url:'/brags/delete_photo/'+brag.id,
 			type:'post',
 			success:function(data){
-				console.log(data);
 				$scope.brags = data.brags;
 				$scope.selectedBrag = data.brag;
 				$scope.$digest();

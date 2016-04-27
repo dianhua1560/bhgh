@@ -30,7 +30,8 @@ class Brag < ActiveRecord::Base
 			gravatar: self.gravatar,
 			id: self.id,
 			body: self.body,
-			liked: BragLike.where(email: myEmail).where(brag_id: self.id).length > 0
+			liked: BragLike.where(email: myEmail).where(brag_id: self.id).length > 0,
+			can_edit: true
 		}
 	end
 

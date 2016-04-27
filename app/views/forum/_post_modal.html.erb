@@ -2,26 +2,57 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <div class = 'centered'>
+
+        <div>
+          <div ng-show = 'selectedPost.can_edit && !isEditingPost' ng-click = 'isEditingPost = true' class = 'btn btn-default'>Edit</div>
+          <div ng-show = 'isEditingPost' class = 'btn btn-default' ng-click = 'isEditingPost = false'>Done</div>
+      </div>
+
+        <div class = 'centered' ng-show = '!isEditingPost'>
           <h3>{{selectedPost.title}}</h3>
           <h4>{{selectedPost.body}}</h4>
           <div>{{selectedPost.timestamp}}</div>
           <img src = '{{selectedPost.gravatar}}' class = 'gravatar'>
-
         </div>
-        <div ng-repeat = 'response in selectedPost.comments' class = 'response-div'>
-            <div ng-show = 'response.can_edit' class = 'pull-right'>
-              <a ng-click = 'deleteResponse(response)' href = 'javascript:void(0)'>x</a>
-            </div>
-            <img src = '{{response.gravatar}}' class = 'small-gravatar'>
-            {{response.body}} 
-            <div class = 'text-muted'>{{response.timestamp}}</div>
+
+        <div class = 'centered' ng-show = 'isEditingPost'>
+          <h3>
+            <input ng-model = 'selectedPost.title' class='post-input'>
+          </h3>
+          <h4>
+            <input ng-model = 'selectedPost.body' class = 'post-input'>
+          </h4>
         </div>
 
         <div id = 'post-input-div'>
          <textarea class = 'form-control' ng-model = 'commentInput' placeholder = 'Respond'></textarea>
           <button id = 'save-response-btn' class = 'btn btn-default' ng-click = 'saveResponse(selectedPost, commentInput)'>Enter</button>
         </div>
+
+        <div ng-repeat = 'response in selectedPost.comments' class = 'response-div'>
+            <div ng-show = 'response.can_edit' class = 'pull-right'>
+                <a ng-click = 'deleteResponse(response)' href = 'javascript:void(0)'
+                ng-show = 'editingResponseId == response.id'>Delete</a>&nbsp;
+                <a href= 'javascript:void(0);' ng-click = 'editResponse(response)' ng-show = 'editingResponseId != response.id'>
+                  Edit
+                </a>
+                <a href = 'javascript:void(0)' ng-show ='editingResponseId == response.id' ng-click = 'doneEditingResponse(response)'>Done</a>
+            </div>
+
+            <div ng-hide = 'editingResponseId == response.id'>
+              <img src = '{{response.gravatar}}' class = 'small-gravatar'>{{response.author}}: {{response.body}} 
+              <div class = 'text-muted'>{{response.timestamp}}</div>
+            </div>
+
+            <div ng-show = 'editingResponseId == response.id'>
+              <img src = '{{response.gravatar}}' class = 'small-gravatar'>{{response.author}}
+              <input class = 'response-input' ng-model = 'response.body' data-id = '{{response.id}}'>
+              <a href = 'javascript:void(0)' ng-click = 'updateResponse(response)'>Save</a>
+            </div>
+             
+        </div>
+
+        
 
          <div class = 'row'>
           <button id = 'delete-post-btn' class = 'btn btn-danger pull-right' ng-click = 'deletePost(selectedPost)'>Delete</button>

@@ -1,15 +1,33 @@
 h1, h2, h3, h4, h5, h6 {
-    /*font-family: 'Source Sans Pro', sans-serif;*/
-    font-family: 'Open Sans';
+    font-family: 'Source Sans Pro', sans-serif;
+    /*font-family: 'Open Sans';*/
 }
 p, div {
-    /*font-family: 'Source Sans Pro', sans-serif;*/
-    font-family: 'Open Sans';
+    font-family: 'Source Sans Pro', sans-serif;
+    /*font-family: 'Open Sans';*/
 }
 a{
 	color: #0077CC;
 }
+.img-preview{
+	height:100px;
+}
+.hidden{
+	display:none;
+}
+.event-input{
+	width:100%;
+}
+.brag-input{
+	width:100%;
+}
+.response-input{
+	width:100%;
+}
 #main-row{
+}
+.event-photo{
+	width:100%;
 }
 #main-row:after {
 	height:1000px;
@@ -28,7 +46,7 @@ a{
 #top-jumbotron{
 	color:white;
 	text-align:center;
-	background-color:333;
+	background-color:black;
 	color:#f2f2f2;
 }
 #search-input{

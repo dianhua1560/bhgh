@@ -4,49 +4,54 @@
     <div class="modal-content">
         
       <div class="modal-body">
-
         <div class = 'pull-right'>
           <button type="button" class="btn btn-default" ng-click = 'likeBrag(selectedBrag, true)' ng-show = '!selectedBrag.liked'>Like</button>
           <button type="button" class="btn btn-default" ng-click = 'likeBrag(selectedBrag, false)' ng-show = 'selectedBrag.liked'>Unlike</button>
         </div>
-        <h2 class="editable" id = 'edit-brag-title'>{{selectedBrag.title}}</h2>
-        <p class = 'editable' id = 'edit-brag-body'>{{selectedBrag.body}}
-        </p>
 
-        <img ng-show = 'selectedBrag.photo_url != ""' src = '{{selectedBrag.photo_url}}' class = 'brag-modal-photo'>
-
-        <div class = 'box'>
-	       <div>
-          Subject: 
-          <span class = 'editable' id = 'edit-brag-subject'>{{selectedBrag.subject}}</span>
+        <div class = 'edit-toggles'>
+          <div ng-show = '!isEditingBrag && selectedBrag.can_edit' class = 'btn btn-default' ng-click = 'isEditingBrag = true'>Edit</div>
+          <div ng-show = 'isEditingBrag' ng-click = 'isEditingBrag = false' class = 'btn btn-default'>Done</div>
         </div>
-	       <div>Author: {{selectedBrag.author}}</div>
-	       
-	       <div>Created At: 
-            {{selectedBrag.created_at}}
-        </div>
-      </div>
-        
 
         
 
-        <div id = 'update-brag-photo-div' class = 'box'>
+        <div id = 'selected-brag-show' ng-hide = 'isEditingBrag'>
+            <h2>{{selectedBrag.title}}</h2>
+            <p>{{selectedBrag.body}}</p>
+            <div>Subject: {{selectedBrag.subject}}</div>
+           <div>Author: {{selectedBrag.author}}</div>
+           <div>Created At: {{selectedBrag.created_at}}</div>
+
+            <img ng-show = 'selectedBrag.photo_url != ""' src = '{{selectedBrag.photo_url}}' class = 'brag-modal-photo'>
+        </div>
+
+        <div id = 'selected-brag-edit' ng-show = 'isEditingBrag'>
+          <h2><input ng-model = 'selectedBrag.title' class = 'brag-input'></h2>
+          <div>
+            Body: <input ng-model = 'selectedBrag.body' class = 'brag-input'></div>
+          <div>
+            Subject: <input ng-model = 'selectedBrag.subject' class = 'brag-input'></div>
+          <div id = 'update-brag-photo-div' class = 'box'>
+            Photo: 
           <form class="update-photo-form" id="update-photo-form" enctype="multipart/form-data" action="/brags/update_photo" accept-charset="UTF-8" method="post">
-            <div>Update Brag Photo</div>
-          <input  type = 'hidden' name = 'id' value = '{{selectedBrag.id}}'>
-          <input type="file" name="avatar" id="update-brag-avatar">
-          <input type = 'submit' class = 'btn btn-default' value = 'Update Photo'>
-          </form>
-          <button class = 'btn btn-default' ng-click = 'deleteBragPhoto(selectedBrag)'>Delete Photo</button>
-      </div>
-
-      <div class = 'admin-controls box'>
-          <button class = 'btn btn-default' ng-click = 'updateBrag(selectedBrag)'>Save Changes</button>
-         <button class = 'btn btn-default' ng-click = 'deleteBrag(selectedBrag)'>Delete</button>
-      </div>
+            <input  type = 'hidden' name = 'id' value = '{{selectedBrag.id}}'>
+            <img src = '{{selectedBrag.photo_url}}' id = 'brag-img-preview' class = 'img-preview'>
+            <input type="file" name="avatar" id="update-brag-avatar" onchange = "readURL(this, '#brag-img-preview')">
+            <input type = 'submit' class = 'btn btn-default' value = 'Update Photo'>
+            </form>
+            <button class = 'btn btn-default' ng-click = 'deleteBragPhoto(selectedBrag)'>Remove Photo</button>
+          </div>
+        </div>
+        
 
 
-      </div>
+        
+
+       
+
+
+      </div><!-- modal body -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
