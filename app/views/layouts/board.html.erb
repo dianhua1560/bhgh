@@ -71,7 +71,7 @@
 
 
 <div class = 'col-md-4'>
-  <h1>Events</h1>
+  <h1 class='centered'>Events</h1>
   <div ng-repeat = 'event in events | filter:searchTerm' class = 'board-card event-card' ng-click = 'showEventModal(event)'>
         <div class = 'pull-right'>
         <img src = '{{event.gravatar}}' class = 'gravatar'>
@@ -81,7 +81,7 @@
       <div>{{event.time_string}}</div>
       <div>Organizer: {{event.organizer}}</div>
       <div>Location: 
-        <a href = 'https://www.google.com/maps/place/{{event.location}}'>{{event.location}}
+        <a target = '_blank' href = 'https://www.google.com/maps/place/{{event.location}}'>{{event.location}}
         </a>
       </div>
 
@@ -93,7 +93,7 @@
 </div>
 
 <div class = 'col-md-4'>
-  <h1>Brags</h1>
+  <h1 class='centered'>Brags</h1>
 <div ng-repeat = 'brag in brags | filter:searchTerm' class = 'board-card brag-card' ng-click = 'showBragModal(brag)'>
 
   <div class = 'row brag-img-div' ng-show = 'brag.photo_url != ""'>
@@ -114,10 +114,11 @@
 </div>
 
 <div class = 'col-md-4'>
-  <h1>Forum</h1>
+  <h1 class='centered'>Forum</h1>
 <div ng-repeat = 'post in posts | filter:searchTerm' class = 'board-card post-card' ng-click = 'showPostModal(post)'>
   <h3>{{post.title}}</h3>
   <p>{{post.body}}</p>
+  <p>Posted By: {{post.author}}</p>
   {{post.comments.length}} responses
 </div>
 </div>

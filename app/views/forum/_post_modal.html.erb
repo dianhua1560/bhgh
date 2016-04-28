@@ -12,6 +12,7 @@
         <div class = 'centered' ng-show = '!isEditingPost'>
           <h3>{{selectedPost.title}}</h3>
           <h4>{{selectedPost.body}}</h4>
+          <div>Posted By: {{selectedPost.author}}</div>
           <div>{{selectedPost.timestamp}}</div>
           <img src = '{{selectedPost.gravatar}}' class = 'gravatar'>
         </div>
@@ -41,7 +42,8 @@
             </div>
 
             <div ng-hide = 'editingResponseId == response.id'>
-              <img src = '{{response.gravatar}}' class = 'small-gravatar'>{{response.author}}: {{response.body}} 
+              <img src = '{{response.gravatar}}' class = 'small-gravatar'>{{response.author}}
+              <div>{{response.body}}</div>
               <div class = 'text-muted'>{{response.timestamp}}</div>
             </div>
 

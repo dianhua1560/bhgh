@@ -9,6 +9,9 @@ p, div {
 a{
 	color: #0077CC;
 }
+.event-photo{
+	width:100%;
+}
 .img-preview{
 	height:100px;
 }
