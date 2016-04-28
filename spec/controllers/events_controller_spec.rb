@@ -12,28 +12,16 @@ RSpec.describe EventsController, type: :controller do
 				time: Time.now)
 
 		end
-		# it 'uploads photo' do
-		# 	# image = Rack::Test::UploadedFile.new(Rails.root.join('image.png'), 'image/png')
-		# 	# image = Rack::Test::UploadedFile.new('spec/image.png', 'image/png')
-		# 	# image = Rails.root.join('spec/fixtures/images/test.png')
-		# 	# image = File.open('spec/image.png')
-		# 	# EmpAttachment.create(picture: File.open("#{Rails.root}/spec/image.png"))
-		# 	# image = File.open('spec/image.png')
+		it 'uploads photo' do
+			@event1.stub(:save).and_return(true)
 
-		# 	image = fixture_file_upload('image.png', 'image/png')
-
-
-		# 	update_params = {
-		# 		avatar: image,
-		# 		id: @event1.id
-		# 	}
-		# 	post :update_photo, update_params
-		# 	# expect(response).to have_http_status(400)
-		# 	response.should redirect_to('/') 
-		# end
-
-
-		
+			update_params = {
+				avatar: "",
+				id: @event1.id
+			}
+			post :update_photo, update_params
+			response.should redirect_to('/') 
+		end		
 	end
 end
 ##test bad update

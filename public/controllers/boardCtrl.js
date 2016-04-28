@@ -105,12 +105,10 @@ myApp.controller("BoardCtrl", function ($scope) {
 				response: response
 			},
 			success:function(data){
-				console.log('successful response');
 				event.response = data;
 				$scope.$digest();
 			},
 			error:function(data){
-				console.log('error responding');
 				event.response = data;
 			}
 		})
@@ -126,12 +124,9 @@ myApp.controller("BoardCtrl", function ($scope) {
 				location: $scope.newEvent.location
 			},
 			success:function(data){
-				console.log('saved events');
 				$scope.events = [];
 			},
 			error:function(data){
-				alert('error saving event');
-				console.log(data);
 			}
 		})
 	}
@@ -152,8 +147,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 				$scope.$digest();
 			},
 			error:function(data){
-				alert(data.responseText);
-				console.log(data);
 			}
 		})
 	}
@@ -171,14 +164,10 @@ myApp.controller("BoardCtrl", function ($scope) {
 				$('#add-post-modal').modal('hide');
 			},
 			error:function(data){
-				console.log('error');
-				console.log(data);
 			}
 		})
 	}
 	$scope.saveResponse = function(post, body){
-		console.log(post);
-		console.log('saving response');
 		$.ajax({
 			url:'/forum/response/create/'+post.id,
 			type:'post',
@@ -192,7 +181,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 				$scope.$digest();
 			},
 			error:function(data){
-				alert('error');
 			}
 		})
 	}
@@ -204,7 +192,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 			url: '/events/click/'+event.id,
 			type:'post',
 			success:function(data){
-				console.log('logged event click');
 			}
 		});
 	}
@@ -216,7 +203,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 			url: '/brags/click/'+brag.id,
 			type:'post',
 			success:function(data){
-				console.log('logged brag click');
 			}
 		});
 	}
@@ -229,7 +215,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 			url: '/forum/click/'+post.id,
 			type:'post',
 			success:function(data){
-				console.log('logged forum click');
 			}
 		});
 	}
@@ -248,8 +233,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 				$scope.$digest();
 			},
 			error:function(data){
-				console.log('errors');
-				console.log(data);
 			}
 		})
 	};
@@ -270,7 +253,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 				$scope.$digest();
 			},
 			error:function(data){
-				alert('error');
 			}
 		});
 	}
@@ -287,7 +269,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 				$scope.$digest();
 			},
 			error:function(data){
-				console.log('error');
 			}
 		})
 	}
@@ -301,12 +282,10 @@ myApp.controller("BoardCtrl", function ($scope) {
 				$('#brag-modal').modal('hide');
 			},
 			error:function(data){
-				console.log('error deleting brag');
 			}
 		})
 	}
 	$scope.deleteBragPhoto = function(brag){
-		console.log('deleting brag photo');
 		$.ajax({
 			url:'/brags/delete_photo/'+brag.id,
 			type:'post',
@@ -327,7 +306,6 @@ myApp.controller("BoardCtrl", function ($scope) {
 				$('#event-modal').modal('hide');
 			},
 			error:function(data){
-				console.log('errror deleting event');
 			}
 		})
 	}

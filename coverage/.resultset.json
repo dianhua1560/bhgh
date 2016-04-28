@@ -185,6 +185,7 @@
         1,
         null,
         null,
+        null,
         298,
         null,
         null,
@@ -692,7 +693,7 @@
         0
       ]
     },
-    "timestamp": 1461805359
+    "timestamp": 1461823147
   },
   "RSpec": {
     "coverage": {
@@ -707,6 +708,7 @@
       "/Users/davidbliu/Desktop/169/bhgh/app/helpers/auth_helper.rb": [
         1,
         1,
+        null,
         null,
         null,
         3,
@@ -997,7 +999,7 @@
         1,
         1,
         1,
-        0,
+        1,
         null,
         null,
         null,
@@ -1291,10 +1293,6 @@
         null,
         null
       ],
-      "/Users/davidbliu/Desktop/169/bhgh/app/models/photo.rb": [
-        1,
-        null
-      ],
       "/Users/davidbliu/Desktop/169/bhgh/app/models/post_response_like.rb": [
         1,
         1,
@@ -1391,6 +1389,6 @@
         null
       ]
     },
-    "timestamp": 1461805239
+    "timestamp": 1461823030
   }
 }
