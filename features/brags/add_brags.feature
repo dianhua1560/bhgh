@@ -20,11 +20,11 @@ Background: brags have been added to the bragboard
 	Given that I am logged in as "admin1@gmail.com"
 
 Scenario: Admin can add a brag
-	Given I post "{title: 'title2', subject: 'scholar1@gmail.com', body: 'body'}" to "/brags/create"
+	Given I post "{brag: {title: 'title2', subject: 'scholar1@gmail.com', body: 'body'}}" to "/brags/create_form"
 	Then there should be "3" brags
 
 Scenario: Brags should validate subject and body
-	Given I post "{}" to "/brags/create"
+	Given I post "{brag: {title: ''}}" to "/brags/create_form"
 	Then there should be "2" brags
 
 
@@ -36,4 +36,15 @@ Scenario: Admin can delete brags
 	Given I delete brag "title1"
 	Then there should be "1" brags
 
+Scenario: admin can delete photos
+	Given I delete photo for "title1"
+	Then there should be "2" brags
+
+Scenario: can get delete brags
+	Given I get delete brag "title1"
+	Then there should be "1" brags
+
+Scenario: bad updates should fail
+	Given I update brag "title1" with "{body:''}"
+	Then there should be a brag with title "title1" and body "newbody"
 

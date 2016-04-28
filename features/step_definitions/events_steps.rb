@@ -8,8 +8,15 @@ Given /the following events exist/ do |events_table|
     Event.create(
       title: event[:title],
       description: event[:description],
-      time: event[:time])
+      time: event[:time],
+      location: '123 main street',
+      organizer: 'davidbliu@gmail.com')
   end
+end
+
+Given /I get delete event "(.*)"/ do |title|
+  Capybara.current_session.driver.header 'Referer', '/'
+  visit '/events/delete/'+Event.find_by_title(title).id.to_s
 end
 
 Given /I test google_callback/ do
@@ -17,20 +24,23 @@ Given /I test google_callback/ do
 end
 
 Given(/^I post a sample event$/) do
-  params = {
+  params = {event:
+    {
     title: 'sample_event',
     time: 'May 3, 2016',
-    location: '123 main street'
-  }
-  page.driver.post('/events/create', params)
+    location: '123 main street',
+    organizer: 'davidbliu@gmail.com',
+    description: 'random desc'
+  }}
+  page.driver.post('/events/create_form', params)
 end
 
 Given(/^I post a bad sample event$/) do
-  params = {
+  params = {event:{
     time: 'May 3, 2016',
     location: '123 main street'
-  }
-  page.driver.post('/events/create', params)
+  }}
+  page.driver.post('/events/create_form', params)
 end
 
 Then /there should be "(.*)" events/ do |num|

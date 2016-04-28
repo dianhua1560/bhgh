@@ -1,10 +1,10 @@
 Given(/^the following posts exist:$/) do |table|
 	table.hashes.each do |row|
-		params = {
+		params = {post:{
 			title: row[:title],
 			body: row[:body],
 			author: row[:author]
-		}
+		}}
 		page.driver.post('/forum/create', params)
 		puts Post.all.length
 	end

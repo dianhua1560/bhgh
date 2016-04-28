@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   # Events
   get '/events/list' => 'events#list'
-  post '/events/create' => 'events#create'
+  # post '/events/create' => 'events#create'
   post '/events/create_form' => 'events#create'
   get '/events/modal_show/:id' => 'events#modal_show'
   post '/events/respond/:id' => 'events#respond'

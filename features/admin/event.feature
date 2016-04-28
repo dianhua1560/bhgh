@@ -1,8 +1,7 @@
-Feature: udpate events on the events page
- 
+Feature: add events to the events list
 	As an event organizer
-	So that I can accurately present upcoming events
-	I want to be able to update and delete existing events on the events page
+	So that I can publicize events
+	I want to add events to the list of events on the events page
 
 Background: events have been added to the database
 
@@ -20,23 +19,20 @@ Background: events have been added to the database
 	| Alice | alice@gmail.com | tutor | 
 	| Bob | bob@gmail.com | user |
 
-
-Scenario: delete an event
+Scenario: test google oauth
 	Given that I am logged in as "davidbliu@gmail.com"
-	When I delete "title1"
-	Then there should be "4" events
-
-Scenario: update an event
+	
+Scenario: add an event
 	Given that I am logged in as "davidbliu@gmail.com"
-	When I update "title1" with "{title: 'randomtitle'}"
-	Then there should be an event "randomtitle"
+	Given I post a sample event
+	Then there should be "6" events
 
-Scenario: update event with wrong params
+Scenario: normal user cannot add events
+	Given that I am logged in as "asdf@gmail.com"
+	Given I post a sample event
+	Then there should be "5" events
+
+Scenario: add bad event params
 	Given that I am logged in as "davidbliu@gmail.com"
-	When I update "title1" with "{title: ''}"
-	Then there should be an event "title1"
-
-Scenario: get delete events
-	Given I am on the board page
-	Given that I get delete event "title1"
-	Then there should be "4" events
+	Given I post a bad sample event
+	Then there should be "5" events

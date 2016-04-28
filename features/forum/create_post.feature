@@ -25,22 +25,22 @@ Scenario: user can see Create Post button
 
 Scenario: create a post on the forum
 	Given that I am logged in as "scholar1@gmail.com"
-	Given I post "{title: 'title3', body:'body3'}" to "/forum/create"
+	Given I post "{post:{title: 'title3', body:'body3'}}" to "/forum/create"
 	Then there should be "3" posts
 
 Scenario: post should validate title
 	Given that I am logged in as "scholar1@gmailcom"
-	Given I post "{body:'somebody'}" to "/forum/create"
+	Given I post "{post:{body:'somebody'}}" to "/forum/create"
 	Then there should be "2" posts
 
 Scenario: post should validate author
 	Given that I am logged in as "scholar1@gmail.com"
-	Given I post "{author: '',title:'mytitle',body:'somebody'}" to "/forum/create"
+	Given I post "{post:{author: '',title:'mytitle',body:'somebody'}}" to "/forum/create"
 	Then there should be "3" posts
 
 Scenario: post should validate body
 	Given that I am logged in as "scholar1@gmail.com"
-	Given I post "{title:'title3'}" to "/forum/create"
+	Given I post "{post:{title:'title3'}}" to "/forum/create"
 	Then there should be "2" posts
 
 Scenario: user can delete his own posts

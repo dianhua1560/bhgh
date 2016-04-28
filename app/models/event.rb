@@ -18,9 +18,6 @@ class Event < ActiveRecord::Base
 	def self.list(myEmail)
 		Event.all.map{|x| x.tojson(myEmail)}.to_json
 	end
-	def self.do_new(params)
-		return Event.new(params)
-	end
 
 	def do_update(params)
 		params[:time] = Event.convert_time_string(params[:time])
@@ -35,9 +32,6 @@ class Event < ActiveRecord::Base
 		end
 	end
 
-	def photos
-		[]
-	end
 
 
 	def tojson(myEmail)
@@ -65,9 +59,6 @@ class Event < ActiveRecord::Base
 		return "http://gravatar.com/avatar/#{gravatar_id}.png"
 	end
 
-	def sort_time
-		return self.time ? self.time : Time.now
-	end
 
 	def time_string
 		self.time ? self.time.strftime('%B %d, %Y') : ''

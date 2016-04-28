@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-   before_filter :is_admin, :only => [:create]
+   before_filter :is_admin, :only => [:create, :create_form]
 
    def is_admin
         q = Member.where(email: myEmail)

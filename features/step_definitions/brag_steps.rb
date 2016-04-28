@@ -10,6 +10,16 @@ Given(/^the following brags exist:$/) do |table|
 	end
 end
 
+Given /I get delete brag "(.*)"/ do |title|
+	page.driver.get('/brags/delete/'+Brag.find_by_title(title).id.to_s)
+end
+
+
+Given /I delete photo for "(.*)"$/ do |title|
+	b = Brag.find_by_title(title)
+	page.driver.post('/brags/delete_photo/'+b.id.to_s, {})
+end
+
 Given(/there should be "(.*)" brags/) do |num|
 	Brag.all.length.should == num.to_i
 end
