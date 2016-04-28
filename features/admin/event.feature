@@ -36,3 +36,17 @@ Scenario: add bad event params
 	Given that I am logged in as "davidbliu@gmail.com"
 	Given I post a bad sample event
 	Then there should be "5" events
+
+Scenario: add members as admin
+	Given that I am logged in as "davidbliu@gmail.com"
+	Given I am on the members page
+	Then I should see "Bob"
+	Given I delete member "Bob"
+	Given I am on the members page
+	Then I should not see "Bob"
+
+Scenario: admin can add admins
+	Given that I am logged in as "davidbliu@gmail.com"
+	Given that I post "{name: 'name', email: 'email@gmail.com', position: 'admin'}" to "/create_member"
+	Given I am on the members page
+	Then I should see "name"

@@ -70,6 +70,10 @@ Rails.application.routes.draw do
   # Admin
   get '/admin' => 'admin#index'
 
+  get '/members' => 'application#members'
+  post '/create_member' => 'application#create_member'
+  get '/delete_member/:id' => 'application#delete_member'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

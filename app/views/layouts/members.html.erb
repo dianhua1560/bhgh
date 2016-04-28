@@ -1,0 +1,27 @@
+<form action="/create_member" id="new_person" method="post">
+
+  <input type = 'text' name = 'email' placeholder = 'email'>
+  <input type = 'text' name = 'name' placeholder = 'name'>
+  <input type = 'text' name = 'position' placeholder = 'position (ie: admin, scholar, tutor)'>
+  <input name="commit" type="submit" value="Create Member" />
+</form>
+<table class = 'table table-bordered'>
+	<thead>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Position</th>
+		<th>Created On</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @members.each do |member| %>
+		<tr>
+			<td><%= member.name %></td>
+			<td><%= member.email %></td>
+			<td><%= member.position %></td>
+			<td><%= member.created_at %></td>
+			<td><%= link_to 'Delete', "/delete_member/#{member.id}" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

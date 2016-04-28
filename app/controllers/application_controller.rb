@@ -33,4 +33,23 @@ class ApplicationController < ActionController::Base
     @maps_api_key = ENV['MAPS_API_KEY']
     render 'layouts/board', layout: false
   end
+
+  def members
+    @members = Member.all
+    render 'layouts/members'
+  end
+
+  def create_member
+    Member.create(
+      name: params[:name], 
+      email:params[:email],
+      position: params[:position])
+    redirect_to '/members'
+  end
+
+  def delete_member
+    Member.find(params[:id]).destroy
+    redirect_to '/members'
+  end
+
 end
