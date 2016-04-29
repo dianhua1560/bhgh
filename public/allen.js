@@ -6,6 +6,7 @@ var BulletinBoard = {
 		// $(window).scroll(BulletinBoard.lockColumnHeaders);
 		$('#proceed-btn').click(BulletinBoard.scrollToBoard);
 		$('#searchicon').hover(BulletinBoard.showBlackSearchIcon, BulletinBoard.showWhiteSearchIcon);
+		$('#searchicon').click(BulletinBoard.search);
 		// var elementPosition = $('#column-header').offset();
 		// $(window).scroll(BulletinBoard.lockColumnHeaders);
 	},
@@ -32,6 +33,24 @@ var BulletinBoard = {
 	},
 	showWhiteSearchIcon: function() {
 		$('#search_img').attr('src', "/search_white.png");
+	},
+	search: function() {
+		if ($('#search-input').is(':visible')) {
+			$('#search-input').hide();
+			// $(this).css({
+			// 	'background-color': '#F68D36',
+			// 	'color':'white'
+			// });
+		}
+		else {
+			$('#search-input').show();
+			$(this).css({
+			// 	// 'background-color': '#FFF',
+			// 	// 'color':'black',
+				'display':'inline !important'
+			});
+		}
+
 	},
 	// lockColumnHeaders: function() {
 	// 	var elementPosition = $('#column-header').position();

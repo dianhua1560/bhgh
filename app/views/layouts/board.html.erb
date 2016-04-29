@@ -43,6 +43,7 @@
   var errors = <%= raw(@errors) %>;
   var params = <%= raw(@params) %>;
   var error_type = '<%= @error_type %>';
+  var searching = <%= raw(@searching) %>;
 </script>
 <script src = '/lib/angular.min.js'></script>
 <script src = '/lib/angular-route.min.js'></script>
@@ -60,7 +61,11 @@
 <!-- <div class = 'jumbotron row' id = 'top-jumbotron'>
   <div class = 'col-md-4'></div>
   <div class = 'col-md-4'>BULLETIN BOARD</div>
-  <div class = 'col-md-4'></div>
+  <div class = 'col-md-4'>    
+
+  <div class = 'centered'>
+     <input id = 'search-input' class = 'form-control' placeholder = 'SEARCH' ng-model = 'searchTerm'>
+    </div></div>
 </div> -->
 
 <!-- header bar -->
@@ -90,6 +95,9 @@
     <div class='icon' id='searchicon'>
       <img id='search_img' src='/search_white.png' height='40' class='center'>
       Search
+    </div>
+    <div>
+     <input id = 'search-input' class = 'form-control' placeholder = 'SEARCH' ng-model = 'searchTerm'>
     </div>
   </div>
 </div>

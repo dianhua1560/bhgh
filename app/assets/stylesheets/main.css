@@ -194,12 +194,13 @@ img.center{
 	font-size: 40px;
 }
 #search-input{
-	margin-top:2em;
+	/*margin-top:2em;*/
 	text-align: center;
 	width:75%;
-	margin-left:15%;
-	border:none;
+	margin-left:-50%;
 	border-radius:0px;
+	border: 1px solid #F68D36;
+	display:none;
 }
 .centered{
 	width:100%;

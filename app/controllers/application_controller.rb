@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
     @errors = flash[:errors].to_json
     @params = flash[:object_params].to_json
     @error_type = flash[:error_type]
+    @searching = false
 
     @events = Event.all.map{|x| x.tojson(myEmail)}.to_json
     @brags = Brag.all.order('created_at desc').map{|x| x.tojson(myEmail)}.to_json
