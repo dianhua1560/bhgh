@@ -22,6 +22,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js"></script> -->
 
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
 
 
 
@@ -48,6 +49,7 @@
 
 <script src = '/app.js'></script>
 <script src = '/controllers/boardCtrl.js'></script>
+<script src = '/allen.js'></script>
 <div ng-app = 'boardApp' id = 'main-row'>
 
 
@@ -55,72 +57,113 @@
 
 
 
-<div class = 'jumbotron row' id = 'top-jumbotron'>
+<!-- <div class = 'jumbotron row' id = 'top-jumbotron'>
   <div class = 'col-md-4'></div>
-  <div class = 'col-md-4'>
-    <img src = '/logo.png'>
-  	<div class = 'centered'>
-  	 <input id = 'search-input' class = 'form-control' placeholder = 'SEARCH' ng-model = 'searchTerm'>
+  <div class = 'col-md-4'>BULLETIN BOARD</div>
+  <div class = 'col-md-4'></div>
+</div> -->
+
+<!-- header bar -->
+<div class='container-header'>
+  <div class='container-logo'>
+      <img src='/logo.png' height='40' class='center'>
+  </div>
+  
+  <div class='header'>BULLETIN BOARD</div>
+
+  <div class='icon-container'>
+    <div class='icon' id="addpost" ng-click = 'showAddPost()'>
+      <img id='post_img' src='/add_post_white.png' height='40' class='center'>
+      + Forum
+    </div>
+    
+    <div class='icon' id="addbrag" ng-click = 'showAddBrag()'>
+      <img id='brag_img' src='/add_brag_white.png' height='40' class='center'>
+      + Brag
+    </div>
+    
+    <div class='icon' id="addevent" ng-click = 'showAddEvent()'>
+      <img id='event_img' src='/add_event_white.png' height='40' class='center'>
+      + Event
     </div>
   </div>
+  
+  
+</div>
+
+<div class='landing'>
+  <div id='welcome-message'>Welcome to the BHGH Bulletin Board!</div>
+  <div class='proceed-btn' id='proceed-btn'> Proceed to Board
+    <img id='arrow' src='/arrow.png' class='center' height='40'>
+  </div>
+</div>  
+
+
+<!-- header bar for columns-->
+<!-- <div class='column-header'>
+  <div class='col-md-4'>EVENTS</div>
+  <div class='col-md-4'>BRAGS</div>
+  <div class='col-md-4'>FORUM</div>
+</div> -->
+
+<div class='board'>
+  <div class='column-header' id='column-header'>
+    <div class='col-md-4'>EVENTS</div>
+    <div class='col-md-4'>BRAGS</div>
+    <div class='col-md-4'>FORUM</div>
+  </div>
   <div class = 'col-md-4'>
+    <!-- <h1 class='column-header'>Events</h1> -->
+    <div ng-repeat = 'event in events | filter:searchTerm' class = 'board-card event-card' ng-click = 'showEventModal(event)'>
+          <div class = 'pull-right'>
+          <img src = '{{event.gravatar}}' class = 'gravatar'>
+        </div>
+        <h3>{{event.title}}</h3>
+        <p>{{event.description}}</p>
+        <div>{{event.time_string}}</div>
+        <div>Organizer: {{event.organizer}}</div>
+        <div>Location: 
+          <a target = '_blank' href = 'https://www.google.com/maps/place/{{event.location}}'>{{event.location}}
+          </a>
+        </div>
 
+        <div ng-show = 'event.response'>You are {{event.response}}</div>
+        <div ng-show = 'event.photo_url'>
+          <img src = '{{event.photo_url}}' class = 'event-photo'>
+        </div>
+  </div>
   </div>
 
-</div>
+  <div class = 'col-md-4'>
+    <!-- <h1 class='column-header'>Brags</h1> -->
+  <div ng-repeat = 'brag in brags | filter:searchTerm' class = 'board-card brag-card' ng-click = 'showBragModal(brag)'>
 
+    <div class = 'row brag-img-div' ng-show = 'brag.photo_url != ""'>
+      <img  src = '{{brag.photo_url}}' style = 'width:100%'>
+    </div>
 
-<div class = 'col-md-4'>
-  <h1 class='centered'>Events</h1>
-  <div ng-repeat = 'event in events | filter:searchTerm' class = 'board-card event-card' ng-click = 'showEventModal(event)'>
-        <div class = 'pull-right'>
-        <img src = '{{event.gravatar}}' class = 'gravatar'>
-      </div>
-      <h3>{{event.title}}</h3>
-      <p>{{event.description}}</p>
-      <div>{{event.time_string}}</div>
-      <div>Organizer: {{event.organizer}}</div>
-      <div>Location: 
-        <a target = '_blank' href = 'https://www.google.com/maps/place/{{event.location}}'>{{event.location}}
-        </a>
-      </div>
-
-      <div ng-show = 'event.response'>You are {{event.response}}</div>
-      <div ng-show = 'event.photo_url'>
-        <img src = '{{event.photo_url}}' class = 'event-photo'>
-      </div>
-</div>
-</div>
-
-<div class = 'col-md-4'>
-  <h1 class='centered'>Brags</h1>
-<div ng-repeat = 'brag in brags | filter:searchTerm' class = 'board-card brag-card' ng-click = 'showBragModal(brag)'>
-
-  <div class = 'row brag-img-div' ng-show = 'brag.photo_url != ""'>
-    <img  src = '{{brag.photo_url}}' style = 'width:100%'>
+    <div class = 'pull-right'>
+      <img src = '{{brag.gravatar}}' class = 'gravatar'>
+    </div>
+    <h3>{{brag.title}}</h3>
+    <div class = 'brag-body'>{{brag.body}}</div>
+    <div>Subject: {{brag.subject}}</div>
+    <div>Author: {{brag.author}}</div>
+    <div ng-show = 'brag.liked' class = 'pull-right'>
+    	Liked
+    </div>
+  </div>
   </div>
 
-  <div class = 'pull-right'>
-    <img src = '{{brag.gravatar}}' class = 'gravatar'>
+  <div class = 'col-md-4'>
+    <!-- <h1 class='column-header'>Forum</h1> -->
+  <div ng-repeat = 'post in posts | filter:searchTerm' class = 'board-card post-card' ng-click = 'showPostModal(post)'>
+    <h3>{{post.title}}</h3>
+    <p>{{post.body}}</p>
+    <p>Posted By: {{post.author}}</p>
+    {{post.comments.length}} responses
   </div>
-  <h3>{{brag.title}}</h3>
-  <div class = 'brag-body'>{{brag.body}}</div>
-  <div>Subject: {{brag.subject}}</div>
-  <div>Author: {{brag.author}}</div>
-  <div ng-show = 'brag.liked' class = 'pull-right'>
-  	Liked
   </div>
-</div>
-</div>
-
-<div class = 'col-md-4'>
-  <h1 class='centered'>Forum</h1>
-<div ng-repeat = 'post in posts | filter:searchTerm' class = 'board-card post-card' ng-click = 'showPostModal(post)'>
-  <h3>{{post.title}}</h3>
-  <p>{{post.body}}</p>
-  <p>Posted By: {{post.author}}</p>
-  {{post.comments.length}} responses
-</div>
 </div>
 
 
@@ -130,12 +173,11 @@
 <%= render 'events/event_modal' %>
 <%= render 'brags/brag_modal' %>
 <%= render 'forum/post_modal' %>
-<div class = 'affix' id = 'btns-container'>
+<!-- <div class = 'affix' id = 'btns-container'>
 	<button class = 'btn btn-danger round-btn' ng-click = 'showAddEvent()'>+ Event</button>
 	<button class = 'btn btn-danger round-btn' ng-click = 'showAddBrag()'>+ Brag</button>
 	<button class = 'btn btn-danger round-btn' ng-click = 'showAddPost()'>+ Post</button>
-
-</div>
+</div> -->
 
 </div><!--end of board ctrl-->
 </div>
