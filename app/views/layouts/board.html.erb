@@ -1,4 +1,4 @@
-<head>
+  <head>
   <title>BHGH</title>
   <script src = 'https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.js'></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -71,12 +71,15 @@
 <!-- header bar -->
 <div class='container-header'>
   <div class='container-logo'>
+    <a href="http://bhghsf.org">
       <img src='/logo.png' height='40' class='center'>
+    </a>
   </div>
   
   <div class='header'>BULLETIN BOARD</div>
 
   <div class='icon-container'>
+    <!-- CLICKABLE ICONS -->
     <div class='icon' id="addpost" ng-click = 'showAddPost()'>
       <img id='post_img' src='/add_post_white.png' height='40' class='center'>
       + Forum
@@ -96,9 +99,50 @@
       <img id='search_img' src='/search_white.png' height='40' class='center'>
       Search
     </div>
-    <div>
-     <input id = 'search-input' class = 'form-control' placeholder = 'SEARCH' ng-model = 'searchTerm'>
+
+    <div class='more-info-dropdown'>
+      
+      <div class='icon' id='moreinfoicon'>
+        <img id='more_info_img' src='/more_info_white.png' height='40' class='center'>
+        More
+      </div>
+      
+      <div class='dropdown-content'>
+        <div class='dropdown-icon-container'>
+          <a target = '_blank' href='http://bhghsf.org'>
+            <div class='dropdown-icon' id = 'homepage-icon'>
+              <img id='homepage_img' src='/home_page.png' height='40' class='center'>
+              Homepage
+            </div>
+          </a>
+          
+          <a target = '_blank' href='https://www.facebook.com/BoysHopeGirlsHopeSanFranciscoBayArea'>
+            <div class='dropdown-icon' id = 'facebook-icon'>
+              <img id='facebook_img' src='/facebook.png' height='40' class='center'>
+              Facebook
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
+
+    
+    <!-- DROPDOWNS FROM CLICKING ABOVE ICONS -->
+    <!-- search bar is hidden until you click search icon -->
+    <div>
+      <input id = 'search-input' class = 'form-control' placeholder = 'SEARCH' ng-model = 'searchTerm'>
+    </div>
+    <!-- <div class='more-info-icon-container'>
+      <div class='more-info-icon' id = 'facebook-icon'>
+        <img id='facebook_img' src='/facebook.png' height='40' class='center'>
+        Facebook
+      </div>
+      <div class='more-info-icon' id = 'homepage-icon'>
+        <img id='homepage_img' src='/home_page.png' height='40' class='center'>
+        Homepage
+      </div>
+    </div> -->
+
   </div>
 </div>
 
