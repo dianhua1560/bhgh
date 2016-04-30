@@ -14,7 +14,7 @@ class Brag < ActiveRecord::Base
 	end
 
 	def self.list(myEmail)
-		Brag.all.map{|x| x.tojson(myEmail)}
+		Brag.order('created_at desc').all.map{|x| x.tojson(myEmail)}.to_json
 	end
 
 	def tojson(myEmail)

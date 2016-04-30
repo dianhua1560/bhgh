@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
 	end
 
 	def self.list(myEmail)
-		Event.all.map{|x| x.tojson(myEmail)}.to_json
+		Event.order('time desc').all.map{|x| x.tojson(myEmail)}.to_json
 	end
 
 	def do_update(params)
