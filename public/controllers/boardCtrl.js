@@ -59,7 +59,13 @@ myApp.controller("BoardCtrl", function ($scope) {
 		$.ajax({
 			url: '/events/update/'+ $scope.selectedEvent.id,
 			type:'post',
-			data: $scope.selectedEvent
+			data: {
+				title: $scope.selectedEvent.title,
+				time: $scope.selectedEvent.time_string,
+				description: $scope.selectedEvent.description,
+				organizer: $scope.selectedEvent.organizer,
+				location: $scope.selectedEvent.location
+			}
 		})
 	}
 	function updateBrag(){
