@@ -84,7 +84,7 @@ var BulletinBoard = {
 	// },
 	scrollToBoard: function() {
 		$('html, body').animate({
-			scrollTop: $('.board').offset().top - 80
+			scrollTop: $('.board').offset().top - 60
 		}, 1500);
 	}
 
