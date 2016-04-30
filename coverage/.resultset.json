@@ -694,7 +694,11 @@
         0
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1461982310
+=======
+    "timestamp": 1461981225
+>>>>>>> theme
   },
   "RSpec": {
     "coverage": {
@@ -1391,6 +1395,10 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1461982319
+=======
+    "timestamp": 1461981238
+>>>>>>> theme
   }
 }

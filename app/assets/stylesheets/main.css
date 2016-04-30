@@ -42,26 +42,35 @@ a{
 	border-radius: 5px;
 	color:white;
 	cursor:pointer;
-	height:80px;
-	line-height:80px;
+	height:60px;
+	line-height:60px;
 	transition: 1s;
 	-webkit-transition: 1s;
 }
 .proceed-btn:hover {
 	background-color:white;
 	color: #F68D36;
-	line-height:40px;
+	line-height:30px;
 }
 
 .container-header{
 	width:100%;
 	background-color: #F68D36;
-	height:80px;
+	height:60px;
 	color:#f2f2f2;
 	position:fixed;
 	z-index:2;
     opacity : 0.9;
-
+}
+.header{
+	width:100%;
+	color: #f2f2f2;
+	text-align:center;
+	line-height: 60px;
+	font-family:Raleway;
+	font-size: 20px;
+	position:fixed;
+	z-index: 3;
 }
 .icon-container{
 	float:right;
@@ -74,9 +83,51 @@ a{
 	background-color: #F68D36;
 	height:100%;
 	cursor: pointer;
-	width:80px;
+	width:60px;
 	text-align:center;
 	display:inline-block;
+	font-size:12px;
+}
+.dropdown-icon-container{
+	float:left;
+
+}
+.more-info-dropdown{
+	position:relative;
+	display:inline-block;
+}
+.dropdown-content{
+	display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-top:60px;
+    width:60px;
+}
+.more-info-dropdown:hover #moreinfoicon {
+    background-color: white;
+    color:black;
+}
+.more-info-dropdown:hover .dropdown-content{
+	display:block;
+}
+.dropdown-icon{
+	position:relative;
+	float:bottom;
+	z-index:3;
+	background-color:white;
+	height:100%;
+	cursor: pointer;
+	width:60px;
+	text-align:center;
+	display:inline-block;
+	color:black;
+	font-size:12px;
+
+}
+.dropdown-icon:hover {
+	background-color:#F68D36;
+	opacity: 0.9;
 }
 .container-logo{
 	position:relative;
@@ -102,16 +153,11 @@ a{
 	background-color: #FFF;
 	color:black;
 }
-.header{
-	width:100%;
-	color: #f2f2f2;
-	text-align:center;
-	line-height: 80px;
-	font-family:Raleway;
-	font-size: 25px;
-	position:fixed;
-	z-index: 3;
+#moreinfoicon:hover {
+	background-color: #FFF;
+	color:black;	
 }
+
 img.center{
 	display:block;
 	margin-top:10px;
@@ -197,7 +243,7 @@ img.center{
 	/*margin-top:2em;*/
 	text-align: center;
 	width:75%;
-	margin-left:-50%;
+	margin-left:-10%;
 	border-radius:0px;
 	border: 1px solid #F68D36;
 	display:none;
