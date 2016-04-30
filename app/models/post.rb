@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 	validates :title, :presence => true
 	validates :body, :presence => true
 	def self.list(myEmail)
-		Post.all.order("created_at desc").map{|x| x.tojson(myEmail)}
+		Post.all.order("created_at desc").map{|x| x.tojson(myEmail)}.to_json
 	end
 	
 	def tojson(myEmail)

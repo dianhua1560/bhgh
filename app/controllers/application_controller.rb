@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
     @error_type = flash[:error_type]
     @searching = false
 
-    @events = Event.all.map{|x| x.tojson(myEmail)}.to_json
-    @brags = Brag.all.order('created_at desc').map{|x| x.tojson(myEmail)}.to_json
-    @posts = Post.all.map{|x| x.tojson(myEmail)}.to_json
+    @events = Event.list(myEmail)
+    @brags = Brag.list(myEmail)
+    @posts = Post.list(myEmail)
     @maps_api_key = ENV['MAPS_API_KEY']
     render 'layouts/board', layout: false
   end
